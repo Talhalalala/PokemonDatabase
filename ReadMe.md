@@ -97,69 +97,232 @@ This repo is a template for a Pokemon Showcase application and admin managament 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+## Steps
 
-This is an example of how to list things you need to use the software and how to install them.
+### Setup a Basic API
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+```
+mkdir api
+cd api
+npm init -y
+npx prisma init
+```
 
-### Installation
+Copy in the package.json:
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/ConticTech/PokemonTrainer.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
-   ```
+```
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prestart": "prisma migrate deploy",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.18",
+    "prisma": "^3.9.2",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.9.2",
+    "class-validator": "^0.13.2",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  }
+}
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+```
 
-<!-- USAGE EXAMPLES -->
+tsconfig.json:
 
-## Usage
+```
+{
+    "compilerOptions": {
+      "sourceMap": true,
+      "outDir": "dist",
+      "strict": true,
+      "lib": ["esnext"],
+      "esModuleInterop": true
+    }
+  }
+```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+index.ts:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```
+import express from 'express';
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+const app = express()
+const port = process.env.PORT ?? 80;
 
-<!-- ROADMAP -->
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-## Roadmap
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+```
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
+Dockerfile:
 
-See the [open issues](https://github.com/ConticTech/PokemonTrainer/issues) for a full list of proposed features (and known issues).
+```
+FROM node:14 AS builder
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+# Create app directory
+WORKDIR /app
 
-<!-- CONTRIBUTING -->
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
+COPY yarn.lock ./
+COPY prisma ./prisma/
 
-## Contributing
+# Install app dependencies
+RUN yarn
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+COPY . .
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+RUN npm run build
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+FROM node:14
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/dist ./dist
+
+ENV PORT=80
+CMD [ "npm", "run", "start" ]
+```
+
+docker-compose.yml:
+
+```
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: contic
+      POSTGRES_DB: contic
+    ports:
+      - "5432:5432"
+```
+
+.gitignore:
+
+```
+node_modules
+.env
+dist
+```
+
+.dockerignore:
+
+```
+node_modules
+npm-debug.log
+```
+
+Edit the `.env` file:
+
+```
+DATABASE_URL="postgresql://contic:password@localhost:5432/contic"
+```
+
+Change the prisma file to create a basic migration in `schema.prisma`:
+
+```
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+```
+
+Start the database:
+
+```
+docker-compose up
+```
+
+Create a new migration:
+
+```
+npx prisma migrate dev --name init
+```
+
+### Setup Next.js
+
+Run the Next.js setup script and call your application `app`
+
+```
+npx create-next-app@latest --ts
+```
+
+Create a `Dockerfile` to deploy your code in `app/Dockerfile`:
+
+```
+# Install dependencies only when needed
+FROM node:lts-alpine AS deps
+
+WORKDIR /opt/app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# Rebuild the source code only when needed
+# This is where because may be the case that you would try
+# to build the app based on some `X_TAG` in my case (Git commit hash)
+# but the code hasn't changed.
+FROM node:lts-alpine AS builder
+
+ENV NODE_ENV=production
+WORKDIR /opt/app
+COPY . .
+COPY --from=deps /opt/app/node_modules ./node_modules
+RUN yarn build
+
+# Production image, copy all the files and run next
+FROM node:lts-alpine AS runner
+
+ARG X_TAG
+WORKDIR /opt/app
+ENV NODE_ENV=production
+ENV PORT=80
+COPY --from=builder /opt/app/next.config.js ./
+COPY --from=builder /opt/app/public ./public
+COPY --from=builder /opt/app/.next ./.next
+COPY --from=builder /opt/app/node_modules ./node_modules
+CMD ["node_modules/.bin/next", "start"]
+```
+
+### Setup ForestAdmin
+
+### Setup Infrastructure for API & Next.js
+
+### Setup Infrastucture ForestAdmin
