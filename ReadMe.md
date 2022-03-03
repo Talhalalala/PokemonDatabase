@@ -99,7 +99,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Steps
 
-### Setup a Basic API
+### Set up a Basic API
 
 ```
 mkdir api
@@ -277,7 +277,7 @@ Create a new migration:
 npx prisma migrate dev --name init
 ```
 
-### Setup Next.js
+### Set up Next.js
 
 Run the Next.js setup script and call your application `app`
 
@@ -321,8 +321,171 @@ COPY --from=builder /opt/app/node_modules ./node_modules
 CMD ["node_modules/.bin/next", "start"]
 ```
 
-### Setup ForestAdmin
+### Set up ForestAdmin
 
-### Setup Infrastructure for API & Next.js
+Create a Forest Admin account [here](https://app.forestadmin.com/signup) and add a new project.
 
-### Setup Infrastucture ForestAdmin
+Click on Connect a datasource and choose PostgreSQL.
+
+Use the following details:
+
+```
+Host: localhost
+Port: 5432
+User: contic
+Password: password
+Database name: contic
+```
+
+Click Install with NPM and enter the NPM commands into your terminal. Ensure to replace PROJECT_NAME with the name of your project
+
+```
+npm install -g forest-cli@latest -s
+forest login
+PokemonTrainer % forest projects:create "PROJECT_NAME" --databaseConnectionURL "postgres://contic:password@localhost:5432/contic" --databaseSchema "public" --applicationHost "localhost" --applicationPort "3310"
+npm install -s
+npm start
+```
+
+Rename your Forest Admin project folder to admin
+
+```
+mv <PROJECT_NAME> admin
+```
+
+### Set up AWS
+
+Configure AWS and enter your details. The region should be `eu-west-2`
+
+```
+aws configure
+```
+
+Enter the following to list your buckets to ensure AWS is working
+
+```
+aws s3 ls
+```
+
+Install the AWS CDK
+
+```
+npm install -g aws-cdk
+```
+
+Create a new folder called infrastructure and navigate into it
+
+```
+mkdir infrastructure
+cd infrastructure
+```
+
+Initialise and deploy
+
+```
+cdk init
+cdk bootstrap
+cdk synth
+cdk deploy
+```
+
+### Connect AWS and Forest Admin
+
+On Forest Admin, navigate to your project and click on 'Deploy you admin backend', then 'Connect a datasource'. Enter the database details from earlier. We now need to copy the environment variables shown in Forst Admin into AWS.
+
+![](public/forest-secret.png)
+
+Login to AWS and search for AWS Secrets Manager. Click on 'Store a new secret'.
+
+Select 'Other type of secret' and enter FOREST_ENV_SECRET, FOREST_AUTH_SECRET and APPLICATION_URL and fill in the details from forest admin.
+
+![](public/amazon-secret.png)
+
+### Create Models for Prisma
+
+Now that Forest Admin and AWS are connected, we need to create our models for the database. You will need to edit the `schema.prisma` file in `api/prisma` to reflect the `pokemon.csv` file in the `data` folder.
+
+Read about Primsa Models [here](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model).
+
+### Set up Infrastructure for API & Next.js
+
+### Set up Infrastucture ForestAdmin
+
+### Set up ESLint and Prettier
+
+Install Prettier
+
+```
+yarn add --dev --exact prettier
+```
+
+Add a `.prettierrc.json` file
+
+```
+{
+ "semi": true,
+ "tabWidth": 2,
+ "printWidth": 100,
+ "singleQuote": true
+}
+```
+
+Add a `.prettier.ignore` file
+
+```
+package.json
+package-lock.json
+```
+
+Install Prettier Code Formatter
+
+Install ESLint
+
+```
+yarn add --dev eslint
+```
+
+Initialise ESLint
+
+```
+yarn create @eslint/config
+```
+
+Select the following options:
+
+- To check syntax, find problems, and enforce code style
+- Javascript modules (import/export)
+- None of these
+- No (Typescript)
+- Node
+- Yes
+- Airbnb
+- Javascript
+
+Get ESLint and Prettier working together
+
+Install the Prettier plugins for ESLint
+
+```
+yarn add --dev eslint-config-prettier eslint-plugin-prettier
+
+```
+
+Update your `.eslintrc.js` file
+
+```
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ['airbnb-base', 'plugin:prettier/recommended', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  rules: {
+    'prettier/prettier': ['error', { singleQuote: true }],
+  },
+};
+```
