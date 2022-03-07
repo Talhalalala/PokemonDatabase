@@ -1912,7 +1912,7 @@
                           {
                             "essential": true,
                             "image": {
-                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:a832a6d5fc88d2471ea2eaa69eae10e8b4ffed557a659f0859242746313ce345"
+                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:ebc6d621ca6a8070519da55bff9c896ae38ad44422e54e8739d43bc810438394"
                             },
                             "name": "web",
                             "portMappings": [
@@ -2655,7 +2655,7 @@
                           {
                             "essential": true,
                             "image": {
-                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:9c12b498abdc61f39342f0b10f8015eff294b1a26e7f67ac2f5f54896a2cc171"
+                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:11e5f08c1eba628b5e14fc092e84902e8e0e7257bdd8a190dcad8cbf77be9a70"
                             },
                             "name": "web",
                             "portMappings": [
@@ -3414,7 +3414,7 @@
                           {
                             "essential": true,
                             "image": {
-                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:78b515dee6a596b14a39d1a0b9e11a56f739945e4a766e12d0236c0b9ae6b45d"
+                              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:b312d73d8f87a935300dc616183dbe0d5e581dafd3e69f13365a9ece424d2eba"
                             },
                             "name": "web",
                             "portMappings": [
