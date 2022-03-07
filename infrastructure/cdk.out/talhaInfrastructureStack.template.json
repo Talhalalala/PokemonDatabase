@@ -1284,7 +1284,7 @@
             ],
             "Essential": true,
             "Image": {
-              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:ebc6d621ca6a8070519da55bff9c896ae38ad44422e54e8739d43bc810438394"
+              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:8b8a5b53afd05ef77a69cbc26efad83359d47d23d3266918e187b3485ebdfd1b"
             },
             "LogConfiguration": {
               "LogDriver": "awslogs",
@@ -1785,7 +1785,7 @@
             ],
             "Essential": true,
             "Image": {
-              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:11e5f08c1eba628b5e14fc092e84902e8e0e7257bdd8a190dcad8cbf77be9a70"
+              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:cb799dd05462af51b5342033a688adea6717d98113b7e78c099e7f642d9ba7df"
             },
             "LogConfiguration": {
               "LogDriver": "awslogs",
