@@ -1,0 +1,2581 @@
+{
+  "Resources": {
+    "vpcA2121C38": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/Resource"
+      }
+    },
+    "vpcPublicSubnet1Subnet2E65531E": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/18",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "AvailabilityZone": "eu-west-2a",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/Subnet"
+      }
+    },
+    "vpcPublicSubnet1RouteTable48A2DF9B": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/RouteTable"
+      }
+    },
+    "vpcPublicSubnet1RouteTableAssociation5D3F4579": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPublicSubnet1RouteTable48A2DF9B"
+        },
+        "SubnetId": {
+          "Ref": "vpcPublicSubnet1Subnet2E65531E"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/RouteTableAssociation"
+      }
+    },
+    "vpcPublicSubnet1DefaultRoute10708846": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPublicSubnet1RouteTable48A2DF9B"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcIGWE57CBDCA"
+        }
+      },
+      "DependsOn": [
+        "vpcVPCGW7984C166"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/DefaultRoute"
+      }
+    },
+    "vpcPublicSubnet1EIPDA49DCBE": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/EIP"
+      }
+    },
+    "vpcPublicSubnet1NATGateway9C16659E": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "vpcPublicSubnet1Subnet2E65531E"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcPublicSubnet1EIPDA49DCBE",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet1/NATGateway"
+      }
+    },
+    "vpcPublicSubnet2Subnet009B674F": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.64.0/18",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "AvailabilityZone": "eu-west-2b",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/Subnet"
+      }
+    },
+    "vpcPublicSubnet2RouteTableEB40D4CB": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/RouteTable"
+      }
+    },
+    "vpcPublicSubnet2RouteTableAssociation21F81B59": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPublicSubnet2RouteTableEB40D4CB"
+        },
+        "SubnetId": {
+          "Ref": "vpcPublicSubnet2Subnet009B674F"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/RouteTableAssociation"
+      }
+    },
+    "vpcPublicSubnet2DefaultRouteA1EC0F60": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPublicSubnet2RouteTableEB40D4CB"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "vpcIGWE57CBDCA"
+        }
+      },
+      "DependsOn": [
+        "vpcVPCGW7984C166"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/DefaultRoute"
+      }
+    },
+    "vpcPublicSubnet2EIP9B3743B1": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/EIP"
+      }
+    },
+    "vpcPublicSubnet2NATGateway9B8AE11A": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "vpcPublicSubnet2Subnet009B674F"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "vpcPublicSubnet2EIP9B3743B1",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PublicSubnet2/NATGateway"
+      }
+    },
+    "vpcPrivateSubnet1Subnet934893E8": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.128.0/18",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "AvailabilityZone": "eu-west-2a",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet1/Subnet"
+      }
+    },
+    "vpcPrivateSubnet1RouteTableB41A48CC": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet1/RouteTable"
+      }
+    },
+    "vpcPrivateSubnet1RouteTableAssociation67945127": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPrivateSubnet1RouteTableB41A48CC"
+        },
+        "SubnetId": {
+          "Ref": "vpcPrivateSubnet1Subnet934893E8"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet1/RouteTableAssociation"
+      }
+    },
+    "vpcPrivateSubnet1DefaultRoute1AA8E2E5": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPrivateSubnet1RouteTableB41A48CC"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcPublicSubnet1NATGateway9C16659E"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet1/DefaultRoute"
+      }
+    },
+    "vpcPrivateSubnet2Subnet7031C2BA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.192.0/18",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "AvailabilityZone": "eu-west-2b",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet2/Subnet"
+      }
+    },
+    "vpcPrivateSubnet2RouteTable7280F23E": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet2/RouteTable"
+      }
+    },
+    "vpcPrivateSubnet2RouteTableAssociation007E94D3": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPrivateSubnet2RouteTable7280F23E"
+        },
+        "SubnetId": {
+          "Ref": "vpcPrivateSubnet2Subnet7031C2BA"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet2/RouteTableAssociation"
+      }
+    },
+    "vpcPrivateSubnet2DefaultRouteB0E07F99": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "vpcPrivateSubnet2RouteTable7280F23E"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "vpcPublicSubnet2NATGateway9B8AE11A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/PrivateSubnet2/DefaultRoute"
+      }
+    },
+    "vpcIGWE57CBDCA": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "talhaInfrastructureStack/vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/IGW"
+      }
+    },
+    "vpcVPCGW7984C166": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        },
+        "InternetGatewayId": {
+          "Ref": "vpcIGWE57CBDCA"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/vpc/VPCGW"
+      }
+    },
+    "pokemontrainerF13DAF76": {
+      "Type": "AWS::ECS::Cluster",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/pokemon-trainer/Resource"
+      }
+    },
+    "apicertificateCertificateRequestorFunctionServiceRole66AF7B5E": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/ServiceRole/Resource"
+      }
+    },
+    "apicertificateCertificateRequestorFunctionServiceRoleDefaultPolicy239A2CC3": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "acm:RequestCertificate",
+                "acm:DescribeCertificate",
+                "acm:DeleteCertificate",
+                "acm:AddTagsToCertificate"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:GetChange",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:changeResourceRecordSets",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":route53:::hostedzone/Z0163067XMEL30Z94G74"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "apicertificateCertificateRequestorFunctionServiceRoleDefaultPolicy239A2CC3",
+        "Roles": [
+          {
+            "Ref": "apicertificateCertificateRequestorFunctionServiceRole66AF7B5E"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "apicertificateCertificateRequestorFunction873E7966": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-242580904937-eu-west-2",
+          "S3Key": "4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c.zip"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "apicertificateCertificateRequestorFunctionServiceRole66AF7B5E",
+            "Arn"
+          ]
+        },
+        "Handler": "index.certificateRequestHandler",
+        "Runtime": "nodejs12.x",
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "apicertificateCertificateRequestorFunctionServiceRoleDefaultPolicy239A2CC3",
+        "apicertificateCertificateRequestorFunctionServiceRole66AF7B5E"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/Resource",
+        "aws:asset:path": "asset.4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "apicertificateCertificateRequestorResourceE003978C": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "apicertificateCertificateRequestorFunction873E7966",
+            "Arn"
+          ]
+        },
+        "DomainName": "api.talha.contic.tech",
+        "SubjectAlternativeNames": [
+          "www.api.talha.contic.tech"
+        ],
+        "HostedZoneId": "Z0163067XMEL30Z94G74",
+        "Region": "eu-west-2"
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-certificate/CertificateRequestorResource/Default"
+      }
+    },
+    "apiforestcertificateCertificateRequestorFunctionServiceRoleB36E0745": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/ServiceRole/Resource"
+      }
+    },
+    "apiforestcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy09E056F7": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "acm:RequestCertificate",
+                "acm:DescribeCertificate",
+                "acm:DeleteCertificate",
+                "acm:AddTagsToCertificate"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:GetChange",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:changeResourceRecordSets",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":route53:::hostedzone/Z0163067XMEL30Z94G74"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "apiforestcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy09E056F7",
+        "Roles": [
+          {
+            "Ref": "apiforestcertificateCertificateRequestorFunctionServiceRoleB36E0745"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "apiforestcertificateCertificateRequestorFunction1C601959": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-242580904937-eu-west-2",
+          "S3Key": "4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c.zip"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "apiforestcertificateCertificateRequestorFunctionServiceRoleB36E0745",
+            "Arn"
+          ]
+        },
+        "Handler": "index.certificateRequestHandler",
+        "Runtime": "nodejs12.x",
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "apiforestcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy09E056F7",
+        "apiforestcertificateCertificateRequestorFunctionServiceRoleB36E0745"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/Resource",
+        "aws:asset:path": "asset.4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "apiforestcertificateCertificateRequestorResource4898CA8E": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "apiforestcertificateCertificateRequestorFunction1C601959",
+            "Arn"
+          ]
+        },
+        "DomainName": "api.forest.talha.contic.tech",
+        "SubjectAlternativeNames": [
+          "www.api.forest.talha.contic.tech"
+        ],
+        "HostedZoneId": "Z0163067XMEL30Z94G74",
+        "Region": "eu-west-2"
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-forest-certificate/CertificateRequestorResource/Default"
+      }
+    },
+    "appcertificateCertificateRequestorFunctionServiceRoleD90C9D0B": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/ServiceRole/Resource"
+      }
+    },
+    "appcertificateCertificateRequestorFunctionServiceRoleDefaultPolicyBB44B5A4": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "acm:RequestCertificate",
+                "acm:DescribeCertificate",
+                "acm:DeleteCertificate",
+                "acm:AddTagsToCertificate"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:GetChange",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": "route53:changeResourceRecordSets",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":route53:::hostedzone/Z0163067XMEL30Z94G74"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "appcertificateCertificateRequestorFunctionServiceRoleDefaultPolicyBB44B5A4",
+        "Roles": [
+          {
+            "Ref": "appcertificateCertificateRequestorFunctionServiceRoleD90C9D0B"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "appcertificateCertificateRequestorFunction0837DF8A": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-242580904937-eu-west-2",
+          "S3Key": "4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c.zip"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "appcertificateCertificateRequestorFunctionServiceRoleD90C9D0B",
+            "Arn"
+          ]
+        },
+        "Handler": "index.certificateRequestHandler",
+        "Runtime": "nodejs12.x",
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "appcertificateCertificateRequestorFunctionServiceRoleDefaultPolicyBB44B5A4",
+        "appcertificateCertificateRequestorFunctionServiceRoleD90C9D0B"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/Resource",
+        "aws:asset:path": "asset.4d3f21fe611d8ebfd4f1f69754b7f986fed4ecf648d4fafe941cd81ede6cf60c",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "appcertificateCertificateRequestorResource7F2A6D08": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "appcertificateCertificateRequestorFunction0837DF8A",
+            "Arn"
+          ]
+        },
+        "DomainName": "app.talha.contic.tech",
+        "SubjectAlternativeNames": [
+          "www.app.talha.contic.tech"
+        ],
+        "HostedZoneId": "Z0163067XMEL30Z94G74",
+        "Region": "eu-west-2"
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/app-certificate/CertificateRequestorResource/Default"
+      }
+    },
+    "databasecredentialssecretCD7FAFB1": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "GenerateSecretString": {
+          "ExcludePunctuation": true,
+          "GenerateStringKey": "password",
+          "IncludeSpace": false,
+          "SecretStringTemplate": "{\"username\":\"contic\",\"database\":\"contic\",\"port\":5432}"
+        },
+        "Name": "talha-database-credentials"
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/database-credentials-secret/Resource"
+      }
+    },
+    "databasecredentialssecretAttachment3A7BB22D": {
+      "Type": "AWS::SecretsManager::SecretTargetAttachment",
+      "Properties": {
+        "SecretId": {
+          "Ref": "databasecredentialssecretCD7FAFB1"
+        },
+        "TargetId": {
+          "Ref": "dbinstance310A317F"
+        },
+        "TargetType": "AWS::RDS::DBInstance"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/database-credentials-secret/Attachment/Resource"
+      }
+    },
+    "dbinstanceSubnetGroupE4F5C66F": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "Subnet group for db-instance database",
+        "SubnetIds": [
+          {
+            "Ref": "vpcPrivateSubnet1Subnet934893E8"
+          },
+          {
+            "Ref": "vpcPrivateSubnet2Subnet7031C2BA"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/db-instance/SubnetGroup/Default"
+      }
+    },
+    "dbinstanceSecurityGroupF70613D6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security group for db-instance database",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/db-instance/SecurityGroup/Resource"
+      }
+    },
+    "dbinstanceSecurityGroupfromtalhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84IndirectPortAA7D2243": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "from talhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84:{IndirectPort}",
+        "FromPort": {
+          "Fn::GetAtt": [
+            "dbinstance310A317F",
+            "Endpoint.Port"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "dbinstanceSecurityGroupF70613D6",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "apiproductionServiceSecurityGroup2C342B31",
+            "GroupId"
+          ]
+        },
+        "ToPort": {
+          "Fn::GetAtt": [
+            "dbinstance310A317F",
+            "Endpoint.Port"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/db-instance/SecurityGroup/from talhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84:{IndirectPort}"
+      }
+    },
+    "dbinstanceSecurityGroupfromtalhaInfrastructureStackforestproductionServiceSecurityGroup951A245EIndirectPort5D0F0F5C": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "from talhaInfrastructureStackforestproductionServiceSecurityGroup951A245E:{IndirectPort}",
+        "FromPort": {
+          "Fn::GetAtt": [
+            "dbinstance310A317F",
+            "Endpoint.Port"
+          ]
+        },
+        "GroupId": {
+          "Fn::GetAtt": [
+            "dbinstanceSecurityGroupF70613D6",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "forestproductionServiceSecurityGroupAD9F39D1",
+            "GroupId"
+          ]
+        },
+        "ToPort": {
+          "Fn::GetAtt": [
+            "dbinstance310A317F",
+            "Endpoint.Port"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/db-instance/SecurityGroup/from talhaInfrastructureStackforestproductionServiceSecurityGroup951A245E:{IndirectPort}"
+      }
+    },
+    "dbinstance310A317F": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceClass": "db.t3.micro",
+        "AllocatedStorage": "100",
+        "AllowMajorVersionUpgrade": false,
+        "AutoMinorVersionUpgrade": true,
+        "BackupRetentionPeriod": 0,
+        "CopyTagsToSnapshot": true,
+        "DBName": "contic",
+        "DBSubnetGroupName": {
+          "Ref": "dbinstanceSubnetGroupE4F5C66F"
+        },
+        "DeleteAutomatedBackups": true,
+        "DeletionProtection": false,
+        "Engine": "postgres",
+        "EngineVersion": "14.1",
+        "MasterUsername": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:",
+              {
+                "Ref": "databasecredentialssecretCD7FAFB1"
+              },
+              ":SecretString:username::}}"
+            ]
+          ]
+        },
+        "MasterUserPassword": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:",
+              {
+                "Ref": "databasecredentialssecretCD7FAFB1"
+              },
+              ":SecretString:password::}}"
+            ]
+          ]
+        },
+        "MaxAllocatedStorage": 105,
+        "MultiAZ": false,
+        "StorageType": "gp2",
+        "VPCSecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "dbinstanceSecurityGroupF70613D6",
+              "GroupId"
+            ]
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/db-instance/Resource"
+      }
+    },
+    "apiproductionLBB576F909": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "LoadBalancerAttributes": [
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          }
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "apiproductionLBSecurityGroup34D1366E",
+              "GroupId"
+            ]
+          }
+        ],
+        "Subnets": [
+          {
+            "Ref": "vpcPublicSubnet1Subnet2E65531E"
+          },
+          {
+            "Ref": "vpcPublicSubnet2Subnet009B674F"
+          }
+        ],
+        "Type": "application"
+      },
+      "DependsOn": [
+        "vpcPublicSubnet1DefaultRoute10708846",
+        "vpcPublicSubnet2DefaultRouteA1EC0F60"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/Resource"
+      }
+    },
+    "apiproductionLBSecurityGroup34D1366E": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Automatically created Security Group for ELB talhaInfrastructureStackapiproductionLB1FD51A63",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/SecurityGroup/Resource"
+      }
+    },
+    "apiproductionLBSecurityGrouptotalhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C8480CB19B385": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Fn::GetAtt": [
+            "apiproductionLBSecurityGroup34D1366E",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "apiproductionServiceSecurityGroup2C342B31",
+            "GroupId"
+          ]
+        },
+        "FromPort": 80,
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/SecurityGroup/to talhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84:80"
+      }
+    },
+    "apiproductionLBPublicListener748763A3": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "TargetGroupArn": {
+              "Ref": "apiproductionLBPublicListenerECSGroupCCDC822A"
+            },
+            "Type": "forward"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "apiproductionLBB576F909"
+        },
+        "Certificates": [
+          {
+            "CertificateArn": {
+              "Fn::GetAtt": [
+                "apicertificateCertificateRequestorResourceE003978C",
+                "Arn"
+              ]
+            }
+          }
+        ],
+        "Port": 443,
+        "Protocol": "HTTPS"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/PublicListener/Resource"
+      }
+    },
+    "apiproductionLBPublicListenerECSGroupCCDC822A": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          }
+        ],
+        "TargetType": "ip",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/PublicListener/ECSGroup/Resource"
+      }
+    },
+    "apiproductionLBPublicRedirectListener83EB2172": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "RedirectConfig": {
+              "Port": "443",
+              "Protocol": "HTTPS",
+              "StatusCode": "HTTP_301"
+            },
+            "Type": "redirect"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "apiproductionLBB576F909"
+        },
+        "Port": 80,
+        "Protocol": "HTTP"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/LB/PublicRedirectListener/Resource"
+      }
+    },
+    "apiproductionDNSA7E35076": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "Name": "api.talha.contic.tech.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::Join": [
+              "",
+              [
+                "dualstack.",
+                {
+                  "Fn::GetAtt": [
+                    "apiproductionLBB576F909",
+                    "DNSName"
+                  ]
+                }
+              ]
+            ]
+          },
+          "HostedZoneId": {
+            "Fn::GetAtt": [
+              "apiproductionLBB576F909",
+              "CanonicalHostedZoneID"
+            ]
+          }
+        },
+        "HostedZoneId": "Z0163067XMEL30Z94G74"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/DNS/Resource"
+      }
+    },
+    "apiproductionTaskDefTaskRole1A1E7018": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/TaskDef/TaskRole/Resource"
+      }
+    },
+    "apiproductionTaskDefE8B31DEF": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Environment": [
+              {
+                "Name": "DATABASE_URL",
+                "Value": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "postgresql://{{resolve:secretsmanager:",
+                      {
+                        "Ref": "databasecredentialssecretCD7FAFB1"
+                      },
+                      ":SecretString:username::}}:{{resolve:secretsmanager:",
+                      {
+                        "Ref": "databasecredentialssecretCD7FAFB1"
+                      },
+                      ":SecretString:password::}}@",
+                      {
+                        "Fn::GetAtt": [
+                          "dbinstance310A317F",
+                          "Endpoint.Address"
+                        ]
+                      },
+                      ":",
+                      {
+                        "Fn::GetAtt": [
+                          "dbinstance310A317F",
+                          "Endpoint.Port"
+                        ]
+                      },
+                      "/contic"
+                    ]
+                  ]
+                }
+              }
+            ],
+            "Essential": true,
+            "Image": {
+              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:a832a6d5fc88d2471ea2eaa69eae10e8b4ffed557a659f0859242746313ce345"
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "apiproductionTaskDefwebLogGroupD41C96EA"
+                },
+                "awslogs-stream-prefix": "api-production",
+                "awslogs-region": "eu-west-2"
+              }
+            },
+            "Name": "web",
+            "PortMappings": [
+              {
+                "ContainerPort": 80,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "apiproductionTaskDefExecutionRoleDF6359A7",
+            "Arn"
+          ]
+        },
+        "Family": "talhaInfrastructureStackapiproductionTaskDef87A41D15",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "apiproductionTaskDefTaskRole1A1E7018",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/TaskDef/Resource"
+      }
+    },
+    "apiproductionTaskDefwebLogGroupD41C96EA": {
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/TaskDef/web/LogGroup/Resource"
+      }
+    },
+    "apiproductionTaskDefExecutionRoleDF6359A7": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/TaskDef/ExecutionRole/Resource"
+      }
+    },
+    "apiproductionTaskDefExecutionRoleDefaultPolicyDC890573": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-west-2:242580904937:repository/cdk-hnb659fds-container-assets-242580904937-eu-west-2"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "apiproductionTaskDefwebLogGroupD41C96EA",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "apiproductionTaskDefExecutionRoleDefaultPolicyDC890573",
+        "Roles": [
+          {
+            "Ref": "apiproductionTaskDefExecutionRoleDF6359A7"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+      }
+    },
+    "apiproductionServiceEE88DD8E": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": {
+          "Ref": "pokemontrainerF13DAF76"
+        },
+        "DeploymentConfiguration": {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50
+        },
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": [
+          {
+            "ContainerName": "web",
+            "ContainerPort": 80,
+            "TargetGroupArn": {
+              "Ref": "apiproductionLBPublicListenerECSGroupCCDC822A"
+            }
+          }
+        ],
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": [
+              {
+                "Fn::GetAtt": [
+                  "apiproductionServiceSecurityGroup2C342B31",
+                  "GroupId"
+                ]
+              }
+            ],
+            "Subnets": [
+              {
+                "Ref": "vpcPrivateSubnet1Subnet934893E8"
+              },
+              {
+                "Ref": "vpcPrivateSubnet2Subnet7031C2BA"
+              }
+            ]
+          }
+        },
+        "TaskDefinition": {
+          "Ref": "apiproductionTaskDefE8B31DEF"
+        }
+      },
+      "DependsOn": [
+        "apiproductionLBPublicListenerECSGroupCCDC822A",
+        "apiproductionLBPublicListener748763A3"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/Service/Service"
+      }
+    },
+    "apiproductionServiceSecurityGroup2C342B31": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "talhaInfrastructureStack/api-production/Service/SecurityGroup",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/Service/SecurityGroup/Resource"
+      }
+    },
+    "apiproductionServiceSecurityGroupfromtalhaInfrastructureStackapiproductionLBSecurityGroup07C50006803A0AE415": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "apiproductionServiceSecurityGroup2C342B31",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "apiproductionLBSecurityGroup34D1366E",
+            "GroupId"
+          ]
+        },
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/api-production/Service/SecurityGroup/from talhaInfrastructureStackapiproductionLBSecurityGroup07C50006:80"
+      }
+    },
+    "forestproductionLB33173DEE": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "LoadBalancerAttributes": [
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          }
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "forestproductionLBSecurityGroupC0033616",
+              "GroupId"
+            ]
+          }
+        ],
+        "Subnets": [
+          {
+            "Ref": "vpcPublicSubnet1Subnet2E65531E"
+          },
+          {
+            "Ref": "vpcPublicSubnet2Subnet009B674F"
+          }
+        ],
+        "Type": "application"
+      },
+      "DependsOn": [
+        "vpcPublicSubnet1DefaultRoute10708846",
+        "vpcPublicSubnet2DefaultRouteA1EC0F60"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/Resource"
+      }
+    },
+    "forestproductionLBSecurityGroupC0033616": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Automatically created Security Group for ELB talhaInfrastructureStackforestproductionLB90F53B5B",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/SecurityGroup/Resource"
+      }
+    },
+    "forestproductionLBSecurityGrouptotalhaInfrastructureStackforestproductionServiceSecurityGroup951A245E808D324F71": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Fn::GetAtt": [
+            "forestproductionLBSecurityGroupC0033616",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "forestproductionServiceSecurityGroupAD9F39D1",
+            "GroupId"
+          ]
+        },
+        "FromPort": 80,
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/SecurityGroup/to talhaInfrastructureStackforestproductionServiceSecurityGroup951A245E:80"
+      }
+    },
+    "forestproductionLBPublicListenerED337006": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "TargetGroupArn": {
+              "Ref": "forestproductionLBPublicListenerECSGroupA667D38D"
+            },
+            "Type": "forward"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "forestproductionLB33173DEE"
+        },
+        "Certificates": [
+          {
+            "CertificateArn": {
+              "Fn::GetAtt": [
+                "apiforestcertificateCertificateRequestorResource4898CA8E",
+                "Arn"
+              ]
+            }
+          }
+        ],
+        "Port": 443,
+        "Protocol": "HTTPS"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/PublicListener/Resource"
+      }
+    },
+    "forestproductionLBPublicListenerECSGroupA667D38D": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          }
+        ],
+        "TargetType": "ip",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/PublicListener/ECSGroup/Resource"
+      }
+    },
+    "forestproductionLBPublicRedirectListenerF4D32FEF": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "RedirectConfig": {
+              "Port": "443",
+              "Protocol": "HTTPS",
+              "StatusCode": "HTTP_301"
+            },
+            "Type": "redirect"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "forestproductionLB33173DEE"
+        },
+        "Port": 80,
+        "Protocol": "HTTP"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/LB/PublicRedirectListener/Resource"
+      }
+    },
+    "forestproductionDNSE01F269A": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "Name": "api.forest.talha.contic.tech.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::Join": [
+              "",
+              [
+                "dualstack.",
+                {
+                  "Fn::GetAtt": [
+                    "forestproductionLB33173DEE",
+                    "DNSName"
+                  ]
+                }
+              ]
+            ]
+          },
+          "HostedZoneId": {
+            "Fn::GetAtt": [
+              "forestproductionLB33173DEE",
+              "CanonicalHostedZoneID"
+            ]
+          }
+        },
+        "HostedZoneId": "Z0163067XMEL30Z94G74"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/DNS/Resource"
+      }
+    },
+    "forestproductionTaskDefTaskRole41E22A19": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/TaskDef/TaskRole/Resource"
+      }
+    },
+    "forestproductionTaskDefCA99770E": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Environment": [
+              {
+                "Name": "DATABASE_URL",
+                "Value": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "postgresql://{{resolve:secretsmanager:",
+                      {
+                        "Ref": "databasecredentialssecretCD7FAFB1"
+                      },
+                      ":SecretString:username::}}:{{resolve:secretsmanager:",
+                      {
+                        "Ref": "databasecredentialssecretCD7FAFB1"
+                      },
+                      ":SecretString:password::}}@",
+                      {
+                        "Fn::GetAtt": [
+                          "dbinstance310A317F",
+                          "Endpoint.Address"
+                        ]
+                      },
+                      ":",
+                      {
+                        "Fn::GetAtt": [
+                          "dbinstance310A317F",
+                          "Endpoint.Port"
+                        ]
+                      },
+                      "/contic"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "FOREST_AUTH_SECRET",
+                "Value": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-2:242580904937:secret:PokemonTrainer-K1lUyt:SecretString:FOREST_AUTH_SECRET::}}"
+              },
+              {
+                "Name": "FOREST_ENV_SECRET",
+                "Value": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-2:242580904937:secret:PokemonTrainer-K1lUyt:SecretString:FOREST_ENV_SECRET::}}"
+              },
+              {
+                "Name": "APPLICATION_URL",
+                "Value": "https://api.forest.talha.contic.tech"
+              },
+              {
+                "Name": "APPLICATION_PORT",
+                "Value": "80"
+              }
+            ],
+            "Essential": true,
+            "Image": {
+              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:9c12b498abdc61f39342f0b10f8015eff294b1a26e7f67ac2f5f54896a2cc171"
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "forestproductionTaskDefwebLogGroupEF153B8E"
+                },
+                "awslogs-stream-prefix": "forest-production",
+                "awslogs-region": "eu-west-2"
+              }
+            },
+            "Name": "web",
+            "PortMappings": [
+              {
+                "ContainerPort": 80,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "forestproductionTaskDefExecutionRole447FF31A",
+            "Arn"
+          ]
+        },
+        "Family": "talhaInfrastructureStackforestproductionTaskDefC90ED759",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "forestproductionTaskDefTaskRole41E22A19",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/TaskDef/Resource"
+      }
+    },
+    "forestproductionTaskDefwebLogGroupEF153B8E": {
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/TaskDef/web/LogGroup/Resource"
+      }
+    },
+    "forestproductionTaskDefExecutionRole447FF31A": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/TaskDef/ExecutionRole/Resource"
+      }
+    },
+    "forestproductionTaskDefExecutionRoleDefaultPolicy984BC543": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-west-2:242580904937:repository/cdk-hnb659fds-container-assets-242580904937-eu-west-2"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "forestproductionTaskDefwebLogGroupEF153B8E",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "forestproductionTaskDefExecutionRoleDefaultPolicy984BC543",
+        "Roles": [
+          {
+            "Ref": "forestproductionTaskDefExecutionRole447FF31A"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+      }
+    },
+    "forestproductionServiceC516143C": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": {
+          "Ref": "pokemontrainerF13DAF76"
+        },
+        "DeploymentConfiguration": {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50
+        },
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": [
+          {
+            "ContainerName": "web",
+            "ContainerPort": 80,
+            "TargetGroupArn": {
+              "Ref": "forestproductionLBPublicListenerECSGroupA667D38D"
+            }
+          }
+        ],
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": [
+              {
+                "Fn::GetAtt": [
+                  "forestproductionServiceSecurityGroupAD9F39D1",
+                  "GroupId"
+                ]
+              }
+            ],
+            "Subnets": [
+              {
+                "Ref": "vpcPrivateSubnet1Subnet934893E8"
+              },
+              {
+                "Ref": "vpcPrivateSubnet2Subnet7031C2BA"
+              }
+            ]
+          }
+        },
+        "TaskDefinition": {
+          "Ref": "forestproductionTaskDefCA99770E"
+        }
+      },
+      "DependsOn": [
+        "forestproductionLBPublicListenerECSGroupA667D38D",
+        "forestproductionLBPublicListenerED337006"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/Service/Service"
+      }
+    },
+    "forestproductionServiceSecurityGroupAD9F39D1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "talhaInfrastructureStack/forest-production/Service/SecurityGroup",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/Service/SecurityGroup/Resource"
+      }
+    },
+    "forestproductionServiceSecurityGroupfromtalhaInfrastructureStackforestproductionLBSecurityGroupAA2F6D5C80BC7D618E": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "forestproductionServiceSecurityGroupAD9F39D1",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "forestproductionLBSecurityGroupC0033616",
+            "GroupId"
+          ]
+        },
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/forest-production/Service/SecurityGroup/from talhaInfrastructureStackforestproductionLBSecurityGroupAA2F6D5C:80"
+      }
+    },
+    "nextproductionLB8B3BC5F6": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "LoadBalancerAttributes": [
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          }
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "nextproductionLBSecurityGroup1AD51C2D",
+              "GroupId"
+            ]
+          }
+        ],
+        "Subnets": [
+          {
+            "Ref": "vpcPublicSubnet1Subnet2E65531E"
+          },
+          {
+            "Ref": "vpcPublicSubnet2Subnet009B674F"
+          }
+        ],
+        "Type": "application"
+      },
+      "DependsOn": [
+        "vpcPublicSubnet1DefaultRoute10708846",
+        "vpcPublicSubnet2DefaultRouteA1EC0F60"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/Resource"
+      }
+    },
+    "nextproductionLBSecurityGroup1AD51C2D": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Automatically created Security Group for ELB talhaInfrastructureStacknextproductionLB8D8ABB5E",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/SecurityGroup/Resource"
+      }
+    },
+    "nextproductionLBSecurityGrouptotalhaInfrastructureStacknextproductionServiceSecurityGroupB9C0750680C892D657": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Fn::GetAtt": [
+            "nextproductionLBSecurityGroup1AD51C2D",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "nextproductionServiceSecurityGroupDACC5514",
+            "GroupId"
+          ]
+        },
+        "FromPort": 80,
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/SecurityGroup/to talhaInfrastructureStacknextproductionServiceSecurityGroupB9C07506:80"
+      }
+    },
+    "nextproductionLBPublicListener87EAAACD": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "TargetGroupArn": {
+              "Ref": "nextproductionLBPublicListenerECSGroupB38C84CB"
+            },
+            "Type": "forward"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "nextproductionLB8B3BC5F6"
+        },
+        "Certificates": [
+          {
+            "CertificateArn": {
+              "Fn::GetAtt": [
+                "appcertificateCertificateRequestorResource7F2A6D08",
+                "Arn"
+              ]
+            }
+          }
+        ],
+        "Port": 443,
+        "Protocol": "HTTPS"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/PublicListener/Resource"
+      }
+    },
+    "nextproductionLBPublicListenerECSGroupB38C84CB": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          }
+        ],
+        "TargetType": "ip",
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/PublicListener/ECSGroup/Resource"
+      }
+    },
+    "nextproductionLBPublicRedirectListenerD7AA1858": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "RedirectConfig": {
+              "Port": "443",
+              "Protocol": "HTTPS",
+              "StatusCode": "HTTP_301"
+            },
+            "Type": "redirect"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "nextproductionLB8B3BC5F6"
+        },
+        "Port": 80,
+        "Protocol": "HTTP"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/LB/PublicRedirectListener/Resource"
+      }
+    },
+    "nextproductionDNS45590AF7": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "Name": "app.talha.contic.tech.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::Join": [
+              "",
+              [
+                "dualstack.",
+                {
+                  "Fn::GetAtt": [
+                    "nextproductionLB8B3BC5F6",
+                    "DNSName"
+                  ]
+                }
+              ]
+            ]
+          },
+          "HostedZoneId": {
+            "Fn::GetAtt": [
+              "nextproductionLB8B3BC5F6",
+              "CanonicalHostedZoneID"
+            ]
+          }
+        },
+        "HostedZoneId": "Z0163067XMEL30Z94G74"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/DNS/Resource"
+      }
+    },
+    "nextproductionTaskDefTaskRole24AD3A13": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/TaskDef/TaskRole/Resource"
+      }
+    },
+    "nextproductionTaskDef151FDCA0": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Environment": [
+              {
+                "Name": "NEXT_PUBLIC_API",
+                "Value": "https://api.talha.contic.tech"
+              }
+            ],
+            "Essential": true,
+            "Image": {
+              "Fn::Sub": "242580904937.dkr.ecr.eu-west-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-242580904937-eu-west-2:78b515dee6a596b14a39d1a0b9e11a56f739945e4a766e12d0236c0b9ae6b45d"
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "nextproductionTaskDefwebLogGroup46436010"
+                },
+                "awslogs-stream-prefix": "next-production",
+                "awslogs-region": "eu-west-2"
+              }
+            },
+            "Name": "web",
+            "PortMappings": [
+              {
+                "ContainerPort": 80,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "nextproductionTaskDefExecutionRole7B15AEDF",
+            "Arn"
+          ]
+        },
+        "Family": "talhaInfrastructureStacknextproductionTaskDefCD7D4884",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "nextproductionTaskDefTaskRole24AD3A13",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/TaskDef/Resource"
+      }
+    },
+    "nextproductionTaskDefwebLogGroup46436010": {
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/TaskDef/web/LogGroup/Resource"
+      }
+    },
+    "nextproductionTaskDefExecutionRole7B15AEDF": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/TaskDef/ExecutionRole/Resource"
+      }
+    },
+    "nextproductionTaskDefExecutionRoleDefaultPolicy497E19E3": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-west-2:242580904937:repository/cdk-hnb659fds-container-assets-242580904937-eu-west-2"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "nextproductionTaskDefwebLogGroup46436010",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "nextproductionTaskDefExecutionRoleDefaultPolicy497E19E3",
+        "Roles": [
+          {
+            "Ref": "nextproductionTaskDefExecutionRole7B15AEDF"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/TaskDef/ExecutionRole/DefaultPolicy/Resource"
+      }
+    },
+    "nextproductionService0759F8D9": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": {
+          "Ref": "pokemontrainerF13DAF76"
+        },
+        "DeploymentConfiguration": {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50
+        },
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": [
+          {
+            "ContainerName": "web",
+            "ContainerPort": 80,
+            "TargetGroupArn": {
+              "Ref": "nextproductionLBPublicListenerECSGroupB38C84CB"
+            }
+          }
+        ],
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": [
+              {
+                "Fn::GetAtt": [
+                  "nextproductionServiceSecurityGroupDACC5514",
+                  "GroupId"
+                ]
+              }
+            ],
+            "Subnets": [
+              {
+                "Ref": "vpcPrivateSubnet1Subnet934893E8"
+              },
+              {
+                "Ref": "vpcPrivateSubnet2Subnet7031C2BA"
+              }
+            ]
+          }
+        },
+        "TaskDefinition": {
+          "Ref": "nextproductionTaskDef151FDCA0"
+        }
+      },
+      "DependsOn": [
+        "nextproductionLBPublicListenerECSGroupB38C84CB",
+        "nextproductionLBPublicListener87EAAACD"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/Service/Service"
+      }
+    },
+    "nextproductionServiceSecurityGroupDACC5514": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "talhaInfrastructureStack/next-production/Service/SecurityGroup",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "vpcA2121C38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/Service/SecurityGroup/Resource"
+      }
+    },
+    "nextproductionServiceSecurityGroupfromtalhaInfrastructureStacknextproductionLBSecurityGroup6892353A805525CC01": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "nextproductionServiceSecurityGroupDACC5514",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "nextproductionLBSecurityGroup1AD51C2D",
+            "GroupId"
+          ]
+        },
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/next-production/Service/SecurityGroup/from talhaInfrastructureStacknextproductionLBSecurityGroup6892353A:80"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31U227bMAz9lr0r2tKge8+lLQIUW2AXeQ1omfHUyJKhS4rA8L+PkmM7TYc96fCQCnl4FD/w+SP/8Q0+3EyUp5mSBW9zD+LEiDq0KB54u28EWx/1frdmu1AoKfJQaPSRm1Bmgsc3KBRO/MQtnTNCgpdGj8URPG138fgF/gU8fsCF7aw8E5x+eKs9WsJDQT/JNVp6mvVPjdqzHEWw0l9erAlNmuG/xFZXFp37wj8lumMoHG/XKjjqHosG+Ay2gqjKnTZ4lFoOmu4Zoz1IjfaGu97N0Z6l6PfUw44JtF4epaB0DRoqtHyj3R6ULIkq11OaKaiLEnj7HLQYmg+4YxJq3mamtyGdO0OWpb31qGNucQDn0Du+jAfFfBXECf0KHDKHwlJuGKPNU3xdVET98UZi0N8YMBbcZzpmS1rmBjwU1GCrnQdN+nuPR3s2qy/EUJrsODTg41OgqZtGxV2Q4FcD5QpULCrv1osKnJdCUUWRKqSuzvSc/307mfwpvq2T5L2+1gz4Jt8rHge/CUl7fOuPC+qboTC2TL4klKOPwuxgxsaQB3Zb09p7XyjHM2yMk97YSzJHmYpW+WqqsdmAu45l6EywJD1dp79xRZLZmh6uqcdcaj/h38E3gebQpkT+7r6f5z/5fEGfhHcn5cwG7WWNPOvPv6v3Da0uBAAA"
+      },
+      "Metadata": {
+        "aws:cdk:path": "talhaInfrastructureStack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Outputs": {
+    "apiproductionLoadBalancerDNS48E9E434": {
+      "Value": {
+        "Fn::GetAtt": [
+          "apiproductionLBB576F909",
+          "DNSName"
+        ]
+      }
+    },
+    "apiproductionServiceURL3065A0F0": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "apiproductionDNSA7E35076"
+            }
+          ]
+        ]
+      }
+    },
+    "forestproductionLoadBalancerDNS86492570": {
+      "Value": {
+        "Fn::GetAtt": [
+          "forestproductionLB33173DEE",
+          "DNSName"
+        ]
+      }
+    },
+    "forestproductionServiceURL224B5455": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "forestproductionDNSE01F269A"
+            }
+          ]
+        ]
+      }
+    },
+    "nextproductionLoadBalancerDNS98A4452A": {
+      "Value": {
+        "Fn::GetAtt": [
+          "nextproductionLB8B3BC5F6",
+          "DNSName"
+        ]
+      }
+    },
+    "nextproductionServiceURLA7714973": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "nextproductionDNS45590AF7"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}

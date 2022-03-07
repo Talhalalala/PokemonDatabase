@@ -1,0 +1,628 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "talhaInfrastructureStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "talhaInfrastructureStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "talhaInfrastructureStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://242580904937/eu-west-2",
+      "properties": {
+        "templateFile": "talhaInfrastructureStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::242580904937:role/cdk-hnb659fds-deploy-role-242580904937-eu-west-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::242580904937:role/cdk-hnb659fds-cfn-exec-role-242580904937-eu-west-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-242580904937-eu-west-2/75207da5485cd618b448465bdca5fa6b845996121419b8a85c67bd752f82f0e2.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "talhaInfrastructureStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::242580904937:role/cdk-hnb659fds-lookup-role-242580904937-eu-west-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "talhaInfrastructureStack.assets"
+      ],
+      "metadata": {
+        "/talhaInfrastructureStack/vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcA2121C38"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1Subnet2E65531E"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1RouteTable48A2DF9B"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1RouteTableAssociation5D3F4579"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1DefaultRoute10708846"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1EIPDA49DCBE"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet1NATGateway9C16659E"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2Subnet009B674F"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2RouteTableEB40D4CB"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2RouteTableAssociation21F81B59"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2DefaultRouteA1EC0F60"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2EIP9B3743B1"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPublicSubnet2NATGateway9B8AE11A"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet1Subnet934893E8"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet1RouteTableB41A48CC"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet1RouteTableAssociation67945127"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet1DefaultRoute1AA8E2E5"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet2Subnet7031C2BA"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet2RouteTable7280F23E"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet2RouteTableAssociation007E94D3"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcPrivateSubnet2DefaultRouteB0E07F99"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcIGWE57CBDCA"
+          }
+        ],
+        "/talhaInfrastructureStack/vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcVPCGW7984C166"
+          }
+        ],
+        "/talhaInfrastructureStack/pokemon-trainer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pokemontrainerF13DAF76"
+          }
+        ],
+        "/talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apicertificateCertificateRequestorFunctionServiceRole66AF7B5E"
+          }
+        ],
+        "/talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apicertificateCertificateRequestorFunctionServiceRoleDefaultPolicy239A2CC3"
+          }
+        ],
+        "/talhaInfrastructureStack/api-certificate/CertificateRequestorFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apicertificateCertificateRequestorFunction873E7966"
+          }
+        ],
+        "/talhaInfrastructureStack/api-certificate/CertificateRequestorResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apicertificateCertificateRequestorResourceE003978C"
+          }
+        ],
+        "/talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiforestcertificateCertificateRequestorFunctionServiceRoleB36E0745"
+          }
+        ],
+        "/talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiforestcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy09E056F7"
+          }
+        ],
+        "/talhaInfrastructureStack/api-forest-certificate/CertificateRequestorFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiforestcertificateCertificateRequestorFunction1C601959"
+          }
+        ],
+        "/talhaInfrastructureStack/api-forest-certificate/CertificateRequestorResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiforestcertificateCertificateRequestorResource4898CA8E"
+          }
+        ],
+        "/talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "appcertificateCertificateRequestorFunctionServiceRoleD90C9D0B"
+          }
+        ],
+        "/talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "appcertificateCertificateRequestorFunctionServiceRoleDefaultPolicyBB44B5A4"
+          }
+        ],
+        "/talhaInfrastructureStack/app-certificate/CertificateRequestorFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "appcertificateCertificateRequestorFunction0837DF8A"
+          }
+        ],
+        "/talhaInfrastructureStack/app-certificate/CertificateRequestorResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "appcertificateCertificateRequestorResource7F2A6D08"
+          }
+        ],
+        "/talhaInfrastructureStack/database-credentials-secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databasecredentialssecretCD7FAFB1"
+          }
+        ],
+        "/talhaInfrastructureStack/database-credentials-secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "databasecredentialssecretAttachment3A7BB22D"
+          }
+        ],
+        "/talhaInfrastructureStack/db-instance/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbinstanceSubnetGroupE4F5C66F"
+          }
+        ],
+        "/talhaInfrastructureStack/db-instance/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbinstanceSecurityGroupF70613D6"
+          }
+        ],
+        "/talhaInfrastructureStack/db-instance/SecurityGroup/from talhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84:{IndirectPort}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbinstanceSecurityGroupfromtalhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84IndirectPortAA7D2243"
+          }
+        ],
+        "/talhaInfrastructureStack/db-instance/SecurityGroup/from talhaInfrastructureStackforestproductionServiceSecurityGroup951A245E:{IndirectPort}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbinstanceSecurityGroupfromtalhaInfrastructureStackforestproductionServiceSecurityGroup951A245EIndirectPort5D0F0F5C"
+          }
+        ],
+        "/talhaInfrastructureStack/db-instance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbinstance310A317F"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBB576F909"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBSecurityGroup34D1366E"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/SecurityGroup/to talhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C84:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBSecurityGrouptotalhaInfrastructureStackapiproductionServiceSecurityGroupEBC77C8480CB19B385"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBPublicListener748763A3"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBPublicListenerECSGroupCCDC822A"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LB/PublicRedirectListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLBPublicRedirectListener83EB2172"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/DNS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionDNSA7E35076"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionLoadBalancerDNS48E9E434"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionServiceURL3065A0F0"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionTaskDefTaskRole1A1E7018"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionTaskDefE8B31DEF"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionTaskDefwebLogGroupD41C96EA"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionTaskDefExecutionRoleDF6359A7"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionTaskDefExecutionRoleDefaultPolicyDC890573"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionServiceEE88DD8E"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionServiceSecurityGroup2C342B31"
+          }
+        ],
+        "/talhaInfrastructureStack/api-production/Service/SecurityGroup/from talhaInfrastructureStackapiproductionLBSecurityGroup07C50006:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproductionServiceSecurityGroupfromtalhaInfrastructureStackapiproductionLBSecurityGroup07C50006803A0AE415"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLB33173DEE"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLBSecurityGroupC0033616"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/SecurityGroup/to talhaInfrastructureStackforestproductionServiceSecurityGroup951A245E:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLBSecurityGrouptotalhaInfrastructureStackforestproductionServiceSecurityGroup951A245E808D324F71"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLBPublicListenerED337006"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLBPublicListenerECSGroupA667D38D"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LB/PublicRedirectListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLBPublicRedirectListenerF4D32FEF"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/DNS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionDNSE01F269A"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionLoadBalancerDNS86492570"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionServiceURL224B5455"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionTaskDefTaskRole41E22A19"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionTaskDefCA99770E"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionTaskDefwebLogGroupEF153B8E"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionTaskDefExecutionRole447FF31A"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionTaskDefExecutionRoleDefaultPolicy984BC543"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionServiceC516143C"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionServiceSecurityGroupAD9F39D1"
+          }
+        ],
+        "/talhaInfrastructureStack/forest-production/Service/SecurityGroup/from talhaInfrastructureStackforestproductionLBSecurityGroupAA2F6D5C:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "forestproductionServiceSecurityGroupfromtalhaInfrastructureStackforestproductionLBSecurityGroupAA2F6D5C80BC7D618E"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLB8B3BC5F6"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLBSecurityGroup1AD51C2D"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/SecurityGroup/to talhaInfrastructureStacknextproductionServiceSecurityGroupB9C07506:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLBSecurityGrouptotalhaInfrastructureStacknextproductionServiceSecurityGroupB9C0750680C892D657"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLBPublicListener87EAAACD"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLBPublicListenerECSGroupB38C84CB"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LB/PublicRedirectListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLBPublicRedirectListenerD7AA1858"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/DNS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionDNS45590AF7"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionLoadBalancerDNS98A4452A"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionServiceURLA7714973"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionTaskDefTaskRole24AD3A13"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionTaskDef151FDCA0"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionTaskDefwebLogGroup46436010"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionTaskDefExecutionRole7B15AEDF"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionTaskDefExecutionRoleDefaultPolicy497E19E3"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionService0759F8D9"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionServiceSecurityGroupDACC5514"
+          }
+        ],
+        "/talhaInfrastructureStack/next-production/Service/SecurityGroup/from talhaInfrastructureStacknextproductionLBSecurityGroup6892353A:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "nextproductionServiceSecurityGroupfromtalhaInfrastructureStacknextproductionLBSecurityGroup6892353A805525CC01"
+          }
+        ],
+        "/talhaInfrastructureStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/talhaInfrastructureStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/talhaInfrastructureStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "talhaInfrastructureStack"
+    }
+  }
+}
