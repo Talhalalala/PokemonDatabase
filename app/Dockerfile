@@ -1,3 +1,4 @@
+FROM --platform=linux/amd64 someBaseImage:someVersion
 # Install dependencies only when needed
 FROM node:lts-alpine AS deps
 

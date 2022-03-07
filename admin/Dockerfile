@@ -1,3 +1,4 @@
+FROM --platform=linux/amd64 someBaseImage:someVersion
 FROM node:10-alpine
 WORKDIR /usr/src/app
 COPY . .

@@ -1,3 +1,4 @@
+FROM --platform=linux/amd64 someBaseImage:someVersion
 FROM node:14 AS builder
 
 # Create app directory
