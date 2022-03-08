@@ -15,6 +15,7 @@ async function bootstrap() {
   });
   // Create the GraphQL server
   const server = new ApolloServer({
+    healthCheckPath:'/',
     schema,
     context: () => ({ prisma }),
   });

@@ -164,7 +164,7 @@ export class InfrastructureStack extends Stack {
         taskImageOptions: {
           image: ecs.ContainerImage.fromAsset("../app"),
           environment: {
-            NEXT_PUBLIC_API: `https://${apiDomain}`,
+            NEXT_PUBLIC_API: `https://${apiDomain}/graphql`,
           },
         },
         publicLoadBalancer: true,
