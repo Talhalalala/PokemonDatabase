@@ -10,6 +10,7 @@ COPY prisma ./prisma/
 
 # Install app dependencies
 RUN yarn
+RUN yarn generate
 
 COPY . .
 
