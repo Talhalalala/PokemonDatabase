@@ -1,12 +1,27 @@
-import express from 'express';
+import "reflect-metadata";
+import { ApolloServer } from "apollo-server";
+import { buildSchema } from "type-graphql";
+import { resolvers } from "@generated/type-graphql";
+import { PrismaClient } from "@prisma/client";
 
-const app = express()
-const port = process.env.PORT ?? 80;
+const prisma = new PrismaClient();
+const PORT = process.env.PORT ?? 80;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+async function bootstrap() {
+  const schema = await buildSchema({
+    resolvers,
+    emitSchemaFile: true,
+    validate: false,
+  });
+  // Create the GraphQL server
+  const server = new ApolloServer({
+    schema,
+    context: () => ({ prisma }),
+  });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  // Start the server
+  const { url } = await server.listen(PORT);
+  console.log(`Server is running, GraphQL Playground available at ${url}`);
+}
+
+bootstrap();
