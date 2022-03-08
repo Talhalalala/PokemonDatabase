@@ -8,5 +8,4 @@ generates:
       - typescript-react-query
     config:
       fetcher:
-        func: "./utils/fetcher#useFetchData"
-        isReactHook: false
+        endpoint: 'process.env.NEXT_PUBLIC_API'
