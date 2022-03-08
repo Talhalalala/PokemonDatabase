@@ -8,7 +8,7 @@
     "build": "tsc",
     "dev": "tsnd --respawn index.ts",
     "generate": "prisma generate",
-    "prestart": "prisma migrate deploy && yarn seed",
+    "prestart": "prisma migrate deploy",
     "seed": "ts-node prisma/seed.ts",
     "start": "node ."
   },
