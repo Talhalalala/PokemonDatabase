@@ -171,5 +171,8 @@ export class InfrastructureStack extends Stack {
         redirectHTTP: true,
       }
     );
+    appService.targetGroup.configureHealthCheck({
+      path: '/health',
+    });
   }
 }
