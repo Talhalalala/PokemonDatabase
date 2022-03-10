@@ -9,6 +9,7 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
     const res = await fetch(process.env.NEXT_PUBLIC_API as string, {
     method: "POST",
+    ...({"headers":{"credentials":"include","content-type":"application/json"}}),
       body: JSON.stringify({ query, variables }),
     });
 

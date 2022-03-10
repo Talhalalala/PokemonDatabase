@@ -9,3 +9,7 @@ generates:
     config:
       fetcher:
         endpoint: 'process.env.NEXT_PUBLIC_API'
+        fetchParams:
+          headers:
+            credentials: include
+            content-type: application/json

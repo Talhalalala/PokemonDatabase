@@ -50,6 +50,7 @@ const getPokemon = async (): Promise<any[]> => {
             weight_kg: Number(result.weight_kg),
             generation: Number(result.generation),
             is_legendary: result.is_legendary === "1" ? true : false,
+            
           }))
         );
       });

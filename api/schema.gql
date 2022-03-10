@@ -538,6 +538,27 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTime!]
 }
 
+input EnumStatusFieldUpdateOperationsInput {
+  set: Status
+}
+
+input EnumStatusFilter {
+  equals: Status
+  in: [Status!]
+  not: NestedEnumStatusFilter
+  notIn: [Status!]
+}
+
+input EnumStatusWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusFilter
+  _min: NestedEnumStatusFilter
+  equals: Status
+  in: [Status!]
+  not: NestedEnumStatusWithAggregatesFilter
+  notIn: [Status!]
+}
+
 input FloatFieldUpdateOperationsInput {
   decrement: Float
   divide: Float
@@ -926,6 +947,23 @@ input NestedDateTimeWithAggregatesFilter {
   lte: DateTime
   not: NestedDateTimeWithAggregatesFilter
   notIn: [DateTime!]
+}
+
+input NestedEnumStatusFilter {
+  equals: Status
+  in: [Status!]
+  not: NestedEnumStatusFilter
+  notIn: [Status!]
+}
+
+input NestedEnumStatusWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusFilter
+  _min: NestedEnumStatusFilter
+  equals: Status
+  in: [Status!]
+  not: NestedEnumStatusWithAggregatesFilter
+  notIn: [Status!]
 }
 
 input NestedFloatFilter {
@@ -1326,6 +1364,7 @@ type Pokemon {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status!
   types(cursor: PokemonTypesWhereUniqueInput, distinct: [PokemonTypesScalarFieldEnum!], orderBy: [PokemonTypesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonTypesWhereInput): [PokemonTypes!]!
   weight_kg: Float!
 }
@@ -1793,6 +1832,7 @@ type PokemonCountAggregate {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Int!
   weight_kg: Int!
 }
 
@@ -1834,6 +1874,7 @@ input PokemonCountOrderByAggregateInput {
   sp_attack: SortOrder
   sp_defense: SortOrder
   speed: SortOrder
+  status: SortOrder
   weight_kg: SortOrder
 }
 
@@ -1876,6 +1917,7 @@ input PokemonCreateInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   types: PokemonTypesCreateNestedManyWithoutPokemonInput
   weight_kg: Float!
 }
@@ -1917,6 +1959,7 @@ input PokemonCreateManyClassificationInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   weight_kg: Float!
 }
 
@@ -1962,6 +2005,7 @@ input PokemonCreateManyGenerationInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   weight_kg: Float!
 }
 
@@ -2008,6 +2052,7 @@ input PokemonCreateManyInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   weight_kg: Float!
 }
 
@@ -2106,6 +2151,7 @@ input PokemonCreateWithoutAbilitiesInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   types: PokemonTypesCreateNestedManyWithoutPokemonInput
   weight_kg: Float!
 }
@@ -2148,6 +2194,7 @@ input PokemonCreateWithoutClassificationInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   types: PokemonTypesCreateNestedManyWithoutPokemonInput
   weight_kg: Float!
 }
@@ -2190,6 +2237,7 @@ input PokemonCreateWithoutGenerationInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   types: PokemonTypesCreateNestedManyWithoutPokemonInput
   weight_kg: Float!
 }
@@ -2232,6 +2280,7 @@ input PokemonCreateWithoutPokedex_numberInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   types: PokemonTypesCreateNestedManyWithoutPokemonInput
   weight_kg: Float!
 }
@@ -2275,6 +2324,7 @@ input PokemonCreateWithoutTypesInput {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status
   weight_kg: Float!
 }
 
@@ -2321,6 +2371,7 @@ type PokemonGroupBy {
   sp_attack: Int!
   sp_defense: Int!
   speed: Int!
+  status: Status!
   weight_kg: Float!
 }
 
@@ -2368,6 +2419,7 @@ type PokemonMaxAggregate {
   sp_attack: Int
   sp_defense: Int
   speed: Int
+  status: Status
   weight_kg: Float
 }
 
@@ -2409,6 +2461,7 @@ input PokemonMaxOrderByAggregateInput {
   sp_attack: SortOrder
   sp_defense: SortOrder
   speed: SortOrder
+  status: SortOrder
   weight_kg: SortOrder
 }
 
@@ -2450,6 +2503,7 @@ type PokemonMinAggregate {
   sp_attack: Int
   sp_defense: Int
   speed: Int
+  status: Status
   weight_kg: Float
 }
 
@@ -2491,6 +2545,7 @@ input PokemonMinOrderByAggregateInput {
   sp_attack: SortOrder
   sp_defense: SortOrder
   speed: SortOrder
+  status: SortOrder
   weight_kg: SortOrder
 }
 
@@ -2541,6 +2596,7 @@ input PokemonOrderByWithAggregationInput {
   sp_attack: SortOrder
   sp_defense: SortOrder
   speed: SortOrder
+  status: SortOrder
   weight_kg: SortOrder
 }
 
@@ -2586,6 +2642,7 @@ input PokemonOrderByWithRelationInput {
   sp_attack: SortOrder
   sp_defense: SortOrder
   speed: SortOrder
+  status: SortOrder
   types: PokemonTypesOrderByRelationAggregateInput
   weight_kg: SortOrder
 }
@@ -2633,6 +2690,7 @@ enum PokemonScalarFieldEnum {
   sp_attack
   sp_defense
   speed
+  status
   weight_kg
 }
 
@@ -2677,6 +2735,7 @@ input PokemonScalarWhereInput {
   sp_attack: IntFilter
   sp_defense: IntFilter
   speed: IntFilter
+  status: EnumStatusFilter
   weight_kg: FloatFilter
 }
 
@@ -2721,6 +2780,7 @@ input PokemonScalarWhereWithAggregatesInput {
   sp_attack: IntWithAggregatesFilter
   sp_defense: IntWithAggregatesFilter
   speed: IntWithAggregatesFilter
+  status: EnumStatusWithAggregatesFilter
   weight_kg: FloatWithAggregatesFilter
 }
 
@@ -3182,6 +3242,7 @@ input PokemonUpdateInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   types: PokemonTypesUpdateManyWithoutPokemonInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
@@ -3221,6 +3282,7 @@ input PokemonUpdateManyMutationInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
 
@@ -3324,6 +3386,7 @@ input PokemonUpdateWithoutAbilitiesInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   types: PokemonTypesUpdateManyWithoutPokemonInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
@@ -3366,6 +3429,7 @@ input PokemonUpdateWithoutClassificationInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   types: PokemonTypesUpdateManyWithoutPokemonInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
@@ -3408,6 +3472,7 @@ input PokemonUpdateWithoutGenerationInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   types: PokemonTypesUpdateManyWithoutPokemonInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
@@ -3450,6 +3515,7 @@ input PokemonUpdateWithoutPokedex_numberInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   types: PokemonTypesUpdateManyWithoutPokemonInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
@@ -3493,6 +3559,7 @@ input PokemonUpdateWithoutTypesInput {
   sp_attack: IntFieldUpdateOperationsInput
   sp_defense: IntFieldUpdateOperationsInput
   speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
   weight_kg: FloatFieldUpdateOperationsInput
 }
 
@@ -3578,6 +3645,7 @@ input PokemonWhereInput {
   sp_attack: IntFilter
   sp_defense: IntFilter
   speed: IntFilter
+  status: EnumStatusFilter
   types: PokemonTypesListRelationFilter
   weight_kg: FloatFilter
 }
@@ -3637,6 +3705,12 @@ enum QueryMode {
 enum SortOrder {
   asc
   desc
+}
+
+enum Status {
+  Captured
+  Seen
+  Unseen
 }
 
 input StringFieldUpdateOperationsInput {

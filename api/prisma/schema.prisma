@@ -59,6 +59,7 @@ model Pokemon {
   capture_rate      Float?
   experience_growth Int
   height_m          Float
+  status            Status        @default(Unseen)               
 }
 
 model Pokedex {
@@ -69,6 +70,8 @@ model Pokedex {
   updatedAt DateTime  @updatedAt
   expiresAt DateTime?
 }
+
+
 
 model Type {
   id           Int            @id @default(autoincrement())
@@ -122,6 +125,38 @@ model Generation {
   id         Int       @id @default(autoincrement())
   generation Int       @unique
   pokemon    Pokemon[]
+}
+
+model Captured {
+  id           Int       @id @default(autoincrement())
+  pokemon      Pokemon   @relation(fields: [pokemonId], references: [id])
+  pokemonId    Int       @default(autoincrement())
+  level        Int
+  attack       Pokemon   @relation(fields: [attackId], references: [attack])
+  attackId     Int       @default(autoincrement())
+  defense      Pokemon   @relation(fields: [defenseId], references: [defense])
+  defenseId    Int       @default(autoincrement())
+  hp           Pokemon   @relation(fields: [hpId], references: [hp])
+  hpId         Int       @default(autoincrement())
+  sp_attack    Pokemon   @relation(fields: [sp_attackId], references: [sp_attack])
+  sp_attackId  Int       @default(autoincrement())
+  sp_defense   Pokemon   @relation(fields: [sp_defenseId], references: [sp_defense])
+  sp_defenseId Int       @default(autoincrement())
+  speed        Pokemon   @relation(fields: [speed_id], references: [speed])
+  speedId      Int       @default(autoincrement())
+  gender       Gender    @default(Unsexed)
+}
+
+enum Status {
+  Seen
+  Unseen
+  Captured
+}
+
+enum Gender {
+  Male 
+  Female
+  Unsexed
 }
 
 enum Abilities {

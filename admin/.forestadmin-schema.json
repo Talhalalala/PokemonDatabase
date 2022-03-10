@@ -946,6 +946,21 @@
         "value": null
       }]
     }, {
+      "field": "ovrStrength",
+      "type": "Number",
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": false,
+      "isPrimaryKey": false,
+      "isReadOnly": true,
+      "isRequired": false,
+      "isSortable": false,
+      "isVirtual": true,
+      "reference": null,
+      "inverseOf": null,
+      "validations": []
+    }, {
       "field": "percentageMale",
       "type": "Number",
       "defaultValue": null,
@@ -1070,6 +1085,29 @@
         "value": null
       }]
     }, {
+      "field": "status",
+      "type": "Enum",
+      "defaultValue": null,
+      "enums": [
+        "Seen",
+        "Unseen",
+        "Captured"
+      ],
+      "integration": null,
+      "isFilterable": true,
+      "isPrimaryKey": false,
+      "isReadOnly": false,
+      "isRequired": true,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": null,
+      "inverseOf": null,
+      "validations": [{
+        "message": null,
+        "type": "is present",
+        "value": null
+      }]
+    }, {
       "field": "weightKg",
       "type": "Number",
       "defaultValue": null,
@@ -1089,7 +1127,13 @@
         "value": null
       }]
     }],
-    "segments": [],
+    "segments": [{
+      "name": "Top 10 Fire Pokemon"
+    }, {
+      "name": "Top 10 Strongest Pokemon"
+    }, {
+      "name": "Top 30 Heaviest Pokemon"
+    }],
     "actions": []
   }, {
     "name": "pokemonAbilities",

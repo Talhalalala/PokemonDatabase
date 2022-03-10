@@ -144,6 +144,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
+    status: {
+      type: DataTypes.ENUM(
+        'Seen',
+        'Unseen',
+        'Captured',
+      ),
+      defaultValue: Sequelize.literal('\'Unseen\'::"Status"'),
+      allowNull: false,
+    },
   }, {
     tableName: 'Pokemon',
     underscored: true,

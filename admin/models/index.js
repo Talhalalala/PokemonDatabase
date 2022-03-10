@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const { Op, QueryTypes } = require('@sequelize/core');
+
 
 const databasesConfiguration = require('../config/databases');
 
