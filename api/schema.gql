@@ -239,6 +239,14 @@ type AggregateAbility {
   _sum: AbilitySumAggregate
 }
 
+type AggregateCaptured {
+  _avg: CapturedAvgAggregate
+  _count: CapturedCountAggregate
+  _max: CapturedMaxAggregate
+  _min: CapturedMinAggregate
+  _sum: CapturedSumAggregate
+}
+
 type AggregateClassification {
   _avg: ClassificationAvgAggregate
   _count: ClassificationCountAggregate
@@ -287,6 +295,14 @@ type AggregatePokemonTypes {
   _sum: PokemonTypesSumAggregate
 }
 
+type AggregateTrainer {
+  _avg: TrainerAvgAggregate
+  _count: TrainerCountAggregate
+  _max: TrainerMaxAggregate
+  _min: TrainerMinAggregate
+  _sum: TrainerSumAggregate
+}
+
 type AggregateType {
   _avg: TypeAvgAggregate
   _count: TypeCountAggregate
@@ -310,6 +326,345 @@ input BoolWithAggregatesFilter {
   _min: NestedBoolFilter
   equals: Boolean
   not: NestedBoolWithAggregatesFilter
+}
+
+type Captured {
+  gender: Gender!
+  id: Int!
+  level: Int!
+  pokemon: Pokemon!
+  pokemonId: Int!
+  trainer: Trainer!
+  trainerId: Int!
+}
+
+type CapturedAvgAggregate {
+  id: Float
+  level: Float
+  pokemonId: Float
+  trainerId: Float
+}
+
+input CapturedAvgOrderByAggregateInput {
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+type CapturedCountAggregate {
+  _all: Int!
+  gender: Int!
+  id: Int!
+  level: Int!
+  pokemonId: Int!
+  trainerId: Int!
+}
+
+input CapturedCountOrderByAggregateInput {
+  gender: SortOrder
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+input CapturedCreateInput {
+  gender: Gender
+  level: Int!
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput
+  trainer: TrainerCreateNestedOneWithoutCapturedInput
+}
+
+input CapturedCreateManyInput {
+  gender: Gender
+  id: Int
+  level: Int!
+  pokemonId: Int
+  trainerId: Int
+}
+
+input CapturedCreateManyPokemonInput {
+  gender: Gender
+  id: Int
+  level: Int!
+  trainerId: Int
+}
+
+input CapturedCreateManyPokemonInputEnvelope {
+  data: [CapturedCreateManyPokemonInput!]!
+  skipDuplicates: Boolean
+}
+
+input CapturedCreateManyTrainerInput {
+  gender: Gender
+  id: Int
+  level: Int!
+  pokemonId: Int
+}
+
+input CapturedCreateManyTrainerInputEnvelope {
+  data: [CapturedCreateManyTrainerInput!]!
+  skipDuplicates: Boolean
+}
+
+input CapturedCreateNestedManyWithoutPokemonInput {
+  connect: [CapturedWhereUniqueInput!]
+  connectOrCreate: [CapturedCreateOrConnectWithoutPokemonInput!]
+  create: [CapturedCreateWithoutPokemonInput!]
+  createMany: CapturedCreateManyPokemonInputEnvelope
+}
+
+input CapturedCreateNestedManyWithoutTrainerInput {
+  connect: [CapturedWhereUniqueInput!]
+  connectOrCreate: [CapturedCreateOrConnectWithoutTrainerInput!]
+  create: [CapturedCreateWithoutTrainerInput!]
+  createMany: CapturedCreateManyTrainerInputEnvelope
+}
+
+input CapturedCreateOrConnectWithoutPokemonInput {
+  create: CapturedCreateWithoutPokemonInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedCreateOrConnectWithoutTrainerInput {
+  create: CapturedCreateWithoutTrainerInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedCreateWithoutPokemonInput {
+  gender: Gender
+  level: Int!
+  trainer: TrainerCreateNestedOneWithoutCapturedInput
+}
+
+input CapturedCreateWithoutTrainerInput {
+  gender: Gender
+  level: Int!
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput
+}
+
+type CapturedGroupBy {
+  _avg: CapturedAvgAggregate
+  _count: CapturedCountAggregate
+  _max: CapturedMaxAggregate
+  _min: CapturedMinAggregate
+  _sum: CapturedSumAggregate
+  gender: Gender!
+  id: Int!
+  level: Int!
+  pokemonId: Int!
+  trainerId: Int!
+}
+
+input CapturedListRelationFilter {
+  every: CapturedWhereInput
+  none: CapturedWhereInput
+  some: CapturedWhereInput
+}
+
+type CapturedMaxAggregate {
+  gender: Gender
+  id: Int
+  level: Int
+  pokemonId: Int
+  trainerId: Int
+}
+
+input CapturedMaxOrderByAggregateInput {
+  gender: SortOrder
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+type CapturedMinAggregate {
+  gender: Gender
+  id: Int
+  level: Int
+  pokemonId: Int
+  trainerId: Int
+}
+
+input CapturedMinOrderByAggregateInput {
+  gender: SortOrder
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+input CapturedOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CapturedOrderByWithAggregationInput {
+  _avg: CapturedAvgOrderByAggregateInput
+  _count: CapturedCountOrderByAggregateInput
+  _max: CapturedMaxOrderByAggregateInput
+  _min: CapturedMinOrderByAggregateInput
+  _sum: CapturedSumOrderByAggregateInput
+  gender: SortOrder
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+input CapturedOrderByWithRelationInput {
+  gender: SortOrder
+  id: SortOrder
+  level: SortOrder
+  pokemon: PokemonOrderByWithRelationInput
+  pokemonId: SortOrder
+  trainer: TrainerOrderByWithRelationInput
+  trainerId: SortOrder
+}
+
+enum CapturedScalarFieldEnum {
+  gender
+  id
+  level
+  pokemonId
+  trainerId
+}
+
+input CapturedScalarWhereInput {
+  AND: [CapturedScalarWhereInput!]
+  gender: EnumGenderFilter
+  id: IntFilter
+  level: IntFilter
+  NOT: [CapturedScalarWhereInput!]
+  OR: [CapturedScalarWhereInput!]
+  pokemonId: IntFilter
+  trainerId: IntFilter
+}
+
+input CapturedScalarWhereWithAggregatesInput {
+  AND: [CapturedScalarWhereWithAggregatesInput!]
+  gender: EnumGenderWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  level: IntWithAggregatesFilter
+  NOT: [CapturedScalarWhereWithAggregatesInput!]
+  OR: [CapturedScalarWhereWithAggregatesInput!]
+  pokemonId: IntWithAggregatesFilter
+  trainerId: IntWithAggregatesFilter
+}
+
+type CapturedSumAggregate {
+  id: Int
+  level: Int
+  pokemonId: Int
+  trainerId: Int
+}
+
+input CapturedSumOrderByAggregateInput {
+  id: SortOrder
+  level: SortOrder
+  pokemonId: SortOrder
+  trainerId: SortOrder
+}
+
+input CapturedUpdateInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  level: IntFieldUpdateOperationsInput
+  pokemon: PokemonUpdateOneRequiredWithoutCapturedInput
+  trainer: TrainerUpdateOneRequiredWithoutCapturedInput
+}
+
+input CapturedUpdateManyMutationInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  level: IntFieldUpdateOperationsInput
+}
+
+input CapturedUpdateManyWithoutPokemonInput {
+  connect: [CapturedWhereUniqueInput!]
+  connectOrCreate: [CapturedCreateOrConnectWithoutPokemonInput!]
+  create: [CapturedCreateWithoutPokemonInput!]
+  createMany: CapturedCreateManyPokemonInputEnvelope
+  delete: [CapturedWhereUniqueInput!]
+  deleteMany: [CapturedScalarWhereInput!]
+  disconnect: [CapturedWhereUniqueInput!]
+  set: [CapturedWhereUniqueInput!]
+  update: [CapturedUpdateWithWhereUniqueWithoutPokemonInput!]
+  updateMany: [CapturedUpdateManyWithWhereWithoutPokemonInput!]
+  upsert: [CapturedUpsertWithWhereUniqueWithoutPokemonInput!]
+}
+
+input CapturedUpdateManyWithoutTrainerInput {
+  connect: [CapturedWhereUniqueInput!]
+  connectOrCreate: [CapturedCreateOrConnectWithoutTrainerInput!]
+  create: [CapturedCreateWithoutTrainerInput!]
+  createMany: CapturedCreateManyTrainerInputEnvelope
+  delete: [CapturedWhereUniqueInput!]
+  deleteMany: [CapturedScalarWhereInput!]
+  disconnect: [CapturedWhereUniqueInput!]
+  set: [CapturedWhereUniqueInput!]
+  update: [CapturedUpdateWithWhereUniqueWithoutTrainerInput!]
+  updateMany: [CapturedUpdateManyWithWhereWithoutTrainerInput!]
+  upsert: [CapturedUpsertWithWhereUniqueWithoutTrainerInput!]
+}
+
+input CapturedUpdateManyWithWhereWithoutPokemonInput {
+  data: CapturedUpdateManyMutationInput!
+  where: CapturedScalarWhereInput!
+}
+
+input CapturedUpdateManyWithWhereWithoutTrainerInput {
+  data: CapturedUpdateManyMutationInput!
+  where: CapturedScalarWhereInput!
+}
+
+input CapturedUpdateWithoutPokemonInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  level: IntFieldUpdateOperationsInput
+  trainer: TrainerUpdateOneRequiredWithoutCapturedInput
+}
+
+input CapturedUpdateWithoutTrainerInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  level: IntFieldUpdateOperationsInput
+  pokemon: PokemonUpdateOneRequiredWithoutCapturedInput
+}
+
+input CapturedUpdateWithWhereUniqueWithoutPokemonInput {
+  data: CapturedUpdateWithoutPokemonInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedUpdateWithWhereUniqueWithoutTrainerInput {
+  data: CapturedUpdateWithoutTrainerInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedUpsertWithWhereUniqueWithoutPokemonInput {
+  create: CapturedCreateWithoutPokemonInput!
+  update: CapturedUpdateWithoutPokemonInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedUpsertWithWhereUniqueWithoutTrainerInput {
+  create: CapturedCreateWithoutTrainerInput!
+  update: CapturedUpdateWithoutTrainerInput!
+  where: CapturedWhereUniqueInput!
+}
+
+input CapturedWhereInput {
+  AND: [CapturedWhereInput!]
+  gender: EnumGenderFilter
+  id: IntFilter
+  level: IntFilter
+  NOT: [CapturedWhereInput!]
+  OR: [CapturedWhereInput!]
+  pokemon: PokemonRelationFilter
+  pokemonId: IntFilter
+  trainer: TrainerRelationFilter
+  trainerId: IntFilter
+}
+
+input CapturedWhereUniqueInput {
+  id: Int
 }
 
 type Classification {
@@ -538,6 +893,44 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTime!]
 }
 
+input EnumGenderFieldUpdateOperationsInput {
+  set: Gender
+}
+
+input EnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderFilter
+  notIn: [Gender!]
+}
+
+input EnumGenderNullableFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderNullableFilter
+  notIn: [Gender!]
+}
+
+input EnumGenderNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedEnumGenderNullableFilter
+  _min: NestedEnumGenderNullableFilter
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderNullableWithAggregatesFilter
+  notIn: [Gender!]
+}
+
+input EnumGenderWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumGenderFilter
+  _min: NestedEnumGenderFilter
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderWithAggregatesFilter
+  notIn: [Gender!]
+}
+
 input EnumStatusFieldUpdateOperationsInput {
   set: Status
 }
@@ -619,6 +1012,12 @@ input FloatWithAggregatesFilter {
   lte: Float
   not: NestedFloatWithAggregatesFilter
   notIn: [Float!]
+}
+
+enum Gender {
+  Female
+  Male
+  Unsexed
 }
 
 type Generation {
@@ -811,6 +1210,33 @@ input IntFilter {
   notIn: [Int!]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input IntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int!]
+}
+
 input IntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -829,60 +1255,74 @@ input IntWithAggregatesFilter {
 
 type Mutation {
   createAbility(data: AbilityCreateInput!): Ability!
+  createCaptured(data: CapturedCreateInput!): Captured!
   createClassification(data: ClassificationCreateInput!): Classification!
   createGeneration(data: GenerationCreateInput!): Generation!
   createManyAbility(data: [AbilityCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyCaptured(data: [CapturedCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyClassification(data: [ClassificationCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyGeneration(data: [GenerationCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyPokedex(data: [PokedexCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyPokemon(data: [PokemonCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyPokemonAbilities(data: [PokemonAbilitiesCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyPokemonTypes(data: [PokemonTypesCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyTrainer(data: [TrainerCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyType(data: [TypeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createPokedex(data: PokedexCreateInput!): Pokedex!
   createPokemon(data: PokemonCreateInput!): Pokemon!
   createPokemonAbilities(data: PokemonAbilitiesCreateInput!): PokemonAbilities!
   createPokemonTypes(data: PokemonTypesCreateInput!): PokemonTypes!
+  createTrainer(data: TrainerCreateInput!): Trainer!
   createType(data: TypeCreateInput!): Type!
   deleteAbility(where: AbilityWhereUniqueInput!): Ability
+  deleteCaptured(where: CapturedWhereUniqueInput!): Captured
   deleteClassification(where: ClassificationWhereUniqueInput!): Classification
   deleteGeneration(where: GenerationWhereUniqueInput!): Generation
   deleteManyAbility(where: AbilityWhereInput): AffectedRowsOutput!
+  deleteManyCaptured(where: CapturedWhereInput): AffectedRowsOutput!
   deleteManyClassification(where: ClassificationWhereInput): AffectedRowsOutput!
   deleteManyGeneration(where: GenerationWhereInput): AffectedRowsOutput!
   deleteManyPokedex(where: PokedexWhereInput): AffectedRowsOutput!
   deleteManyPokemon(where: PokemonWhereInput): AffectedRowsOutput!
   deleteManyPokemonAbilities(where: PokemonAbilitiesWhereInput): AffectedRowsOutput!
   deleteManyPokemonTypes(where: PokemonTypesWhereInput): AffectedRowsOutput!
+  deleteManyTrainer(where: TrainerWhereInput): AffectedRowsOutput!
   deleteManyType(where: TypeWhereInput): AffectedRowsOutput!
   deletePokedex(where: PokedexWhereUniqueInput!): Pokedex
   deletePokemon(where: PokemonWhereUniqueInput!): Pokemon
   deletePokemonAbilities(where: PokemonAbilitiesWhereUniqueInput!): PokemonAbilities
   deletePokemonTypes(where: PokemonTypesWhereUniqueInput!): PokemonTypes
+  deleteTrainer(where: TrainerWhereUniqueInput!): Trainer
   deleteType(where: TypeWhereUniqueInput!): Type
   updateAbility(data: AbilityUpdateInput!, where: AbilityWhereUniqueInput!): Ability
+  updateCaptured(data: CapturedUpdateInput!, where: CapturedWhereUniqueInput!): Captured
   updateClassification(data: ClassificationUpdateInput!, where: ClassificationWhereUniqueInput!): Classification
   updateGeneration(data: GenerationUpdateInput!, where: GenerationWhereUniqueInput!): Generation
   updateManyAbility(data: AbilityUpdateManyMutationInput!, where: AbilityWhereInput): AffectedRowsOutput!
+  updateManyCaptured(data: CapturedUpdateManyMutationInput!, where: CapturedWhereInput): AffectedRowsOutput!
   updateManyClassification(data: ClassificationUpdateManyMutationInput!, where: ClassificationWhereInput): AffectedRowsOutput!
   updateManyGeneration(data: GenerationUpdateManyMutationInput!, where: GenerationWhereInput): AffectedRowsOutput!
   updateManyPokedex(data: PokedexUpdateManyMutationInput!, where: PokedexWhereInput): AffectedRowsOutput!
   updateManyPokemon(data: PokemonUpdateManyMutationInput!, where: PokemonWhereInput): AffectedRowsOutput!
   updateManyPokemonAbilities(data: PokemonAbilitiesUpdateManyMutationInput!, where: PokemonAbilitiesWhereInput): AffectedRowsOutput!
   updateManyPokemonTypes(data: PokemonTypesUpdateManyMutationInput!, where: PokemonTypesWhereInput): AffectedRowsOutput!
+  updateManyTrainer(data: TrainerUpdateManyMutationInput!, where: TrainerWhereInput): AffectedRowsOutput!
   updateManyType(data: TypeUpdateManyMutationInput!, where: TypeWhereInput): AffectedRowsOutput!
   updatePokedex(data: PokedexUpdateInput!, where: PokedexWhereUniqueInput!): Pokedex
   updatePokemon(data: PokemonUpdateInput!, where: PokemonWhereUniqueInput!): Pokemon
   updatePokemonAbilities(data: PokemonAbilitiesUpdateInput!, where: PokemonAbilitiesWhereUniqueInput!): PokemonAbilities
   updatePokemonTypes(data: PokemonTypesUpdateInput!, where: PokemonTypesWhereUniqueInput!): PokemonTypes
+  updateTrainer(data: TrainerUpdateInput!, where: TrainerWhereUniqueInput!): Trainer
   updateType(data: TypeUpdateInput!, where: TypeWhereUniqueInput!): Type
   upsertAbility(create: AbilityCreateInput!, update: AbilityUpdateInput!, where: AbilityWhereUniqueInput!): Ability!
+  upsertCaptured(create: CapturedCreateInput!, update: CapturedUpdateInput!, where: CapturedWhereUniqueInput!): Captured!
   upsertClassification(create: ClassificationCreateInput!, update: ClassificationUpdateInput!, where: ClassificationWhereUniqueInput!): Classification!
   upsertGeneration(create: GenerationCreateInput!, update: GenerationUpdateInput!, where: GenerationWhereUniqueInput!): Generation!
   upsertPokedex(create: PokedexCreateInput!, update: PokedexUpdateInput!, where: PokedexWhereUniqueInput!): Pokedex!
   upsertPokemon(create: PokemonCreateInput!, update: PokemonUpdateInput!, where: PokemonWhereUniqueInput!): Pokemon!
   upsertPokemonAbilities(create: PokemonAbilitiesCreateInput!, update: PokemonAbilitiesUpdateInput!, where: PokemonAbilitiesWhereUniqueInput!): PokemonAbilities!
   upsertPokemonTypes(create: PokemonTypesCreateInput!, update: PokemonTypesUpdateInput!, where: PokemonTypesWhereUniqueInput!): PokemonTypes!
+  upsertTrainer(create: TrainerCreateInput!, update: TrainerUpdateInput!, where: TrainerWhereUniqueInput!): Trainer!
   upsertType(create: TypeCreateInput!, update: TypeUpdateInput!, where: TypeWhereUniqueInput!): Type!
 }
 
@@ -947,6 +1387,40 @@ input NestedDateTimeWithAggregatesFilter {
   lte: DateTime
   not: NestedDateTimeWithAggregatesFilter
   notIn: [DateTime!]
+}
+
+input NestedEnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderFilter
+  notIn: [Gender!]
+}
+
+input NestedEnumGenderNullableFilter {
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderNullableFilter
+  notIn: [Gender!]
+}
+
+input NestedEnumGenderNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedEnumGenderNullableFilter
+  _min: NestedEnumGenderNullableFilter
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderNullableWithAggregatesFilter
+  notIn: [Gender!]
+}
+
+input NestedEnumGenderWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumGenderFilter
+  _min: NestedEnumGenderFilter
+  equals: Gender
+  in: [Gender!]
+  not: NestedEnumGenderWithAggregatesFilter
+  notIn: [Gender!]
 }
 
 input NestedEnumStatusFilter {
@@ -1042,6 +1516,22 @@ input NestedIntNullableFilter {
   notIn: [Int!]
 }
 
+input NestedIntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int!]
+}
+
 input NestedIntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -1093,12 +1583,24 @@ input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTime
 }
 
+input NullableEnumGenderFieldUpdateOperationsInput {
+  set: Gender
+}
+
 input NullableFloatFieldUpdateOperationsInput {
   decrement: Float
   divide: Float
   increment: Float
   multiply: Float
   set: Float
+}
+
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
 }
 
 type Pokedex {
@@ -1347,6 +1849,7 @@ type Pokemon {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   classification: Classification!
   classificationId: Int!
   defense: Int!
@@ -1790,6 +2293,7 @@ input PokemonAvgOrderByAggregateInput {
 
 type PokemonCount {
   abilities: Int!
+  Captured: Int!
   types: Int!
 }
 
@@ -1903,6 +2407,7 @@ input PokemonCreateInput {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2076,6 +2581,12 @@ input PokemonCreateNestedOneWithoutAbilitiesInput {
   create: PokemonCreateWithoutAbilitiesInput
 }
 
+input PokemonCreateNestedOneWithoutCapturedInput {
+  connect: PokemonWhereUniqueInput
+  connectOrCreate: PokemonCreateOrConnectWithoutCapturedInput
+  create: PokemonCreateWithoutCapturedInput
+}
+
 input PokemonCreateNestedOneWithoutPokedex_numberInput {
   connect: PokemonWhereUniqueInput
   connectOrCreate: PokemonCreateOrConnectWithoutPokedex_numberInput
@@ -2090,6 +2601,11 @@ input PokemonCreateNestedOneWithoutTypesInput {
 
 input PokemonCreateOrConnectWithoutAbilitiesInput {
   create: PokemonCreateWithoutAbilitiesInput!
+  where: PokemonWhereUniqueInput!
+}
+
+input PokemonCreateOrConnectWithoutCapturedInput {
+  create: PokemonCreateWithoutCapturedInput!
   where: PokemonWhereUniqueInput!
 }
 
@@ -2114,6 +2630,51 @@ input PokemonCreateOrConnectWithoutTypesInput {
 }
 
 input PokemonCreateWithoutAbilitiesInput {
+  against_bug: Float!
+  against_dark: Float!
+  against_dragon: Float!
+  against_electric: Float!
+  against_fairy: Float!
+  against_fight: Float!
+  against_fire: Float!
+  against_flying: Float!
+  against_ghost: Float!
+  against_grass: Float!
+  against_ground: Float!
+  against_ice: Float!
+  against_normal: Float!
+  against_poison: Float!
+  against_psychic: Float!
+  against_rock: Float!
+  against_steel: Float!
+  against_water: Float!
+  attack: Int!
+  base_egg_steps: Int!
+  base_happiness: Int!
+  base_total: Int!
+  capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
+  classification: ClassificationCreateNestedOneWithoutPokemonInput!
+  defense: Int!
+  experience_growth: Int!
+  generation: GenerationCreateNestedOneWithoutPokemonInput!
+  height_m: Float!
+  hp: Int!
+  is_legendary: Boolean!
+  japanese_name: String!
+  name: String!
+  percentage_male: Float!
+  pokedex_number: PokedexCreateNestedOneWithoutPokemonInput
+  sp_attack: Int!
+  sp_defense: Int!
+  speed: Int!
+  status: Status
+  types: PokemonTypesCreateNestedManyWithoutPokemonInput
+  weight_kg: Float!
+}
+
+input PokemonCreateWithoutCapturedInput {
+  abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
   against_dragon: Float!
@@ -2181,6 +2742,7 @@ input PokemonCreateWithoutClassificationInput {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   defense: Int!
   experience_growth: Int!
   generation: GenerationCreateNestedOneWithoutPokemonInput!
@@ -2224,6 +2786,7 @@ input PokemonCreateWithoutGenerationInput {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2267,6 +2830,7 @@ input PokemonCreateWithoutPokedex_numberInput {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2310,6 +2874,7 @@ input PokemonCreateWithoutTypesInput {
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2625,6 +3190,7 @@ input PokemonOrderByWithRelationInput {
   base_happiness: SortOrder
   base_total: SortOrder
   capture_rate: SortOrder
+  Captured: CapturedOrderByRelationAggregateInput
   classification: ClassificationOrderByWithRelationInput
   classificationId: SortOrder
   defense: SortOrder
@@ -3228,6 +3794,7 @@ input PokemonUpdateInput {
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3332,6 +3899,14 @@ input PokemonUpdateOneRequiredWithoutAbilitiesInput {
   upsert: PokemonUpsertWithoutAbilitiesInput
 }
 
+input PokemonUpdateOneRequiredWithoutCapturedInput {
+  connect: PokemonWhereUniqueInput
+  connectOrCreate: PokemonCreateOrConnectWithoutCapturedInput
+  create: PokemonCreateWithoutCapturedInput
+  update: PokemonUpdateWithoutCapturedInput
+  upsert: PokemonUpsertWithoutCapturedInput
+}
+
 input PokemonUpdateOneRequiredWithoutPokedex_numberInput {
   connect: PokemonWhereUniqueInput
   connectOrCreate: PokemonCreateOrConnectWithoutPokedex_numberInput
@@ -3349,6 +3924,51 @@ input PokemonUpdateOneRequiredWithoutTypesInput {
 }
 
 input PokemonUpdateWithoutAbilitiesInput {
+  against_bug: FloatFieldUpdateOperationsInput
+  against_dark: FloatFieldUpdateOperationsInput
+  against_dragon: FloatFieldUpdateOperationsInput
+  against_electric: FloatFieldUpdateOperationsInput
+  against_fairy: FloatFieldUpdateOperationsInput
+  against_fight: FloatFieldUpdateOperationsInput
+  against_fire: FloatFieldUpdateOperationsInput
+  against_flying: FloatFieldUpdateOperationsInput
+  against_ghost: FloatFieldUpdateOperationsInput
+  against_grass: FloatFieldUpdateOperationsInput
+  against_ground: FloatFieldUpdateOperationsInput
+  against_ice: FloatFieldUpdateOperationsInput
+  against_normal: FloatFieldUpdateOperationsInput
+  against_poison: FloatFieldUpdateOperationsInput
+  against_psychic: FloatFieldUpdateOperationsInput
+  against_rock: FloatFieldUpdateOperationsInput
+  against_steel: FloatFieldUpdateOperationsInput
+  against_water: FloatFieldUpdateOperationsInput
+  attack: IntFieldUpdateOperationsInput
+  base_egg_steps: IntFieldUpdateOperationsInput
+  base_happiness: IntFieldUpdateOperationsInput
+  base_total: IntFieldUpdateOperationsInput
+  capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
+  classification: ClassificationUpdateOneRequiredWithoutPokemonInput
+  defense: IntFieldUpdateOperationsInput
+  experience_growth: IntFieldUpdateOperationsInput
+  generation: GenerationUpdateOneRequiredWithoutPokemonInput
+  height_m: FloatFieldUpdateOperationsInput
+  hp: IntFieldUpdateOperationsInput
+  is_legendary: BoolFieldUpdateOperationsInput
+  japanese_name: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  percentage_male: FloatFieldUpdateOperationsInput
+  pokedex_number: PokedexUpdateOneWithoutPokemonInput
+  sp_attack: IntFieldUpdateOperationsInput
+  sp_defense: IntFieldUpdateOperationsInput
+  speed: IntFieldUpdateOperationsInput
+  status: EnumStatusFieldUpdateOperationsInput
+  types: PokemonTypesUpdateManyWithoutPokemonInput
+  weight_kg: FloatFieldUpdateOperationsInput
+}
+
+input PokemonUpdateWithoutCapturedInput {
+  abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
   against_dragon: FloatFieldUpdateOperationsInput
@@ -3416,6 +4036,7 @@ input PokemonUpdateWithoutClassificationInput {
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
   generation: GenerationUpdateOneRequiredWithoutPokemonInput
@@ -3459,6 +4080,7 @@ input PokemonUpdateWithoutGenerationInput {
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3502,6 +4124,7 @@ input PokemonUpdateWithoutPokedex_numberInput {
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3545,6 +4168,7 @@ input PokemonUpdateWithoutTypesInput {
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3576,6 +4200,11 @@ input PokemonUpdateWithWhereUniqueWithoutGenerationInput {
 input PokemonUpsertWithoutAbilitiesInput {
   create: PokemonCreateWithoutAbilitiesInput!
   update: PokemonUpdateWithoutAbilitiesInput!
+}
+
+input PokemonUpsertWithoutCapturedInput {
+  create: PokemonCreateWithoutCapturedInput!
+  update: PokemonUpdateWithoutCapturedInput!
 }
 
 input PokemonUpsertWithoutPokedex_numberInput {
@@ -3626,6 +4255,7 @@ input PokemonWhereInput {
   base_happiness: IntFilter
   base_total: IntFilter
   capture_rate: FloatNullableFilter
+  Captured: CapturedListRelationFilter
   classification: ClassificationRelationFilter
   classificationId: IntFilter
   defense: IntFilter
@@ -3658,22 +4288,28 @@ type Query {
   abilities(cursor: AbilityWhereUniqueInput, distinct: [AbilityScalarFieldEnum!], orderBy: [AbilityOrderByWithRelationInput!], skip: Int, take: Int, where: AbilityWhereInput): [Ability!]!
   ability(where: AbilityWhereUniqueInput!): Ability
   aggregateAbility(cursor: AbilityWhereUniqueInput, orderBy: [AbilityOrderByWithRelationInput!], skip: Int, take: Int, where: AbilityWhereInput): AggregateAbility!
+  aggregateCaptured(cursor: CapturedWhereUniqueInput, orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): AggregateCaptured!
   aggregateClassification(cursor: ClassificationWhereUniqueInput, orderBy: [ClassificationOrderByWithRelationInput!], skip: Int, take: Int, where: ClassificationWhereInput): AggregateClassification!
   aggregateGeneration(cursor: GenerationWhereUniqueInput, orderBy: [GenerationOrderByWithRelationInput!], skip: Int, take: Int, where: GenerationWhereInput): AggregateGeneration!
   aggregatePokedex(cursor: PokedexWhereUniqueInput, orderBy: [PokedexOrderByWithRelationInput!], skip: Int, take: Int, where: PokedexWhereInput): AggregatePokedex!
   aggregatePokemon(cursor: PokemonWhereUniqueInput, orderBy: [PokemonOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonWhereInput): AggregatePokemon!
   aggregatePokemonAbilities(cursor: PokemonAbilitiesWhereUniqueInput, orderBy: [PokemonAbilitiesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonAbilitiesWhereInput): AggregatePokemonAbilities!
   aggregatePokemonTypes(cursor: PokemonTypesWhereUniqueInput, orderBy: [PokemonTypesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonTypesWhereInput): AggregatePokemonTypes!
+  aggregateTrainer(cursor: TrainerWhereUniqueInput, orderBy: [TrainerOrderByWithRelationInput!], skip: Int, take: Int, where: TrainerWhereInput): AggregateTrainer!
   aggregateType(cursor: TypeWhereUniqueInput, orderBy: [TypeOrderByWithRelationInput!], skip: Int, take: Int, where: TypeWhereInput): AggregateType!
+  captured(where: CapturedWhereUniqueInput!): Captured
+  captureds(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   classification(where: ClassificationWhereUniqueInput!): Classification
   classifications(cursor: ClassificationWhereUniqueInput, distinct: [ClassificationScalarFieldEnum!], orderBy: [ClassificationOrderByWithRelationInput!], skip: Int, take: Int, where: ClassificationWhereInput): [Classification!]!
   findFirstAbility(cursor: AbilityWhereUniqueInput, distinct: [AbilityScalarFieldEnum!], orderBy: [AbilityOrderByWithRelationInput!], skip: Int, take: Int, where: AbilityWhereInput): Ability
+  findFirstCaptured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): Captured
   findFirstClassification(cursor: ClassificationWhereUniqueInput, distinct: [ClassificationScalarFieldEnum!], orderBy: [ClassificationOrderByWithRelationInput!], skip: Int, take: Int, where: ClassificationWhereInput): Classification
   findFirstGeneration(cursor: GenerationWhereUniqueInput, distinct: [GenerationScalarFieldEnum!], orderBy: [GenerationOrderByWithRelationInput!], skip: Int, take: Int, where: GenerationWhereInput): Generation
   findFirstPokedex(cursor: PokedexWhereUniqueInput, distinct: [PokedexScalarFieldEnum!], orderBy: [PokedexOrderByWithRelationInput!], skip: Int, take: Int, where: PokedexWhereInput): Pokedex
   findFirstPokemon(cursor: PokemonWhereUniqueInput, distinct: [PokemonScalarFieldEnum!], orderBy: [PokemonOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonWhereInput): Pokemon
   findFirstPokemonAbilities(cursor: PokemonAbilitiesWhereUniqueInput, distinct: [PokemonAbilitiesScalarFieldEnum!], orderBy: [PokemonAbilitiesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonAbilitiesWhereInput): PokemonAbilities
   findFirstPokemonTypes(cursor: PokemonTypesWhereUniqueInput, distinct: [PokemonTypesScalarFieldEnum!], orderBy: [PokemonTypesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonTypesWhereInput): PokemonTypes
+  findFirstTrainer(cursor: TrainerWhereUniqueInput, distinct: [TrainerScalarFieldEnum!], orderBy: [TrainerOrderByWithRelationInput!], skip: Int, take: Int, where: TrainerWhereInput): Trainer
   findFirstType(cursor: TypeWhereUniqueInput, distinct: [TypeScalarFieldEnum!], orderBy: [TypeOrderByWithRelationInput!], skip: Int, take: Int, where: TypeWhereInput): Type
   findManyPokemon(cursor: PokemonWhereUniqueInput, distinct: [PokemonScalarFieldEnum!], orderBy: [PokemonOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonWhereInput): [Pokemon!]!
   findManyPokemonAbilities(cursor: PokemonAbilitiesWhereUniqueInput, distinct: [PokemonAbilitiesScalarFieldEnum!], orderBy: [PokemonAbilitiesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonAbilitiesWhereInput): [PokemonAbilities!]!
@@ -3684,15 +4320,19 @@ type Query {
   generation(where: GenerationWhereUniqueInput!): Generation
   generations(cursor: GenerationWhereUniqueInput, distinct: [GenerationScalarFieldEnum!], orderBy: [GenerationOrderByWithRelationInput!], skip: Int, take: Int, where: GenerationWhereInput): [Generation!]!
   groupByAbility(by: [AbilityScalarFieldEnum!]!, having: AbilityScalarWhereWithAggregatesInput, orderBy: [AbilityOrderByWithAggregationInput!], skip: Int, take: Int, where: AbilityWhereInput): [AbilityGroupBy!]!
+  groupByCaptured(by: [CapturedScalarFieldEnum!]!, having: CapturedScalarWhereWithAggregatesInput, orderBy: [CapturedOrderByWithAggregationInput!], skip: Int, take: Int, where: CapturedWhereInput): [CapturedGroupBy!]!
   groupByClassification(by: [ClassificationScalarFieldEnum!]!, having: ClassificationScalarWhereWithAggregatesInput, orderBy: [ClassificationOrderByWithAggregationInput!], skip: Int, take: Int, where: ClassificationWhereInput): [ClassificationGroupBy!]!
   groupByGeneration(by: [GenerationScalarFieldEnum!]!, having: GenerationScalarWhereWithAggregatesInput, orderBy: [GenerationOrderByWithAggregationInput!], skip: Int, take: Int, where: GenerationWhereInput): [GenerationGroupBy!]!
   groupByPokedex(by: [PokedexScalarFieldEnum!]!, having: PokedexScalarWhereWithAggregatesInput, orderBy: [PokedexOrderByWithAggregationInput!], skip: Int, take: Int, where: PokedexWhereInput): [PokedexGroupBy!]!
   groupByPokemon(by: [PokemonScalarFieldEnum!]!, having: PokemonScalarWhereWithAggregatesInput, orderBy: [PokemonOrderByWithAggregationInput!], skip: Int, take: Int, where: PokemonWhereInput): [PokemonGroupBy!]!
   groupByPokemonAbilities(by: [PokemonAbilitiesScalarFieldEnum!]!, having: PokemonAbilitiesScalarWhereWithAggregatesInput, orderBy: [PokemonAbilitiesOrderByWithAggregationInput!], skip: Int, take: Int, where: PokemonAbilitiesWhereInput): [PokemonAbilitiesGroupBy!]!
   groupByPokemonTypes(by: [PokemonTypesScalarFieldEnum!]!, having: PokemonTypesScalarWhereWithAggregatesInput, orderBy: [PokemonTypesOrderByWithAggregationInput!], skip: Int, take: Int, where: PokemonTypesWhereInput): [PokemonTypesGroupBy!]!
+  groupByTrainer(by: [TrainerScalarFieldEnum!]!, having: TrainerScalarWhereWithAggregatesInput, orderBy: [TrainerOrderByWithAggregationInput!], skip: Int, take: Int, where: TrainerWhereInput): [TrainerGroupBy!]!
   groupByType(by: [TypeScalarFieldEnum!]!, having: TypeScalarWhereWithAggregatesInput, orderBy: [TypeOrderByWithAggregationInput!], skip: Int, take: Int, where: TypeWhereInput): [TypeGroupBy!]!
   pokedex(where: PokedexWhereUniqueInput!): Pokedex
   pokedexes(cursor: PokedexWhereUniqueInput, distinct: [PokedexScalarFieldEnum!], orderBy: [PokedexOrderByWithRelationInput!], skip: Int, take: Int, where: PokedexWhereInput): [Pokedex!]!
+  trainer(where: TrainerWhereUniqueInput!): Trainer
+  trainers(cursor: TrainerWhereUniqueInput, distinct: [TrainerScalarFieldEnum!], orderBy: [TrainerOrderByWithRelationInput!], skip: Int, take: Int, where: TrainerWhereInput): [Trainer!]!
   type(where: TypeWhereUniqueInput!): Type
   types(cursor: TypeWhereUniqueInput, distinct: [TypeScalarFieldEnum!], orderBy: [TypeOrderByWithRelationInput!], skip: Int, take: Int, where: TypeWhereInput): [Type!]!
 }
@@ -3748,6 +4388,214 @@ input StringWithAggregatesFilter {
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
   startsWith: String
+}
+
+type Trainer {
+  _count: TrainerCount
+  age: Int
+  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
+  gender: Gender
+  id: Int!
+  name: String!
+}
+
+type TrainerAvgAggregate {
+  age: Float
+  id: Float
+}
+
+input TrainerAvgOrderByAggregateInput {
+  age: SortOrder
+  id: SortOrder
+}
+
+type TrainerCount {
+  Captured: Int!
+}
+
+type TrainerCountAggregate {
+  _all: Int!
+  age: Int!
+  gender: Int!
+  id: Int!
+  name: Int!
+}
+
+input TrainerCountOrderByAggregateInput {
+  age: SortOrder
+  gender: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input TrainerCreateInput {
+  age: Int
+  Captured: CapturedCreateNestedManyWithoutTrainerInput
+  gender: Gender
+  name: String!
+}
+
+input TrainerCreateManyInput {
+  age: Int
+  gender: Gender
+  id: Int
+  name: String!
+}
+
+input TrainerCreateNestedOneWithoutCapturedInput {
+  connect: TrainerWhereUniqueInput
+  connectOrCreate: TrainerCreateOrConnectWithoutCapturedInput
+  create: TrainerCreateWithoutCapturedInput
+}
+
+input TrainerCreateOrConnectWithoutCapturedInput {
+  create: TrainerCreateWithoutCapturedInput!
+  where: TrainerWhereUniqueInput!
+}
+
+input TrainerCreateWithoutCapturedInput {
+  age: Int
+  gender: Gender
+  name: String!
+}
+
+type TrainerGroupBy {
+  _avg: TrainerAvgAggregate
+  _count: TrainerCountAggregate
+  _max: TrainerMaxAggregate
+  _min: TrainerMinAggregate
+  _sum: TrainerSumAggregate
+  age: Int
+  gender: Gender
+  id: Int!
+  name: String!
+}
+
+type TrainerMaxAggregate {
+  age: Int
+  gender: Gender
+  id: Int
+  name: String
+}
+
+input TrainerMaxOrderByAggregateInput {
+  age: SortOrder
+  gender: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+type TrainerMinAggregate {
+  age: Int
+  gender: Gender
+  id: Int
+  name: String
+}
+
+input TrainerMinOrderByAggregateInput {
+  age: SortOrder
+  gender: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input TrainerOrderByWithAggregationInput {
+  _avg: TrainerAvgOrderByAggregateInput
+  _count: TrainerCountOrderByAggregateInput
+  _max: TrainerMaxOrderByAggregateInput
+  _min: TrainerMinOrderByAggregateInput
+  _sum: TrainerSumOrderByAggregateInput
+  age: SortOrder
+  gender: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input TrainerOrderByWithRelationInput {
+  age: SortOrder
+  Captured: CapturedOrderByRelationAggregateInput
+  gender: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input TrainerRelationFilter {
+  is: TrainerWhereInput
+  isNot: TrainerWhereInput
+}
+
+enum TrainerScalarFieldEnum {
+  age
+  gender
+  id
+  name
+}
+
+input TrainerScalarWhereWithAggregatesInput {
+  age: IntNullableWithAggregatesFilter
+  AND: [TrainerScalarWhereWithAggregatesInput!]
+  gender: EnumGenderNullableWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  NOT: [TrainerScalarWhereWithAggregatesInput!]
+  OR: [TrainerScalarWhereWithAggregatesInput!]
+}
+
+type TrainerSumAggregate {
+  age: Int
+  id: Int
+}
+
+input TrainerSumOrderByAggregateInput {
+  age: SortOrder
+  id: SortOrder
+}
+
+input TrainerUpdateInput {
+  age: NullableIntFieldUpdateOperationsInput
+  Captured: CapturedUpdateManyWithoutTrainerInput
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input TrainerUpdateManyMutationInput {
+  age: NullableIntFieldUpdateOperationsInput
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input TrainerUpdateOneRequiredWithoutCapturedInput {
+  connect: TrainerWhereUniqueInput
+  connectOrCreate: TrainerCreateOrConnectWithoutCapturedInput
+  create: TrainerCreateWithoutCapturedInput
+  update: TrainerUpdateWithoutCapturedInput
+  upsert: TrainerUpsertWithoutCapturedInput
+}
+
+input TrainerUpdateWithoutCapturedInput {
+  age: NullableIntFieldUpdateOperationsInput
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input TrainerUpsertWithoutCapturedInput {
+  create: TrainerCreateWithoutCapturedInput!
+  update: TrainerUpdateWithoutCapturedInput!
+}
+
+input TrainerWhereInput {
+  age: IntNullableFilter
+  AND: [TrainerWhereInput!]
+  Captured: CapturedListRelationFilter
+  gender: EnumGenderNullableFilter
+  id: IntFilter
+  name: StringFilter
+  NOT: [TrainerWhereInput!]
+  OR: [TrainerWhereInput!]
+}
+
+input TrainerWhereUniqueInput {
+  id: Int
 }
 
 type Type {

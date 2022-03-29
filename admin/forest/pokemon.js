@@ -10,7 +10,29 @@ const Sequelize = require('sequelize');
 // - Smart relationships: https://docs.forestadmin.com/documentation/reference-guide/relationships/create-a-smart-relationship
 // - Smart segments: https://docs.forestadmin.com/documentation/reference-guide/segments/smart-segments
 collection('pokemon', {
-  actions: [],
+  actions: [{
+    name: 'Seen'
+  },
+  {
+    name: 'Capture',
+    type: 'single',
+    fields: [
+    //   {
+    //   field: 'Assign to a trainer',
+    //   description: 'Please choose a trainer',
+    //   reference: 'trainer'
+    // },
+    {
+      field: 'trainer', 
+      type: "Number",
+      reference: "trainer.id",
+      isRequired: true,
+    }
+  ]
+
+  }
+],
+
   fields: [{
     field: 'ovrStrength',
     type: 'Number',
@@ -61,7 +83,8 @@ collection('pokemon', {
       .sort((a,b) => b.dataValues.weightKg - a.dataValues.weightKg)
       .splice(0, 30)
       .map(pokemon => pokemon.dataValues.id);
-      return { id: { [Op.in]: top10Big}}
+      // object because sequelize requires it to be this way 
+      return { id: { [Op.in]: top10Big } }
     }
   }
 ]
