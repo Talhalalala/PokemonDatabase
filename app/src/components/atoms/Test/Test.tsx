@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import {gql} from 'graphql-tag';
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useExampleQueryQuery } from '../../../graphql/generated';
+import { useBananaQuery } from '../../../graphql/generated';
 
 
 const queryClient = new QueryClient();
 
-gql`query ExampleQuery {
+gql`query banana {
     findManyPokemon {
         id
         name
@@ -21,8 +21,8 @@ gql`query ExampleQuery {
 type Props = {}
 
 export const Test: FC<Props> = (props) => {
-    const { data } = useExampleQueryQuery();
+    const { data } = useBananaQuery();
 
-    return <div>{data?.findManyPokemon?.[0].name}</div>;
+    return <div>{data?.findManyPokemon?.[10].abilities[1].ability.ability}</div>;
 }
     

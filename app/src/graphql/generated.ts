@@ -291,6 +291,15 @@ export type AggregateAbility = {
   _sum?: Maybe<AbilitySumAggregate>;
 };
 
+export type AggregateCaptured = {
+  __typename?: 'AggregateCaptured';
+  _avg?: Maybe<CapturedAvgAggregate>;
+  _count?: Maybe<CapturedCountAggregate>;
+  _max?: Maybe<CapturedMaxAggregate>;
+  _min?: Maybe<CapturedMinAggregate>;
+  _sum?: Maybe<CapturedSumAggregate>;
+};
+
 export type AggregateClassification = {
   __typename?: 'AggregateClassification';
   _avg?: Maybe<ClassificationAvgAggregate>;
@@ -345,6 +354,15 @@ export type AggregatePokemonTypes = {
   _sum?: Maybe<PokemonTypesSumAggregate>;
 };
 
+export type AggregateTrainer = {
+  __typename?: 'AggregateTrainer';
+  _avg?: Maybe<TrainerAvgAggregate>;
+  _count?: Maybe<TrainerCountAggregate>;
+  _max?: Maybe<TrainerMaxAggregate>;
+  _min?: Maybe<TrainerMinAggregate>;
+  _sum?: Maybe<TrainerSumAggregate>;
+};
+
 export type AggregateType = {
   __typename?: 'AggregateType';
   _avg?: Maybe<TypeAvgAggregate>;
@@ -369,6 +387,352 @@ export type BoolWithAggregatesFilter = {
   _min?: InputMaybe<NestedBoolFilter>;
   equals?: InputMaybe<Scalars['Boolean']>;
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
+};
+
+export type Captured = {
+  __typename?: 'Captured';
+  gender?: Maybe<Gender>;
+  id: Scalars['Int'];
+  level?: Maybe<Scalars['Int']>;
+  pokemon: Pokemon;
+  pokemonId: Scalars['Int'];
+  trainer: Trainer;
+  trainerId: Scalars['Int'];
+};
+
+export type CapturedAvgAggregate = {
+  __typename?: 'CapturedAvgAggregate';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  pokemonId?: Maybe<Scalars['Float']>;
+  trainerId?: Maybe<Scalars['Float']>;
+};
+
+export type CapturedAvgOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedCountAggregate = {
+  __typename?: 'CapturedCountAggregate';
+  _all: Scalars['Int'];
+  gender: Scalars['Int'];
+  id: Scalars['Int'];
+  level: Scalars['Int'];
+  pokemonId: Scalars['Int'];
+  trainerId: Scalars['Int'];
+};
+
+export type CapturedCountOrderByAggregateInput = {
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedCreateInput = {
+  gender?: InputMaybe<Gender>;
+  level?: InputMaybe<Scalars['Int']>;
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput;
+  trainer: TrainerCreateNestedOneWithoutCapturedInput;
+};
+
+export type CapturedCreateManyInput = {
+  gender?: InputMaybe<Gender>;
+  id?: InputMaybe<Scalars['Int']>;
+  level?: InputMaybe<Scalars['Int']>;
+  pokemonId: Scalars['Int'];
+  trainerId: Scalars['Int'];
+};
+
+export type CapturedCreateManyPokemonInput = {
+  gender?: InputMaybe<Gender>;
+  id?: InputMaybe<Scalars['Int']>;
+  level?: InputMaybe<Scalars['Int']>;
+  trainerId: Scalars['Int'];
+};
+
+export type CapturedCreateManyPokemonInputEnvelope = {
+  data: Array<CapturedCreateManyPokemonInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CapturedCreateManyTrainerInput = {
+  gender?: InputMaybe<Gender>;
+  id?: InputMaybe<Scalars['Int']>;
+  level?: InputMaybe<Scalars['Int']>;
+  pokemonId: Scalars['Int'];
+};
+
+export type CapturedCreateManyTrainerInputEnvelope = {
+  data: Array<CapturedCreateManyTrainerInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type CapturedCreateNestedManyWithoutPokemonInput = {
+  connect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CapturedCreateOrConnectWithoutPokemonInput>>;
+  create?: InputMaybe<Array<CapturedCreateWithoutPokemonInput>>;
+  createMany?: InputMaybe<CapturedCreateManyPokemonInputEnvelope>;
+};
+
+export type CapturedCreateNestedManyWithoutTrainerInput = {
+  connect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CapturedCreateOrConnectWithoutTrainerInput>>;
+  create?: InputMaybe<Array<CapturedCreateWithoutTrainerInput>>;
+  createMany?: InputMaybe<CapturedCreateManyTrainerInputEnvelope>;
+};
+
+export type CapturedCreateOrConnectWithoutPokemonInput = {
+  create: CapturedCreateWithoutPokemonInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedCreateOrConnectWithoutTrainerInput = {
+  create: CapturedCreateWithoutTrainerInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedCreateWithoutPokemonInput = {
+  gender?: InputMaybe<Gender>;
+  level?: InputMaybe<Scalars['Int']>;
+  trainer: TrainerCreateNestedOneWithoutCapturedInput;
+};
+
+export type CapturedCreateWithoutTrainerInput = {
+  gender?: InputMaybe<Gender>;
+  level?: InputMaybe<Scalars['Int']>;
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput;
+};
+
+export type CapturedGroupBy = {
+  __typename?: 'CapturedGroupBy';
+  _avg?: Maybe<CapturedAvgAggregate>;
+  _count?: Maybe<CapturedCountAggregate>;
+  _max?: Maybe<CapturedMaxAggregate>;
+  _min?: Maybe<CapturedMinAggregate>;
+  _sum?: Maybe<CapturedSumAggregate>;
+  gender?: Maybe<Gender>;
+  id: Scalars['Int'];
+  level?: Maybe<Scalars['Int']>;
+  pokemonId: Scalars['Int'];
+  trainerId: Scalars['Int'];
+};
+
+export type CapturedListRelationFilter = {
+  every?: InputMaybe<CapturedWhereInput>;
+  none?: InputMaybe<CapturedWhereInput>;
+  some?: InputMaybe<CapturedWhereInput>;
+};
+
+export type CapturedMaxAggregate = {
+  __typename?: 'CapturedMaxAggregate';
+  gender?: Maybe<Gender>;
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  pokemonId?: Maybe<Scalars['Int']>;
+  trainerId?: Maybe<Scalars['Int']>;
+};
+
+export type CapturedMaxOrderByAggregateInput = {
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedMinAggregate = {
+  __typename?: 'CapturedMinAggregate';
+  gender?: Maybe<Gender>;
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  pokemonId?: Maybe<Scalars['Int']>;
+  trainerId?: Maybe<Scalars['Int']>;
+};
+
+export type CapturedMinOrderByAggregateInput = {
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type CapturedOrderByWithAggregationInput = {
+  _avg?: InputMaybe<CapturedAvgOrderByAggregateInput>;
+  _count?: InputMaybe<CapturedCountOrderByAggregateInput>;
+  _max?: InputMaybe<CapturedMaxOrderByAggregateInput>;
+  _min?: InputMaybe<CapturedMinOrderByAggregateInput>;
+  _sum?: InputMaybe<CapturedSumOrderByAggregateInput>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedOrderByWithRelationInput = {
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemon?: InputMaybe<PokemonOrderByWithRelationInput>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainer?: InputMaybe<TrainerOrderByWithRelationInput>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export enum CapturedScalarFieldEnum {
+  Gender = 'gender',
+  Id = 'id',
+  Level = 'level',
+  PokemonId = 'pokemonId',
+  TrainerId = 'trainerId'
+}
+
+export type CapturedScalarWhereInput = {
+  AND?: InputMaybe<Array<CapturedScalarWhereInput>>;
+  NOT?: InputMaybe<Array<CapturedScalarWhereInput>>;
+  OR?: InputMaybe<Array<CapturedScalarWhereInput>>;
+  gender?: InputMaybe<EnumGenderNullableFilter>;
+  id?: InputMaybe<IntFilter>;
+  level?: InputMaybe<IntNullableFilter>;
+  pokemonId?: InputMaybe<IntFilter>;
+  trainerId?: InputMaybe<IntFilter>;
+};
+
+export type CapturedScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<CapturedScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CapturedScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CapturedScalarWhereWithAggregatesInput>>;
+  gender?: InputMaybe<EnumGenderNullableWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  level?: InputMaybe<IntNullableWithAggregatesFilter>;
+  pokemonId?: InputMaybe<IntWithAggregatesFilter>;
+  trainerId?: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type CapturedSumAggregate = {
+  __typename?: 'CapturedSumAggregate';
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  pokemonId?: Maybe<Scalars['Int']>;
+  trainerId?: Maybe<Scalars['Int']>;
+};
+
+export type CapturedSumOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+  level?: InputMaybe<SortOrder>;
+  pokemonId?: InputMaybe<SortOrder>;
+  trainerId?: InputMaybe<SortOrder>;
+};
+
+export type CapturedUpdateInput = {
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  level?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  pokemon?: InputMaybe<PokemonUpdateOneRequiredWithoutCapturedInput>;
+  trainer?: InputMaybe<TrainerUpdateOneRequiredWithoutCapturedInput>;
+};
+
+export type CapturedUpdateManyMutationInput = {
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  level?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+};
+
+export type CapturedUpdateManyWithWhereWithoutPokemonInput = {
+  data: CapturedUpdateManyMutationInput;
+  where: CapturedScalarWhereInput;
+};
+
+export type CapturedUpdateManyWithWhereWithoutTrainerInput = {
+  data: CapturedUpdateManyMutationInput;
+  where: CapturedScalarWhereInput;
+};
+
+export type CapturedUpdateManyWithoutPokemonInput = {
+  connect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CapturedCreateOrConnectWithoutPokemonInput>>;
+  create?: InputMaybe<Array<CapturedCreateWithoutPokemonInput>>;
+  createMany?: InputMaybe<CapturedCreateManyPokemonInputEnvelope>;
+  delete?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<CapturedScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  set?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  update?: InputMaybe<Array<CapturedUpdateWithWhereUniqueWithoutPokemonInput>>;
+  updateMany?: InputMaybe<Array<CapturedUpdateManyWithWhereWithoutPokemonInput>>;
+  upsert?: InputMaybe<Array<CapturedUpsertWithWhereUniqueWithoutPokemonInput>>;
+};
+
+export type CapturedUpdateManyWithoutTrainerInput = {
+  connect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<CapturedCreateOrConnectWithoutTrainerInput>>;
+  create?: InputMaybe<Array<CapturedCreateWithoutTrainerInput>>;
+  createMany?: InputMaybe<CapturedCreateManyTrainerInputEnvelope>;
+  delete?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<CapturedScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  set?: InputMaybe<Array<CapturedWhereUniqueInput>>;
+  update?: InputMaybe<Array<CapturedUpdateWithWhereUniqueWithoutTrainerInput>>;
+  updateMany?: InputMaybe<Array<CapturedUpdateManyWithWhereWithoutTrainerInput>>;
+  upsert?: InputMaybe<Array<CapturedUpsertWithWhereUniqueWithoutTrainerInput>>;
+};
+
+export type CapturedUpdateWithWhereUniqueWithoutPokemonInput = {
+  data: CapturedUpdateWithoutPokemonInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedUpdateWithWhereUniqueWithoutTrainerInput = {
+  data: CapturedUpdateWithoutTrainerInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedUpdateWithoutPokemonInput = {
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  level?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  trainer?: InputMaybe<TrainerUpdateOneRequiredWithoutCapturedInput>;
+};
+
+export type CapturedUpdateWithoutTrainerInput = {
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  level?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  pokemon?: InputMaybe<PokemonUpdateOneRequiredWithoutCapturedInput>;
+};
+
+export type CapturedUpsertWithWhereUniqueWithoutPokemonInput = {
+  create: CapturedCreateWithoutPokemonInput;
+  update: CapturedUpdateWithoutPokemonInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedUpsertWithWhereUniqueWithoutTrainerInput = {
+  create: CapturedCreateWithoutTrainerInput;
+  update: CapturedUpdateWithoutTrainerInput;
+  where: CapturedWhereUniqueInput;
+};
+
+export type CapturedWhereInput = {
+  AND?: InputMaybe<Array<CapturedWhereInput>>;
+  NOT?: InputMaybe<Array<CapturedWhereInput>>;
+  OR?: InputMaybe<Array<CapturedWhereInput>>;
+  gender?: InputMaybe<EnumGenderNullableFilter>;
+  id?: InputMaybe<IntFilter>;
+  level?: InputMaybe<IntNullableFilter>;
+  pokemon?: InputMaybe<PokemonRelationFilter>;
+  pokemonId?: InputMaybe<IntFilter>;
+  trainer?: InputMaybe<TrainerRelationFilter>;
+  trainerId?: InputMaybe<IntFilter>;
+};
+
+export type CapturedWhereUniqueInput = {
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 export type Classification = {
@@ -610,6 +974,44 @@ export type DateTimeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
+export type EnumGenderNullableFilter = {
+  equals?: InputMaybe<Gender>;
+  in?: InputMaybe<Array<Gender>>;
+  not?: InputMaybe<NestedEnumGenderNullableFilter>;
+  notIn?: InputMaybe<Array<Gender>>;
+};
+
+export type EnumGenderNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumGenderNullableFilter>;
+  _min?: InputMaybe<NestedEnumGenderNullableFilter>;
+  equals?: InputMaybe<Gender>;
+  in?: InputMaybe<Array<Gender>>;
+  not?: InputMaybe<NestedEnumGenderNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Gender>>;
+};
+
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: InputMaybe<Status>;
+};
+
+export type EnumStatusFilter = {
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
+export type EnumStatusWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumStatusFilter>;
+  _min?: InputMaybe<NestedEnumStatusFilter>;
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
 export type FloatFieldUpdateOperationsInput = {
   decrement?: InputMaybe<Scalars['Float']>;
   divide?: InputMaybe<Scalars['Float']>;
@@ -671,6 +1073,12 @@ export type FloatWithAggregatesFilter = {
   not?: InputMaybe<NestedFloatWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['Float']>>;
 };
+
+export enum Gender {
+  Female = 'Female',
+  Male = 'Male',
+  Unsexed = 'Unsexed'
+}
 
 export type Generation = {
   __typename?: 'Generation';
@@ -880,6 +1288,33 @@ export type IntFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type IntNullableFilter = {
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
+export type IntNullableWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedFloatNullableFilter>;
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedIntNullableFilter>;
+  _min?: InputMaybe<NestedIntNullableFilter>;
+  _sum?: InputMaybe<NestedIntNullableFilter>;
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type IntWithAggregatesFilter = {
   _avg?: InputMaybe<NestedFloatFilter>;
   _count?: InputMaybe<NestedIntFilter>;
@@ -899,66 +1334,85 @@ export type IntWithAggregatesFilter = {
 export type Mutation = {
   __typename?: 'Mutation';
   createAbility: Ability;
+  createCaptured: Captured;
   createClassification: Classification;
   createGeneration: Generation;
   createManyAbility: AffectedRowsOutput;
+  createManyCaptured: AffectedRowsOutput;
   createManyClassification: AffectedRowsOutput;
   createManyGeneration: AffectedRowsOutput;
   createManyPokedex: AffectedRowsOutput;
   createManyPokemon: AffectedRowsOutput;
   createManyPokemonAbilities: AffectedRowsOutput;
   createManyPokemonTypes: AffectedRowsOutput;
+  createManyTrainer: AffectedRowsOutput;
   createManyType: AffectedRowsOutput;
   createPokedex: Pokedex;
   createPokemon: Pokemon;
   createPokemonAbilities: PokemonAbilities;
   createPokemonTypes: PokemonTypes;
+  createTrainer: Trainer;
   createType: Type;
   deleteAbility?: Maybe<Ability>;
+  deleteCaptured?: Maybe<Captured>;
   deleteClassification?: Maybe<Classification>;
   deleteGeneration?: Maybe<Generation>;
   deleteManyAbility: AffectedRowsOutput;
+  deleteManyCaptured: AffectedRowsOutput;
   deleteManyClassification: AffectedRowsOutput;
   deleteManyGeneration: AffectedRowsOutput;
   deleteManyPokedex: AffectedRowsOutput;
   deleteManyPokemon: AffectedRowsOutput;
   deleteManyPokemonAbilities: AffectedRowsOutput;
   deleteManyPokemonTypes: AffectedRowsOutput;
+  deleteManyTrainer: AffectedRowsOutput;
   deleteManyType: AffectedRowsOutput;
   deletePokedex?: Maybe<Pokedex>;
   deletePokemon?: Maybe<Pokemon>;
   deletePokemonAbilities?: Maybe<PokemonAbilities>;
   deletePokemonTypes?: Maybe<PokemonTypes>;
+  deleteTrainer?: Maybe<Trainer>;
   deleteType?: Maybe<Type>;
   updateAbility?: Maybe<Ability>;
+  updateCaptured?: Maybe<Captured>;
   updateClassification?: Maybe<Classification>;
   updateGeneration?: Maybe<Generation>;
   updateManyAbility: AffectedRowsOutput;
+  updateManyCaptured: AffectedRowsOutput;
   updateManyClassification: AffectedRowsOutput;
   updateManyGeneration: AffectedRowsOutput;
   updateManyPokedex: AffectedRowsOutput;
   updateManyPokemon: AffectedRowsOutput;
   updateManyPokemonAbilities: AffectedRowsOutput;
   updateManyPokemonTypes: AffectedRowsOutput;
+  updateManyTrainer: AffectedRowsOutput;
   updateManyType: AffectedRowsOutput;
   updatePokedex?: Maybe<Pokedex>;
   updatePokemon?: Maybe<Pokemon>;
   updatePokemonAbilities?: Maybe<PokemonAbilities>;
   updatePokemonTypes?: Maybe<PokemonTypes>;
+  updateTrainer?: Maybe<Trainer>;
   updateType?: Maybe<Type>;
   upsertAbility: Ability;
+  upsertCaptured: Captured;
   upsertClassification: Classification;
   upsertGeneration: Generation;
   upsertPokedex: Pokedex;
   upsertPokemon: Pokemon;
   upsertPokemonAbilities: PokemonAbilities;
   upsertPokemonTypes: PokemonTypes;
+  upsertTrainer: Trainer;
   upsertType: Type;
 };
 
 
 export type MutationCreateAbilityArgs = {
   data: AbilityCreateInput;
+};
+
+
+export type MutationCreateCapturedArgs = {
+  data: CapturedCreateInput;
 };
 
 
@@ -974,6 +1428,12 @@ export type MutationCreateGenerationArgs = {
 
 export type MutationCreateManyAbilityArgs = {
   data: Array<AbilityCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyCapturedArgs = {
+  data: Array<CapturedCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1014,6 +1474,12 @@ export type MutationCreateManyPokemonTypesArgs = {
 };
 
 
+export type MutationCreateManyTrainerArgs = {
+  data: Array<TrainerCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+
 export type MutationCreateManyTypeArgs = {
   data: Array<TypeCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
@@ -1040,6 +1506,11 @@ export type MutationCreatePokemonTypesArgs = {
 };
 
 
+export type MutationCreateTrainerArgs = {
+  data: TrainerCreateInput;
+};
+
+
 export type MutationCreateTypeArgs = {
   data: TypeCreateInput;
 };
@@ -1047,6 +1518,11 @@ export type MutationCreateTypeArgs = {
 
 export type MutationDeleteAbilityArgs = {
   where: AbilityWhereUniqueInput;
+};
+
+
+export type MutationDeleteCapturedArgs = {
+  where: CapturedWhereUniqueInput;
 };
 
 
@@ -1062,6 +1538,11 @@ export type MutationDeleteGenerationArgs = {
 
 export type MutationDeleteManyAbilityArgs = {
   where?: InputMaybe<AbilityWhereInput>;
+};
+
+
+export type MutationDeleteManyCapturedArgs = {
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -1095,6 +1576,11 @@ export type MutationDeleteManyPokemonTypesArgs = {
 };
 
 
+export type MutationDeleteManyTrainerArgs = {
+  where?: InputMaybe<TrainerWhereInput>;
+};
+
+
 export type MutationDeleteManyTypeArgs = {
   where?: InputMaybe<TypeWhereInput>;
 };
@@ -1120,6 +1606,11 @@ export type MutationDeletePokemonTypesArgs = {
 };
 
 
+export type MutationDeleteTrainerArgs = {
+  where: TrainerWhereUniqueInput;
+};
+
+
 export type MutationDeleteTypeArgs = {
   where: TypeWhereUniqueInput;
 };
@@ -1128,6 +1619,12 @@ export type MutationDeleteTypeArgs = {
 export type MutationUpdateAbilityArgs = {
   data: AbilityUpdateInput;
   where: AbilityWhereUniqueInput;
+};
+
+
+export type MutationUpdateCapturedArgs = {
+  data: CapturedUpdateInput;
+  where: CapturedWhereUniqueInput;
 };
 
 
@@ -1146,6 +1643,12 @@ export type MutationUpdateGenerationArgs = {
 export type MutationUpdateManyAbilityArgs = {
   data: AbilityUpdateManyMutationInput;
   where?: InputMaybe<AbilityWhereInput>;
+};
+
+
+export type MutationUpdateManyCapturedArgs = {
+  data: CapturedUpdateManyMutationInput;
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -1185,6 +1688,12 @@ export type MutationUpdateManyPokemonTypesArgs = {
 };
 
 
+export type MutationUpdateManyTrainerArgs = {
+  data: TrainerUpdateManyMutationInput;
+  where?: InputMaybe<TrainerWhereInput>;
+};
+
+
 export type MutationUpdateManyTypeArgs = {
   data: TypeUpdateManyMutationInput;
   where?: InputMaybe<TypeWhereInput>;
@@ -1215,6 +1724,12 @@ export type MutationUpdatePokemonTypesArgs = {
 };
 
 
+export type MutationUpdateTrainerArgs = {
+  data: TrainerUpdateInput;
+  where: TrainerWhereUniqueInput;
+};
+
+
 export type MutationUpdateTypeArgs = {
   data: TypeUpdateInput;
   where: TypeWhereUniqueInput;
@@ -1225,6 +1740,13 @@ export type MutationUpsertAbilityArgs = {
   create: AbilityCreateInput;
   update: AbilityUpdateInput;
   where: AbilityWhereUniqueInput;
+};
+
+
+export type MutationUpsertCapturedArgs = {
+  create: CapturedCreateInput;
+  update: CapturedUpdateInput;
+  where: CapturedWhereUniqueInput;
 };
 
 
@@ -1267,6 +1789,13 @@ export type MutationUpsertPokemonTypesArgs = {
   create: PokemonTypesCreateInput;
   update: PokemonTypesUpdateInput;
   where: PokemonTypesWhereUniqueInput;
+};
+
+
+export type MutationUpsertTrainerArgs = {
+  create: TrainerCreateInput;
+  update: TrainerUpdateInput;
+  where: TrainerWhereUniqueInput;
 };
 
 
@@ -1337,6 +1866,40 @@ export type NestedDateTimeWithAggregatesFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type NestedEnumGenderNullableFilter = {
+  equals?: InputMaybe<Gender>;
+  in?: InputMaybe<Array<Gender>>;
+  not?: InputMaybe<NestedEnumGenderNullableFilter>;
+  notIn?: InputMaybe<Array<Gender>>;
+};
+
+export type NestedEnumGenderNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumGenderNullableFilter>;
+  _min?: InputMaybe<NestedEnumGenderNullableFilter>;
+  equals?: InputMaybe<Gender>;
+  in?: InputMaybe<Array<Gender>>;
+  not?: InputMaybe<NestedEnumGenderNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Gender>>;
+};
+
+export type NestedEnumStatusFilter = {
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
+export type NestedEnumStatusWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumStatusFilter>;
+  _min?: InputMaybe<NestedEnumStatusFilter>;
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Status>>;
 };
 
 export type NestedFloatFilter = {
@@ -1415,6 +1978,22 @@ export type NestedIntNullableFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type NestedIntNullableWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedFloatNullableFilter>;
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedIntNullableFilter>;
+  _min?: InputMaybe<NestedIntNullableFilter>;
+  _sum?: InputMaybe<NestedIntNullableFilter>;
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type NestedIntWithAggregatesFilter = {
   _avg?: InputMaybe<NestedFloatFilter>;
   _count?: InputMaybe<NestedIntFilter>;
@@ -1466,12 +2045,24 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['DateTime']>;
 };
 
+export type NullableEnumGenderFieldUpdateOperationsInput = {
+  set?: InputMaybe<Gender>;
+};
+
 export type NullableFloatFieldUpdateOperationsInput = {
   decrement?: InputMaybe<Scalars['Float']>;
   divide?: InputMaybe<Scalars['Float']>;
   increment?: InputMaybe<Scalars['Float']>;
   multiply?: InputMaybe<Scalars['Float']>;
   set?: InputMaybe<Scalars['Float']>;
+};
+
+export type NullableIntFieldUpdateOperationsInput = {
+  decrement?: InputMaybe<Scalars['Int']>;
+  divide?: InputMaybe<Scalars['Int']>;
+  increment?: InputMaybe<Scalars['Int']>;
+  multiply?: InputMaybe<Scalars['Int']>;
+  set?: InputMaybe<Scalars['Int']>;
 };
 
 export type Pokedex = {
@@ -1703,6 +2294,7 @@ export type PokedexWhereUniqueInput = {
 
 export type Pokemon = {
   __typename?: 'Pokemon';
+  Captured: Array<Captured>;
   _count?: Maybe<PokemonCount>;
   abilities: Array<PokemonAbilities>;
   against_bug: Scalars['Float'];
@@ -1711,18 +2303,18 @@ export type Pokemon = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: Maybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: Maybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: Maybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: Maybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -1745,8 +2337,19 @@ export type Pokemon = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status: Status;
   types: Array<PokemonTypes>;
   weight_kg: Scalars['Float'];
+};
+
+
+export type PokemonCapturedArgs = {
+  cursor?: InputMaybe<CapturedWhereUniqueInput>;
+  distinct?: InputMaybe<Array<CapturedScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -2198,6 +2801,7 @@ export type PokemonAvgOrderByAggregateInput = {
 
 export type PokemonCount = {
   __typename?: 'PokemonCount';
+  Captured: Scalars['Int'];
   abilities: Scalars['Int'];
   types: Scalars['Int'];
 };
@@ -2242,6 +2846,7 @@ export type PokemonCountAggregate = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status: Scalars['Int'];
   weight_kg: Scalars['Int'];
 };
 
@@ -2283,10 +2888,12 @@ export type PokemonCountOrderByAggregateInput = {
   sp_attack?: InputMaybe<SortOrder>;
   sp_defense?: InputMaybe<SortOrder>;
   speed?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
   weight_kg?: InputMaybe<SortOrder>;
 };
 
 export type PokemonCreateInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
@@ -2294,18 +2901,18 @@ export type PokemonCreateInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2325,6 +2932,7 @@ export type PokemonCreateInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
   weight_kg: Scalars['Float'];
 };
@@ -2336,18 +2944,18 @@ export type PokemonCreateManyClassificationInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2366,6 +2974,7 @@ export type PokemonCreateManyClassificationInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   weight_kg: Scalars['Float'];
 };
 
@@ -2381,18 +2990,18 @@ export type PokemonCreateManyGenerationInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2411,6 +3020,7 @@ export type PokemonCreateManyGenerationInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   weight_kg: Scalars['Float'];
 };
 
@@ -2426,18 +3036,18 @@ export type PokemonCreateManyInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2457,6 +3067,7 @@ export type PokemonCreateManyInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   weight_kg: Scalars['Float'];
 };
 
@@ -2480,6 +3091,12 @@ export type PokemonCreateNestedOneWithoutAbilitiesInput = {
   create?: InputMaybe<PokemonCreateWithoutAbilitiesInput>;
 };
 
+export type PokemonCreateNestedOneWithoutCapturedInput = {
+  connect?: InputMaybe<PokemonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PokemonCreateOrConnectWithoutCapturedInput>;
+  create?: InputMaybe<PokemonCreateWithoutCapturedInput>;
+};
+
 export type PokemonCreateNestedOneWithoutPokedex_NumberInput = {
   connect?: InputMaybe<PokemonWhereUniqueInput>;
   connectOrCreate?: InputMaybe<PokemonCreateOrConnectWithoutPokedex_NumberInput>;
@@ -2494,6 +3111,11 @@ export type PokemonCreateNestedOneWithoutTypesInput = {
 
 export type PokemonCreateOrConnectWithoutAbilitiesInput = {
   create: PokemonCreateWithoutAbilitiesInput;
+  where: PokemonWhereUniqueInput;
+};
+
+export type PokemonCreateOrConnectWithoutCapturedInput = {
+  create: PokemonCreateWithoutCapturedInput;
   where: PokemonWhereUniqueInput;
 };
 
@@ -2518,24 +3140,25 @@ export type PokemonCreateOrConnectWithoutTypesInput = {
 };
 
 export type PokemonCreateWithoutAbilitiesInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
   against_dragon: Scalars['Float'];
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2555,11 +3178,57 @@ export type PokemonCreateWithoutAbilitiesInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
+  types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
+  weight_kg: Scalars['Float'];
+};
+
+export type PokemonCreateWithoutCapturedInput = {
+  abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
+  against_bug: Scalars['Float'];
+  against_dark: Scalars['Float'];
+  against_dragon: Scalars['Float'];
+  against_electric: Scalars['Float'];
+  against_fairy: Scalars['Float'];
+  against_fight: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
+  against_flying: Scalars['Float'];
+  against_ghost: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
+  against_ground: Scalars['Float'];
+  against_ice: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
+  against_poison: Scalars['Float'];
+  against_psychic: Scalars['Float'];
+  against_rock: Scalars['Float'];
+  against_steel: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
+  attack: Scalars['Int'];
+  base_egg_steps: Scalars['Int'];
+  base_happiness: Scalars['Int'];
+  base_total: Scalars['Int'];
+  capture_rate?: InputMaybe<Scalars['Float']>;
+  classification: ClassificationCreateNestedOneWithoutPokemonInput;
+  defense: Scalars['Int'];
+  experience_growth: Scalars['Int'];
+  generation: GenerationCreateNestedOneWithoutPokemonInput;
+  height_m: Scalars['Float'];
+  hp: Scalars['Int'];
+  is_legendary: Scalars['Boolean'];
+  japanese_name: Scalars['String'];
+  name: Scalars['String'];
+  percentage_male: Scalars['Float'];
+  pokedex_number?: InputMaybe<PokedexCreateNestedOneWithoutPokemonInput>;
+  sp_attack: Scalars['Int'];
+  sp_defense: Scalars['Int'];
+  speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
   weight_kg: Scalars['Float'];
 };
 
 export type PokemonCreateWithoutClassificationInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
@@ -2567,18 +3236,18 @@ export type PokemonCreateWithoutClassificationInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2597,11 +3266,13 @@ export type PokemonCreateWithoutClassificationInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
   weight_kg: Scalars['Float'];
 };
 
 export type PokemonCreateWithoutGenerationInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
@@ -2609,18 +3280,18 @@ export type PokemonCreateWithoutGenerationInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2639,11 +3310,13 @@ export type PokemonCreateWithoutGenerationInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
   weight_kg: Scalars['Float'];
 };
 
 export type PokemonCreateWithoutPokedex_NumberInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
@@ -2651,18 +3324,18 @@ export type PokemonCreateWithoutPokedex_NumberInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2681,11 +3354,13 @@ export type PokemonCreateWithoutPokedex_NumberInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   types?: InputMaybe<PokemonTypesCreateNestedManyWithoutPokemonInput>;
   weight_kg: Scalars['Float'];
 };
 
 export type PokemonCreateWithoutTypesInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesCreateNestedManyWithoutPokemonInput>;
   against_bug: Scalars['Float'];
   against_dark: Scalars['Float'];
@@ -2693,18 +3368,18 @@ export type PokemonCreateWithoutTypesInput = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: InputMaybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: InputMaybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: InputMaybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: InputMaybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2724,6 +3399,7 @@ export type PokemonCreateWithoutTypesInput = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status?: InputMaybe<Status>;
   weight_kg: Scalars['Float'];
 };
 
@@ -2740,18 +3416,18 @@ export type PokemonGroupBy = {
   against_electric: Scalars['Float'];
   against_fairy: Scalars['Float'];
   against_fight: Scalars['Float'];
-  against_fire: Scalars['Float'];
+  against_fire?: Maybe<Scalars['Float']>;
   against_flying: Scalars['Float'];
   against_ghost: Scalars['Float'];
-  against_grass: Scalars['Float'];
+  against_grass?: Maybe<Scalars['Float']>;
   against_ground: Scalars['Float'];
   against_ice: Scalars['Float'];
-  against_normal: Scalars['Float'];
+  against_normal?: Maybe<Scalars['Float']>;
   against_poison: Scalars['Float'];
   against_psychic: Scalars['Float'];
   against_rock: Scalars['Float'];
   against_steel: Scalars['Float'];
-  against_water: Scalars['Float'];
+  against_water?: Maybe<Scalars['Float']>;
   attack: Scalars['Int'];
   base_egg_steps: Scalars['Int'];
   base_happiness: Scalars['Int'];
@@ -2771,6 +3447,7 @@ export type PokemonGroupBy = {
   sp_attack: Scalars['Int'];
   sp_defense: Scalars['Int'];
   speed: Scalars['Int'];
+  status: Status;
   weight_kg: Scalars['Float'];
 };
 
@@ -2819,6 +3496,7 @@ export type PokemonMaxAggregate = {
   sp_attack?: Maybe<Scalars['Int']>;
   sp_defense?: Maybe<Scalars['Int']>;
   speed?: Maybe<Scalars['Int']>;
+  status?: Maybe<Status>;
   weight_kg?: Maybe<Scalars['Float']>;
 };
 
@@ -2860,6 +3538,7 @@ export type PokemonMaxOrderByAggregateInput = {
   sp_attack?: InputMaybe<SortOrder>;
   sp_defense?: InputMaybe<SortOrder>;
   speed?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
   weight_kg?: InputMaybe<SortOrder>;
 };
 
@@ -2902,6 +3581,7 @@ export type PokemonMinAggregate = {
   sp_attack?: Maybe<Scalars['Int']>;
   sp_defense?: Maybe<Scalars['Int']>;
   speed?: Maybe<Scalars['Int']>;
+  status?: Maybe<Status>;
   weight_kg?: Maybe<Scalars['Float']>;
 };
 
@@ -2943,6 +3623,7 @@ export type PokemonMinOrderByAggregateInput = {
   sp_attack?: InputMaybe<SortOrder>;
   sp_defense?: InputMaybe<SortOrder>;
   speed?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
   weight_kg?: InputMaybe<SortOrder>;
 };
 
@@ -2993,10 +3674,12 @@ export type PokemonOrderByWithAggregationInput = {
   sp_attack?: InputMaybe<SortOrder>;
   sp_defense?: InputMaybe<SortOrder>;
   speed?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
   weight_kg?: InputMaybe<SortOrder>;
 };
 
 export type PokemonOrderByWithRelationInput = {
+  Captured?: InputMaybe<CapturedOrderByRelationAggregateInput>;
   abilities?: InputMaybe<PokemonAbilitiesOrderByRelationAggregateInput>;
   against_bug?: InputMaybe<SortOrder>;
   against_dark?: InputMaybe<SortOrder>;
@@ -3038,6 +3721,7 @@ export type PokemonOrderByWithRelationInput = {
   sp_attack?: InputMaybe<SortOrder>;
   sp_defense?: InputMaybe<SortOrder>;
   speed?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
   types?: InputMaybe<PokemonTypesOrderByRelationAggregateInput>;
   weight_kg?: InputMaybe<SortOrder>;
 };
@@ -3085,6 +3769,7 @@ export enum PokemonScalarFieldEnum {
   SpAttack = 'sp_attack',
   SpDefense = 'sp_defense',
   Speed = 'speed',
+  Status = 'status',
   WeightKg = 'weight_kg'
 }
 
@@ -3098,18 +3783,18 @@ export type PokemonScalarWhereInput = {
   against_electric?: InputMaybe<FloatFilter>;
   against_fairy?: InputMaybe<FloatFilter>;
   against_fight?: InputMaybe<FloatFilter>;
-  against_fire?: InputMaybe<FloatFilter>;
+  against_fire?: InputMaybe<FloatNullableFilter>;
   against_flying?: InputMaybe<FloatFilter>;
   against_ghost?: InputMaybe<FloatFilter>;
-  against_grass?: InputMaybe<FloatFilter>;
+  against_grass?: InputMaybe<FloatNullableFilter>;
   against_ground?: InputMaybe<FloatFilter>;
   against_ice?: InputMaybe<FloatFilter>;
-  against_normal?: InputMaybe<FloatFilter>;
+  against_normal?: InputMaybe<FloatNullableFilter>;
   against_poison?: InputMaybe<FloatFilter>;
   against_psychic?: InputMaybe<FloatFilter>;
   against_rock?: InputMaybe<FloatFilter>;
   against_steel?: InputMaybe<FloatFilter>;
-  against_water?: InputMaybe<FloatFilter>;
+  against_water?: InputMaybe<FloatNullableFilter>;
   attack?: InputMaybe<IntFilter>;
   base_egg_steps?: InputMaybe<IntFilter>;
   base_happiness?: InputMaybe<IntFilter>;
@@ -3129,6 +3814,7 @@ export type PokemonScalarWhereInput = {
   sp_attack?: InputMaybe<IntFilter>;
   sp_defense?: InputMaybe<IntFilter>;
   speed?: InputMaybe<IntFilter>;
+  status?: InputMaybe<EnumStatusFilter>;
   weight_kg?: InputMaybe<FloatFilter>;
 };
 
@@ -3142,18 +3828,18 @@ export type PokemonScalarWhereWithAggregatesInput = {
   against_electric?: InputMaybe<FloatWithAggregatesFilter>;
   against_fairy?: InputMaybe<FloatWithAggregatesFilter>;
   against_fight?: InputMaybe<FloatWithAggregatesFilter>;
-  against_fire?: InputMaybe<FloatWithAggregatesFilter>;
+  against_fire?: InputMaybe<FloatNullableWithAggregatesFilter>;
   against_flying?: InputMaybe<FloatWithAggregatesFilter>;
   against_ghost?: InputMaybe<FloatWithAggregatesFilter>;
-  against_grass?: InputMaybe<FloatWithAggregatesFilter>;
+  against_grass?: InputMaybe<FloatNullableWithAggregatesFilter>;
   against_ground?: InputMaybe<FloatWithAggregatesFilter>;
   against_ice?: InputMaybe<FloatWithAggregatesFilter>;
-  against_normal?: InputMaybe<FloatWithAggregatesFilter>;
+  against_normal?: InputMaybe<FloatNullableWithAggregatesFilter>;
   against_poison?: InputMaybe<FloatWithAggregatesFilter>;
   against_psychic?: InputMaybe<FloatWithAggregatesFilter>;
   against_rock?: InputMaybe<FloatWithAggregatesFilter>;
   against_steel?: InputMaybe<FloatWithAggregatesFilter>;
-  against_water?: InputMaybe<FloatWithAggregatesFilter>;
+  against_water?: InputMaybe<FloatNullableWithAggregatesFilter>;
   attack?: InputMaybe<IntWithAggregatesFilter>;
   base_egg_steps?: InputMaybe<IntWithAggregatesFilter>;
   base_happiness?: InputMaybe<IntWithAggregatesFilter>;
@@ -3173,6 +3859,7 @@ export type PokemonScalarWhereWithAggregatesInput = {
   sp_attack?: InputMaybe<IntWithAggregatesFilter>;
   sp_defense?: InputMaybe<IntWithAggregatesFilter>;
   speed?: InputMaybe<IntWithAggregatesFilter>;
+  status?: InputMaybe<EnumStatusWithAggregatesFilter>;
   weight_kg?: InputMaybe<FloatWithAggregatesFilter>;
 };
 
@@ -3604,6 +4291,7 @@ export type PokemonTypesWhereUniqueInput = {
 };
 
 export type PokemonUpdateInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -3611,18 +4299,18 @@ export type PokemonUpdateInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3642,6 +4330,7 @@ export type PokemonUpdateInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
@@ -3653,18 +4342,18 @@ export type PokemonUpdateManyMutationInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3681,6 +4370,7 @@ export type PokemonUpdateManyMutationInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -3730,6 +4420,14 @@ export type PokemonUpdateOneRequiredWithoutAbilitiesInput = {
   upsert?: InputMaybe<PokemonUpsertWithoutAbilitiesInput>;
 };
 
+export type PokemonUpdateOneRequiredWithoutCapturedInput = {
+  connect?: InputMaybe<PokemonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PokemonCreateOrConnectWithoutCapturedInput>;
+  create?: InputMaybe<PokemonCreateWithoutCapturedInput>;
+  update?: InputMaybe<PokemonUpdateWithoutCapturedInput>;
+  upsert?: InputMaybe<PokemonUpsertWithoutCapturedInput>;
+};
+
 export type PokemonUpdateOneRequiredWithoutPokedex_NumberInput = {
   connect?: InputMaybe<PokemonWhereUniqueInput>;
   connectOrCreate?: InputMaybe<PokemonCreateOrConnectWithoutPokedex_NumberInput>;
@@ -3757,24 +4455,25 @@ export type PokemonUpdateWithWhereUniqueWithoutGenerationInput = {
 };
 
 export type PokemonUpdateWithoutAbilitiesInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dragon?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3794,11 +4493,57 @@ export type PokemonUpdateWithoutAbilitiesInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
+  types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
+  weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
+};
+
+export type PokemonUpdateWithoutCapturedInput = {
+  abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
+  against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_dragon?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  attack?: InputMaybe<IntFieldUpdateOperationsInput>;
+  base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
+  base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
+  base_total?: InputMaybe<IntFieldUpdateOperationsInput>;
+  capture_rate?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  classification?: InputMaybe<ClassificationUpdateOneRequiredWithoutPokemonInput>;
+  defense?: InputMaybe<IntFieldUpdateOperationsInput>;
+  experience_growth?: InputMaybe<IntFieldUpdateOperationsInput>;
+  generation?: InputMaybe<GenerationUpdateOneRequiredWithoutPokemonInput>;
+  height_m?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  hp?: InputMaybe<IntFieldUpdateOperationsInput>;
+  is_legendary?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  japanese_name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  percentage_male?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  pokedex_number?: InputMaybe<PokedexUpdateOneWithoutPokemonInput>;
+  sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
+  sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
+  speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type PokemonUpdateWithoutClassificationInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -3806,18 +4551,18 @@ export type PokemonUpdateWithoutClassificationInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3836,11 +4581,13 @@ export type PokemonUpdateWithoutClassificationInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type PokemonUpdateWithoutGenerationInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -3848,18 +4595,18 @@ export type PokemonUpdateWithoutGenerationInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3878,11 +4625,13 @@ export type PokemonUpdateWithoutGenerationInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type PokemonUpdateWithoutPokedex_NumberInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -3890,18 +4639,18 @@ export type PokemonUpdateWithoutPokedex_NumberInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3920,11 +4669,13 @@ export type PokemonUpdateWithoutPokedex_NumberInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   types?: InputMaybe<PokemonTypesUpdateManyWithoutPokemonInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type PokemonUpdateWithoutTypesInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutPokemonInput>;
   abilities?: InputMaybe<PokemonAbilitiesUpdateManyWithoutPokemonInput>;
   against_bug?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_dark?: InputMaybe<FloatFieldUpdateOperationsInput>;
@@ -3932,18 +4683,18 @@ export type PokemonUpdateWithoutTypesInput = {
   against_electric?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fairy?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_fight?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_fire?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_fire?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_flying?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ghost?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_grass?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_grass?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_ground?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_ice?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_normal?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_normal?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   against_poison?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_psychic?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_rock?: InputMaybe<FloatFieldUpdateOperationsInput>;
   against_steel?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  against_water?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  against_water?: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_egg_steps?: InputMaybe<IntFieldUpdateOperationsInput>;
   base_happiness?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -3963,6 +4714,7 @@ export type PokemonUpdateWithoutTypesInput = {
   sp_attack?: InputMaybe<IntFieldUpdateOperationsInput>;
   sp_defense?: InputMaybe<IntFieldUpdateOperationsInput>;
   speed?: InputMaybe<IntFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
   weight_kg?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
@@ -3983,6 +4735,11 @@ export type PokemonUpsertWithoutAbilitiesInput = {
   update: PokemonUpdateWithoutAbilitiesInput;
 };
 
+export type PokemonUpsertWithoutCapturedInput = {
+  create: PokemonCreateWithoutCapturedInput;
+  update: PokemonUpdateWithoutCapturedInput;
+};
+
 export type PokemonUpsertWithoutPokedex_NumberInput = {
   create: PokemonCreateWithoutPokedex_NumberInput;
   update: PokemonUpdateWithoutPokedex_NumberInput;
@@ -3995,6 +4752,7 @@ export type PokemonUpsertWithoutTypesInput = {
 
 export type PokemonWhereInput = {
   AND?: InputMaybe<Array<PokemonWhereInput>>;
+  Captured?: InputMaybe<CapturedListRelationFilter>;
   NOT?: InputMaybe<Array<PokemonWhereInput>>;
   OR?: InputMaybe<Array<PokemonWhereInput>>;
   abilities?: InputMaybe<PokemonAbilitiesListRelationFilter>;
@@ -4004,18 +4762,18 @@ export type PokemonWhereInput = {
   against_electric?: InputMaybe<FloatFilter>;
   against_fairy?: InputMaybe<FloatFilter>;
   against_fight?: InputMaybe<FloatFilter>;
-  against_fire?: InputMaybe<FloatFilter>;
+  against_fire?: InputMaybe<FloatNullableFilter>;
   against_flying?: InputMaybe<FloatFilter>;
   against_ghost?: InputMaybe<FloatFilter>;
-  against_grass?: InputMaybe<FloatFilter>;
+  against_grass?: InputMaybe<FloatNullableFilter>;
   against_ground?: InputMaybe<FloatFilter>;
   against_ice?: InputMaybe<FloatFilter>;
-  against_normal?: InputMaybe<FloatFilter>;
+  against_normal?: InputMaybe<FloatNullableFilter>;
   against_poison?: InputMaybe<FloatFilter>;
   against_psychic?: InputMaybe<FloatFilter>;
   against_rock?: InputMaybe<FloatFilter>;
   against_steel?: InputMaybe<FloatFilter>;
-  against_water?: InputMaybe<FloatFilter>;
+  against_water?: InputMaybe<FloatNullableFilter>;
   attack?: InputMaybe<IntFilter>;
   base_egg_steps?: InputMaybe<IntFilter>;
   base_happiness?: InputMaybe<IntFilter>;
@@ -4038,6 +4796,7 @@ export type PokemonWhereInput = {
   sp_attack?: InputMaybe<IntFilter>;
   sp_defense?: InputMaybe<IntFilter>;
   speed?: InputMaybe<IntFilter>;
+  status?: InputMaybe<EnumStatusFilter>;
   types?: InputMaybe<PokemonTypesListRelationFilter>;
   weight_kg?: InputMaybe<FloatFilter>;
 };
@@ -4051,22 +4810,28 @@ export type Query = {
   abilities: Array<Ability>;
   ability?: Maybe<Ability>;
   aggregateAbility: AggregateAbility;
+  aggregateCaptured: AggregateCaptured;
   aggregateClassification: AggregateClassification;
   aggregateGeneration: AggregateGeneration;
   aggregatePokedex: AggregatePokedex;
   aggregatePokemon: AggregatePokemon;
   aggregatePokemonAbilities: AggregatePokemonAbilities;
   aggregatePokemonTypes: AggregatePokemonTypes;
+  aggregateTrainer: AggregateTrainer;
   aggregateType: AggregateType;
+  captured?: Maybe<Captured>;
+  captureds: Array<Captured>;
   classification?: Maybe<Classification>;
   classifications: Array<Classification>;
   findFirstAbility?: Maybe<Ability>;
+  findFirstCaptured?: Maybe<Captured>;
   findFirstClassification?: Maybe<Classification>;
   findFirstGeneration?: Maybe<Generation>;
   findFirstPokedex?: Maybe<Pokedex>;
   findFirstPokemon?: Maybe<Pokemon>;
   findFirstPokemonAbilities?: Maybe<PokemonAbilities>;
   findFirstPokemonTypes?: Maybe<PokemonTypes>;
+  findFirstTrainer?: Maybe<Trainer>;
   findFirstType?: Maybe<Type>;
   findManyPokemon: Array<Pokemon>;
   findManyPokemonAbilities: Array<PokemonAbilities>;
@@ -4077,15 +4842,19 @@ export type Query = {
   generation?: Maybe<Generation>;
   generations: Array<Generation>;
   groupByAbility: Array<AbilityGroupBy>;
+  groupByCaptured: Array<CapturedGroupBy>;
   groupByClassification: Array<ClassificationGroupBy>;
   groupByGeneration: Array<GenerationGroupBy>;
   groupByPokedex: Array<PokedexGroupBy>;
   groupByPokemon: Array<PokemonGroupBy>;
   groupByPokemonAbilities: Array<PokemonAbilitiesGroupBy>;
   groupByPokemonTypes: Array<PokemonTypesGroupBy>;
+  groupByTrainer: Array<TrainerGroupBy>;
   groupByType: Array<TypeGroupBy>;
   pokedex?: Maybe<Pokedex>;
   pokedexes: Array<Pokedex>;
+  trainer?: Maybe<Trainer>;
+  trainers: Array<Trainer>;
   type?: Maybe<Type>;
   types: Array<Type>;
 };
@@ -4112,6 +4881,15 @@ export type QueryAggregateAbilityArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AbilityWhereInput>;
+};
+
+
+export type QueryAggregateCapturedArgs = {
+  cursor?: InputMaybe<CapturedWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -4169,12 +4947,36 @@ export type QueryAggregatePokemonTypesArgs = {
 };
 
 
+export type QueryAggregateTrainerArgs = {
+  cursor?: InputMaybe<TrainerWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<TrainerOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TrainerWhereInput>;
+};
+
+
 export type QueryAggregateTypeArgs = {
   cursor?: InputMaybe<TypeWhereUniqueInput>;
   orderBy?: InputMaybe<Array<TypeOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TypeWhereInput>;
+};
+
+
+export type QueryCapturedArgs = {
+  where: CapturedWhereUniqueInput;
+};
+
+
+export type QueryCapturedsArgs = {
+  cursor?: InputMaybe<CapturedWhereUniqueInput>;
+  distinct?: InputMaybe<Array<CapturedScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -4200,6 +5002,16 @@ export type QueryFindFirstAbilityArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AbilityWhereInput>;
+};
+
+
+export type QueryFindFirstCapturedArgs = {
+  cursor?: InputMaybe<CapturedWhereUniqueInput>;
+  distinct?: InputMaybe<Array<CapturedScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
 };
 
 
@@ -4260,6 +5072,16 @@ export type QueryFindFirstPokemonTypesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonTypesWhereInput>;
+};
+
+
+export type QueryFindFirstTrainerArgs = {
+  cursor?: InputMaybe<TrainerWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TrainerScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TrainerOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TrainerWhereInput>;
 };
 
 
@@ -4343,6 +5165,16 @@ export type QueryGroupByAbilityArgs = {
 };
 
 
+export type QueryGroupByCapturedArgs = {
+  by: Array<CapturedScalarFieldEnum>;
+  having?: InputMaybe<CapturedScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
+};
+
+
 export type QueryGroupByClassificationArgs = {
   by: Array<ClassificationScalarFieldEnum>;
   having?: InputMaybe<ClassificationScalarWhereWithAggregatesInput>;
@@ -4403,6 +5235,16 @@ export type QueryGroupByPokemonTypesArgs = {
 };
 
 
+export type QueryGroupByTrainerArgs = {
+  by: Array<TrainerScalarFieldEnum>;
+  having?: InputMaybe<TrainerScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<TrainerOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TrainerWhereInput>;
+};
+
+
 export type QueryGroupByTypeArgs = {
   by: Array<TypeScalarFieldEnum>;
   having?: InputMaybe<TypeScalarWhereWithAggregatesInput>;
@@ -4428,6 +5270,21 @@ export type QueryPokedexesArgs = {
 };
 
 
+export type QueryTrainerArgs = {
+  where: TrainerWhereUniqueInput;
+};
+
+
+export type QueryTrainersArgs = {
+  cursor?: InputMaybe<TrainerWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TrainerScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TrainerOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TrainerWhereInput>;
+};
+
+
 export type QueryTypeArgs = {
   where: TypeWhereUniqueInput;
 };
@@ -4450,6 +5307,12 @@ export enum QueryMode {
 export enum SortOrder {
   Asc = 'asc',
   Desc = 'desc'
+}
+
+export enum Status {
+  Captured = 'Captured',
+  Seen = 'Seen',
+  Unseen = 'Unseen'
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -4487,6 +5350,232 @@ export type StringWithAggregatesFilter = {
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['String']>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Trainer = {
+  __typename?: 'Trainer';
+  Captured: Array<Captured>;
+  _count?: Maybe<TrainerCount>;
+  age?: Maybe<Scalars['Int']>;
+  gender?: Maybe<Gender>;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+
+export type TrainerCapturedArgs = {
+  cursor?: InputMaybe<CapturedWhereUniqueInput>;
+  distinct?: InputMaybe<Array<CapturedScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<CapturedWhereInput>;
+};
+
+export type TrainerAvgAggregate = {
+  __typename?: 'TrainerAvgAggregate';
+  age?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+export type TrainerAvgOrderByAggregateInput = {
+  age?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+};
+
+export type TrainerCount = {
+  __typename?: 'TrainerCount';
+  Captured: Scalars['Int'];
+};
+
+export type TrainerCountAggregate = {
+  __typename?: 'TrainerCountAggregate';
+  _all: Scalars['Int'];
+  age: Scalars['Int'];
+  gender: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['Int'];
+};
+
+export type TrainerCountOrderByAggregateInput = {
+  age?: InputMaybe<SortOrder>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type TrainerCreateInput = {
+  Captured?: InputMaybe<CapturedCreateNestedManyWithoutTrainerInput>;
+  age?: InputMaybe<Scalars['Int']>;
+  gender?: InputMaybe<Gender>;
+  name: Scalars['String'];
+};
+
+export type TrainerCreateManyInput = {
+  age?: InputMaybe<Scalars['Int']>;
+  gender?: InputMaybe<Gender>;
+  id?: InputMaybe<Scalars['Int']>;
+  name: Scalars['String'];
+};
+
+export type TrainerCreateNestedOneWithoutCapturedInput = {
+  connect?: InputMaybe<TrainerWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<TrainerCreateOrConnectWithoutCapturedInput>;
+  create?: InputMaybe<TrainerCreateWithoutCapturedInput>;
+};
+
+export type TrainerCreateOrConnectWithoutCapturedInput = {
+  create: TrainerCreateWithoutCapturedInput;
+  where: TrainerWhereUniqueInput;
+};
+
+export type TrainerCreateWithoutCapturedInput = {
+  age?: InputMaybe<Scalars['Int']>;
+  gender?: InputMaybe<Gender>;
+  name: Scalars['String'];
+};
+
+export type TrainerGroupBy = {
+  __typename?: 'TrainerGroupBy';
+  _avg?: Maybe<TrainerAvgAggregate>;
+  _count?: Maybe<TrainerCountAggregate>;
+  _max?: Maybe<TrainerMaxAggregate>;
+  _min?: Maybe<TrainerMinAggregate>;
+  _sum?: Maybe<TrainerSumAggregate>;
+  age?: Maybe<Scalars['Int']>;
+  gender?: Maybe<Gender>;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+export type TrainerMaxAggregate = {
+  __typename?: 'TrainerMaxAggregate';
+  age?: Maybe<Scalars['Int']>;
+  gender?: Maybe<Gender>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type TrainerMaxOrderByAggregateInput = {
+  age?: InputMaybe<SortOrder>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type TrainerMinAggregate = {
+  __typename?: 'TrainerMinAggregate';
+  age?: Maybe<Scalars['Int']>;
+  gender?: Maybe<Gender>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type TrainerMinOrderByAggregateInput = {
+  age?: InputMaybe<SortOrder>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type TrainerOrderByWithAggregationInput = {
+  _avg?: InputMaybe<TrainerAvgOrderByAggregateInput>;
+  _count?: InputMaybe<TrainerCountOrderByAggregateInput>;
+  _max?: InputMaybe<TrainerMaxOrderByAggregateInput>;
+  _min?: InputMaybe<TrainerMinOrderByAggregateInput>;
+  _sum?: InputMaybe<TrainerSumOrderByAggregateInput>;
+  age?: InputMaybe<SortOrder>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type TrainerOrderByWithRelationInput = {
+  Captured?: InputMaybe<CapturedOrderByRelationAggregateInput>;
+  age?: InputMaybe<SortOrder>;
+  gender?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type TrainerRelationFilter = {
+  is?: InputMaybe<TrainerWhereInput>;
+  isNot?: InputMaybe<TrainerWhereInput>;
+};
+
+export enum TrainerScalarFieldEnum {
+  Age = 'age',
+  Gender = 'gender',
+  Id = 'id',
+  Name = 'name'
+}
+
+export type TrainerScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<TrainerScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<TrainerScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<TrainerScalarWhereWithAggregatesInput>>;
+  age?: InputMaybe<IntNullableWithAggregatesFilter>;
+  gender?: InputMaybe<EnumGenderNullableWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type TrainerSumAggregate = {
+  __typename?: 'TrainerSumAggregate';
+  age?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+export type TrainerSumOrderByAggregateInput = {
+  age?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+};
+
+export type TrainerUpdateInput = {
+  Captured?: InputMaybe<CapturedUpdateManyWithoutTrainerInput>;
+  age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type TrainerUpdateManyMutationInput = {
+  age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type TrainerUpdateOneRequiredWithoutCapturedInput = {
+  connect?: InputMaybe<TrainerWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<TrainerCreateOrConnectWithoutCapturedInput>;
+  create?: InputMaybe<TrainerCreateWithoutCapturedInput>;
+  update?: InputMaybe<TrainerUpdateWithoutCapturedInput>;
+  upsert?: InputMaybe<TrainerUpsertWithoutCapturedInput>;
+};
+
+export type TrainerUpdateWithoutCapturedInput = {
+  age?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  gender?: InputMaybe<NullableEnumGenderFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type TrainerUpsertWithoutCapturedInput = {
+  create: TrainerCreateWithoutCapturedInput;
+  update: TrainerUpdateWithoutCapturedInput;
+};
+
+export type TrainerWhereInput = {
+  AND?: InputMaybe<Array<TrainerWhereInput>>;
+  Captured?: InputMaybe<CapturedListRelationFilter>;
+  NOT?: InputMaybe<Array<TrainerWhereInput>>;
+  OR?: InputMaybe<Array<TrainerWhereInput>>;
+  age?: InputMaybe<IntNullableFilter>;
+  gender?: InputMaybe<EnumGenderNullableFilter>;
+  id?: InputMaybe<IntFilter>;
+  name?: InputMaybe<StringFilter>;
+};
+
+export type TrainerWhereUniqueInput = {
+  id?: InputMaybe<Scalars['Int']>;
 };
 
 export type Type = {
@@ -4731,14 +5820,14 @@ export type TypeWhereUniqueInput = {
   type?: InputMaybe<Scalars['String']>;
 };
 
-export type ExampleQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type BananaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExampleQueryQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
+export type BananaQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
 
 
-export const ExampleQueryDocument = `
-    query ExampleQuery {
+export const BananaDocument = `
+    query banana {
   findManyPokemon {
     id
     name
@@ -4750,15 +5839,15 @@ export const ExampleQueryDocument = `
   }
 }
     `;
-export const useExampleQueryQuery = <
-      TData = ExampleQueryQuery,
+export const useBananaQuery = <
+      TData = BananaQuery,
       TError = unknown
     >(
-      variables?: ExampleQueryQueryVariables,
-      options?: UseQueryOptions<ExampleQueryQuery, TError, TData>
+      variables?: BananaQueryVariables,
+      options?: UseQueryOptions<BananaQuery, TError, TData>
     ) =>
-    useQuery<ExampleQueryQuery, TError, TData>(
-      variables === undefined ? ['ExampleQuery'] : ['ExampleQuery', variables],
-      fetcher<ExampleQueryQuery, ExampleQueryQueryVariables>(ExampleQueryDocument, variables),
+    useQuery<BananaQuery, TError, TData>(
+      variables === undefined ? ['banana'] : ['banana', variables],
+      fetcher<BananaQuery, BananaQueryVariables>(BananaDocument, variables),
       options
     );
