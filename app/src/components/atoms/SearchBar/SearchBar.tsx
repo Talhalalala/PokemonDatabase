@@ -8,7 +8,7 @@ export const SearchBar: FC<Props> = (props) => {
 
     return(
         <>
-             <form action="/" method="get" onSubmit={handleSearch}>
+             <form action="/" method="get">
                 
                 <input
                     type="text"
