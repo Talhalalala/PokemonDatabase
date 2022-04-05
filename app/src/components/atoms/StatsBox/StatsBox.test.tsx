@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import { Test } from './Test';
+import { StatsBox } from './StatsBox';
 
-describe('Test', () => {
+describe('StatsBox', () => {
   it('should render', () => {
-    render(<Test />);
+    render(<StatsBox />);
   });
   it('should match a snapshot', () => {
-    const tree = renderer.create(<Test />).toJSON();
+    const tree = renderer.create(<StatsBox />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

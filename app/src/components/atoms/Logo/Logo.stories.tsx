@@ -1,16 +1,16 @@
 import React, { ComponentProps } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
-import { Test } from './Test';
+import { Logo } from './Logo';
 
-const Template: Story<ComponentProps<typeof Test>> = (args) => (
-  <Test {...args} />
+const Template: Story<ComponentProps<typeof Logo>> = (args) => (
+  <Logo {...args} />
 );
 
 export const Basic = Template.bind({});
 Basic.args = {};
 
 export default {
-  component: Test,
-  title: 'Atoms/Test',
+  component: Logo,
+  title: 'Atoms/Logo',
 };

@@ -8,11 +8,13 @@ const queryClient = new QueryClient();
 
 type Props = {
     name: string,
-    element_type: string
+    element_type: string,
+    searchClick: any
 }
 
 gql`query Pokemon {
     findManyPokemon{
+        id
         name
         japanese_name
         hp
@@ -36,7 +38,7 @@ gql`query Pokemon {
 
 
 
-export const ElementButton: FC<Props> = ({ name, element_type }: Props) => {
+export const ElementButton: FC<Props> = ({ name, element_type, searchClick }: Props) => {
 
     const [isTrue, setIsTrue] = useState(false);
 
@@ -60,12 +62,20 @@ export const ElementButton: FC<Props> = ({ name, element_type }: Props) => {
         console.log(isTrue);
     }
 
+    // const searchClick = (e: any) => {
+    //     e.preventDefault();
+    //     console.log('you clicked a pokemon')
+    //     console.log(e.currentTarget)
+    // }
+
     return(
-        <div>
+        <div >
             <button onClick={handleClick}>{name} Types</button>
             {(isTrue)? 
                 <>
-                    {pokemonReturn?.map(pokemon => <p>{pokemon.name}</p>)}
+                    <div style={{maxHeight: '200px', overflowY: 'scroll'}}>
+                        {pokemonReturn?.map(pokemon => <p onClick={searchClick} >{pokemon.name}</p>)}
+                    </div>
                 </>:
                 <>
                 </>

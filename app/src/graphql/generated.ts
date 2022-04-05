@@ -5823,17 +5823,13 @@ export type TypeWhereUniqueInput = {
 export type PokemonQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
-
-export type BananaQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type BananaQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
+export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
 
 
 export const PokemonDocument = `
     query Pokemon {
   findManyPokemon {
+    id
     name
     japanese_name
     hp
@@ -5864,30 +5860,5 @@ export const usePokemonQuery = <
     useQuery<PokemonQuery, TError, TData>(
       variables === undefined ? ['Pokemon'] : ['Pokemon', variables],
       fetcher<PokemonQuery, PokemonQueryVariables>(PokemonDocument, variables),
-      options
-    );
-export const BananaDocument = `
-    query banana {
-  findManyPokemon {
-    id
-    name
-    abilities {
-      ability {
-        ability
-      }
-    }
-  }
-}
-    `;
-export const useBananaQuery = <
-      TData = BananaQuery,
-      TError = unknown
-    >(
-      variables?: BananaQueryVariables,
-      options?: UseQueryOptions<BananaQuery, TError, TData>
-    ) =>
-    useQuery<BananaQuery, TError, TData>(
-      variables === undefined ? ['banana'] : ['banana', variables],
-      fetcher<BananaQuery, BananaQueryVariables>(BananaDocument, variables),
       options
     );
