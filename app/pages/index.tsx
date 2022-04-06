@@ -4,11 +4,17 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { ElementButton } from 'components/atoms/ElementButton'
 import { SearchCard } from 'components/molecules/SearchCard'
-import { Logo } from 'components/atoms/Logo'
+import { Logo } from 'components/atoms/Logo';
+import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
+      <div>
+        <Link href="/legendary">
+          <a>Legendary</a>
+        </Link>
+      </div>
       <main className={styles.main}>
         <Logo />
         <SearchCard />

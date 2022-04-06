@@ -5823,7 +5823,7 @@ export type TypeWhereUniqueInput = {
 export type PokemonQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
+export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, is_legendary: boolean, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
 
 
 export const PokemonDocument = `
@@ -5847,6 +5847,7 @@ export const PokemonDocument = `
         ability
       }
     }
+    is_legendary
   }
 }
     `;

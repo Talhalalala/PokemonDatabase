@@ -32,6 +32,7 @@ gql`query Pokemon {
               ability
             }
         }
+        is_legendary
     }
 }`
 
@@ -51,15 +52,11 @@ export const ElementButton: FC<Props> = ({ name, element_type, searchClick }: Pr
     // const pokemonElements = pokemonTypes.filter(p => p.includes('water'));
 
     const handleClick = () => {
-        console.log(isTrue)
-        console.log('LINE 53')
         if(isTrue){
             setIsTrue(false)
         }else{
             setIsTrue(true)
         }
-        console.log('you clicked')
-        console.log(isTrue);
     }
 
     // const searchClick = (e: any) => {

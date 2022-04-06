@@ -3,6 +3,8 @@ import { StatsBox } from 'components/atoms/StatsBox';
 import React, { FC, useState, useEffect } from 'react';
 import { usePokemonQuery } from '../../../graphql/generated';
 import { ElementButton } from 'components/atoms/ElementButton';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 
 type Props = {
@@ -67,6 +69,7 @@ export const SearchCard: FC<Props> = (props) => {
                 <StatsBox search={inputText}/>
             </div>
         <div style={{textAlign: 'center', display: 'flex'}}>
+            <Carousel swipeable={true}>
             
                 <ElementButton name='Water' element_type="water" searchClick={searchClick}/>
             
@@ -121,6 +124,8 @@ export const SearchCard: FC<Props> = (props) => {
                       
             
                 <ElementButton name='Dragon' element_type="dragon" searchClick={searchClick}/>
+
+            </Carousel>
 
             </div>
             
