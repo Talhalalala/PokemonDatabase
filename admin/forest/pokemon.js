@@ -10,37 +10,74 @@ const Sequelize = require('sequelize');
 // - Smart relationships: https://docs.forestadmin.com/documentation/reference-guide/relationships/create-a-smart-relationship
 // - Smart segments: https://docs.forestadmin.com/documentation/reference-guide/segments/smart-segments
 collection('pokemon', {
-  actions: [{
-    name: 'Seen'
+  actions: [
+  {
+    name: 'Mark as Seen'
   },
   {
-    name: 'Capture',
+    name: 'Capture Pokemon',
     type: 'single',
     fields: [
-    //   {
-    //   field: 'Assign to a trainer',
-    //   description: 'Please choose a trainer',
-    //   reference: 'trainer'
-    // },
     {
       field: 'trainer', 
+      description:'Which trainer captured this Pokemon?',
       type: "Number",
       reference: "trainer.id",
       isRequired: true,
-    }
+    },
   ]
+  },
+  {
+    name: 'Assign Default Stats'
+  },
+  {
+    name: 'Select and Assign Stats',
+    type: 'bulk',
+    fields: [
+      {
+        field: 'Fire Stats',
+        type: 'Enum',
+        enums: ['High', 'Medium', 'Low'],
+        isRequired: true
+      },
+      {
+        field: 'Grass Stats',
+        type: 'Enum',
+        enums: ['High', 'Medium', 'Low'],
+        isRequired: true
+      },
+      {
+        field: 'Normal Stats',
+        type: 'Enum',
+        enums: ['High', 'Medium', 'Low'],
+        isRequired: true
+      },
+      {
+        field: 'Water Stats',
+        type: 'Enum',
+        enums: ['High', 'Medium', 'Low'],
+        isRequired: true
+      },
 
-  }
+    ]
+  } 
 ],
 
-  fields: [{
-    field: 'ovrStrength',
-    type: 'Number',
-    get: (poke) => {
-      return (poke.attack + poke.defense + poke.hp + poke.spAttack + poke.spDefense + poke.speed)
-        ;
+  fields: [
+    {
+      field: 'ovrStrength',
+      type: 'Number',
+      get: (poke) => {
+        return (poke.attack + poke.defense + poke.hp + poke.spAttack + poke.spDefense + poke.speed)
+          ;
+      }
+    },
+    {
+      field: 'Pokemon Image',
+      type: 'String',
+      get: poke => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`
     }
-  }],
+],
 
   segments: [
     {

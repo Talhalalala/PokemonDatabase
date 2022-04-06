@@ -40,18 +40,18 @@ model Pokemon {
   against_electric  Float
   against_fairy     Float
   against_fight     Float
-  against_fire      Float
+  against_fire      Float?
   against_flying    Float
   against_ghost     Float
-  against_grass     Float
+  against_grass     Float?
   against_ground    Float
   against_ice       Float
-  against_normal    Float
+  against_normal    Float?
   against_poison    Float
   against_psychic   Float
   against_rock      Float
   against_steel     Float
-  against_water     Float
+  against_water     Float?
   base_egg_steps    Int
   base_happiness    Int
   base_total        Int

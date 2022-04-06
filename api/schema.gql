@@ -157,13 +157,13 @@ enum AbilityScalarFieldEnum {
 }
 
 input AbilityScalarWhereWithAggregatesInput {
-  ability: StringWithAggregatesFilter
   AND: [AbilityScalarWhereWithAggregatesInput!]
+  NOT: [AbilityScalarWhereWithAggregatesInput!]
+  OR: [AbilityScalarWhereWithAggregatesInput!]
+  ability: StringWithAggregatesFilter
   createdAt: DateTimeWithAggregatesFilter
   expiresAt: DateTimeNullableWithAggregatesFilter
   id: IntWithAggregatesFilter
-  NOT: [AbilityScalarWhereWithAggregatesInput!]
-  OR: [AbilityScalarWhereWithAggregatesInput!]
   updatedAt: DateTimeWithAggregatesFilter
 }
 
@@ -211,13 +211,13 @@ input AbilityUpsertWithoutPokemonAbilitiesInput {
 }
 
 input AbilityWhereInput {
-  ability: StringFilter
   AND: [AbilityWhereInput!]
+  NOT: [AbilityWhereInput!]
+  OR: [AbilityWhereInput!]
+  ability: StringFilter
   createdAt: DateTimeFilter
   expiresAt: DateTimeNullableFilter
   id: IntFilter
-  NOT: [AbilityWhereInput!]
-  OR: [AbilityWhereInput!]
   pokemonAbilities: PokemonAbilitiesListRelationFilter
   updatedAt: DateTimeFilter
 }
@@ -329,9 +329,9 @@ input BoolWithAggregatesFilter {
 }
 
 type Captured {
-  gender: Gender!
+  gender: Gender
   id: Int!
-  level: Int!
+  level: Int
   pokemon: Pokemon!
   pokemonId: Int!
   trainer: Trainer!
@@ -371,24 +371,24 @@ input CapturedCountOrderByAggregateInput {
 
 input CapturedCreateInput {
   gender: Gender
-  level: Int!
-  pokemon: PokemonCreateNestedOneWithoutCapturedInput
-  trainer: TrainerCreateNestedOneWithoutCapturedInput
+  level: Int
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput!
+  trainer: TrainerCreateNestedOneWithoutCapturedInput!
 }
 
 input CapturedCreateManyInput {
   gender: Gender
   id: Int
-  level: Int!
-  pokemonId: Int
-  trainerId: Int
+  level: Int
+  pokemonId: Int!
+  trainerId: Int!
 }
 
 input CapturedCreateManyPokemonInput {
   gender: Gender
   id: Int
-  level: Int!
-  trainerId: Int
+  level: Int
+  trainerId: Int!
 }
 
 input CapturedCreateManyPokemonInputEnvelope {
@@ -399,8 +399,8 @@ input CapturedCreateManyPokemonInputEnvelope {
 input CapturedCreateManyTrainerInput {
   gender: Gender
   id: Int
-  level: Int!
-  pokemonId: Int
+  level: Int
+  pokemonId: Int!
 }
 
 input CapturedCreateManyTrainerInputEnvelope {
@@ -434,14 +434,14 @@ input CapturedCreateOrConnectWithoutTrainerInput {
 
 input CapturedCreateWithoutPokemonInput {
   gender: Gender
-  level: Int!
-  trainer: TrainerCreateNestedOneWithoutCapturedInput
+  level: Int
+  trainer: TrainerCreateNestedOneWithoutCapturedInput!
 }
 
 input CapturedCreateWithoutTrainerInput {
   gender: Gender
-  level: Int!
-  pokemon: PokemonCreateNestedOneWithoutCapturedInput
+  level: Int
+  pokemon: PokemonCreateNestedOneWithoutCapturedInput!
 }
 
 type CapturedGroupBy {
@@ -450,9 +450,9 @@ type CapturedGroupBy {
   _max: CapturedMaxAggregate
   _min: CapturedMinAggregate
   _sum: CapturedSumAggregate
-  gender: Gender!
+  gender: Gender
   id: Int!
-  level: Int!
+  level: Int
   pokemonId: Int!
   trainerId: Int!
 }
@@ -532,22 +532,22 @@ enum CapturedScalarFieldEnum {
 
 input CapturedScalarWhereInput {
   AND: [CapturedScalarWhereInput!]
-  gender: EnumGenderFilter
-  id: IntFilter
-  level: IntFilter
   NOT: [CapturedScalarWhereInput!]
   OR: [CapturedScalarWhereInput!]
+  gender: EnumGenderNullableFilter
+  id: IntFilter
+  level: IntNullableFilter
   pokemonId: IntFilter
   trainerId: IntFilter
 }
 
 input CapturedScalarWhereWithAggregatesInput {
   AND: [CapturedScalarWhereWithAggregatesInput!]
-  gender: EnumGenderWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  level: IntWithAggregatesFilter
   NOT: [CapturedScalarWhereWithAggregatesInput!]
   OR: [CapturedScalarWhereWithAggregatesInput!]
+  gender: EnumGenderNullableWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  level: IntNullableWithAggregatesFilter
   pokemonId: IntWithAggregatesFilter
   trainerId: IntWithAggregatesFilter
 }
@@ -567,15 +567,25 @@ input CapturedSumOrderByAggregateInput {
 }
 
 input CapturedUpdateInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  level: IntFieldUpdateOperationsInput
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  level: NullableIntFieldUpdateOperationsInput
   pokemon: PokemonUpdateOneRequiredWithoutCapturedInput
   trainer: TrainerUpdateOneRequiredWithoutCapturedInput
 }
 
 input CapturedUpdateManyMutationInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  level: IntFieldUpdateOperationsInput
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  level: NullableIntFieldUpdateOperationsInput
+}
+
+input CapturedUpdateManyWithWhereWithoutPokemonInput {
+  data: CapturedUpdateManyMutationInput!
+  where: CapturedScalarWhereInput!
+}
+
+input CapturedUpdateManyWithWhereWithoutTrainerInput {
+  data: CapturedUpdateManyMutationInput!
+  where: CapturedScalarWhereInput!
 }
 
 input CapturedUpdateManyWithoutPokemonInput {
@@ -606,28 +616,6 @@ input CapturedUpdateManyWithoutTrainerInput {
   upsert: [CapturedUpsertWithWhereUniqueWithoutTrainerInput!]
 }
 
-input CapturedUpdateManyWithWhereWithoutPokemonInput {
-  data: CapturedUpdateManyMutationInput!
-  where: CapturedScalarWhereInput!
-}
-
-input CapturedUpdateManyWithWhereWithoutTrainerInput {
-  data: CapturedUpdateManyMutationInput!
-  where: CapturedScalarWhereInput!
-}
-
-input CapturedUpdateWithoutPokemonInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  level: IntFieldUpdateOperationsInput
-  trainer: TrainerUpdateOneRequiredWithoutCapturedInput
-}
-
-input CapturedUpdateWithoutTrainerInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  level: IntFieldUpdateOperationsInput
-  pokemon: PokemonUpdateOneRequiredWithoutCapturedInput
-}
-
 input CapturedUpdateWithWhereUniqueWithoutPokemonInput {
   data: CapturedUpdateWithoutPokemonInput!
   where: CapturedWhereUniqueInput!
@@ -636,6 +624,18 @@ input CapturedUpdateWithWhereUniqueWithoutPokemonInput {
 input CapturedUpdateWithWhereUniqueWithoutTrainerInput {
   data: CapturedUpdateWithoutTrainerInput!
   where: CapturedWhereUniqueInput!
+}
+
+input CapturedUpdateWithoutPokemonInput {
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  level: NullableIntFieldUpdateOperationsInput
+  trainer: TrainerUpdateOneRequiredWithoutCapturedInput
+}
+
+input CapturedUpdateWithoutTrainerInput {
+  gender: NullableEnumGenderFieldUpdateOperationsInput
+  level: NullableIntFieldUpdateOperationsInput
+  pokemon: PokemonUpdateOneRequiredWithoutCapturedInput
 }
 
 input CapturedUpsertWithWhereUniqueWithoutPokemonInput {
@@ -652,11 +652,11 @@ input CapturedUpsertWithWhereUniqueWithoutTrainerInput {
 
 input CapturedWhereInput {
   AND: [CapturedWhereInput!]
-  gender: EnumGenderFilter
-  id: IntFilter
-  level: IntFilter
   NOT: [CapturedWhereInput!]
   OR: [CapturedWhereInput!]
+  gender: EnumGenderNullableFilter
+  id: IntFilter
+  level: IntNullableFilter
   pokemon: PokemonRelationFilter
   pokemonId: IntFilter
   trainer: TrainerRelationFilter
@@ -780,10 +780,10 @@ enum ClassificationScalarFieldEnum {
 
 input ClassificationScalarWhereWithAggregatesInput {
   AND: [ClassificationScalarWhereWithAggregatesInput!]
-  classification: StringWithAggregatesFilter
-  id: IntWithAggregatesFilter
   NOT: [ClassificationScalarWhereWithAggregatesInput!]
   OR: [ClassificationScalarWhereWithAggregatesInput!]
+  classification: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
 }
 
 type ClassificationSumAggregate {
@@ -822,10 +822,10 @@ input ClassificationUpsertWithoutPokemonInput {
 
 input ClassificationWhereInput {
   AND: [ClassificationWhereInput!]
-  classification: StringFilter
-  id: IntFilter
   NOT: [ClassificationWhereInput!]
   OR: [ClassificationWhereInput!]
+  classification: StringFilter
+  id: IntFilter
   pokemon: PokemonListRelationFilter
 }
 
@@ -893,17 +893,6 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTime!]
 }
 
-input EnumGenderFieldUpdateOperationsInput {
-  set: Gender
-}
-
-input EnumGenderFilter {
-  equals: Gender
-  in: [Gender!]
-  not: NestedEnumGenderFilter
-  notIn: [Gender!]
-}
-
 input EnumGenderNullableFilter {
   equals: Gender
   in: [Gender!]
@@ -918,16 +907,6 @@ input EnumGenderNullableWithAggregatesFilter {
   equals: Gender
   in: [Gender!]
   not: NestedEnumGenderNullableWithAggregatesFilter
-  notIn: [Gender!]
-}
-
-input EnumGenderWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedEnumGenderFilter
-  _min: NestedEnumGenderFilter
-  equals: Gender
-  in: [Gender!]
-  not: NestedEnumGenderWithAggregatesFilter
   notIn: [Gender!]
 }
 
@@ -1135,10 +1114,10 @@ enum GenerationScalarFieldEnum {
 
 input GenerationScalarWhereWithAggregatesInput {
   AND: [GenerationScalarWhereWithAggregatesInput!]
-  generation: IntWithAggregatesFilter
-  id: IntWithAggregatesFilter
   NOT: [GenerationScalarWhereWithAggregatesInput!]
   OR: [GenerationScalarWhereWithAggregatesInput!]
+  generation: IntWithAggregatesFilter
+  id: IntWithAggregatesFilter
 }
 
 type GenerationSumAggregate {
@@ -1179,10 +1158,10 @@ input GenerationUpsertWithoutPokemonInput {
 
 input GenerationWhereInput {
   AND: [GenerationWhereInput!]
-  generation: IntFilter
-  id: IntFilter
   NOT: [GenerationWhereInput!]
   OR: [GenerationWhereInput!]
+  generation: IntFilter
+  id: IntFilter
   pokemon: PokemonListRelationFilter
 }
 
@@ -1389,13 +1368,6 @@ input NestedDateTimeWithAggregatesFilter {
   notIn: [DateTime!]
 }
 
-input NestedEnumGenderFilter {
-  equals: Gender
-  in: [Gender!]
-  not: NestedEnumGenderFilter
-  notIn: [Gender!]
-}
-
 input NestedEnumGenderNullableFilter {
   equals: Gender
   in: [Gender!]
@@ -1410,16 +1382,6 @@ input NestedEnumGenderNullableWithAggregatesFilter {
   equals: Gender
   in: [Gender!]
   not: NestedEnumGenderNullableWithAggregatesFilter
-  notIn: [Gender!]
-}
-
-input NestedEnumGenderWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedEnumGenderFilter
-  _min: NestedEnumGenderFilter
-  equals: Gender
-  in: [Gender!]
-  not: NestedEnumGenderWithAggregatesFilter
   notIn: [Gender!]
 }
 
@@ -1753,11 +1715,11 @@ enum PokedexScalarFieldEnum {
 
 input PokedexScalarWhereWithAggregatesInput {
   AND: [PokedexScalarWhereWithAggregatesInput!]
+  NOT: [PokedexScalarWhereWithAggregatesInput!]
+  OR: [PokedexScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   expiresAt: DateTimeNullableWithAggregatesFilter
   id: IntWithAggregatesFilter
-  NOT: [PokedexScalarWhereWithAggregatesInput!]
-  OR: [PokedexScalarWhereWithAggregatesInput!]
   pokemonId: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
@@ -1808,11 +1770,11 @@ input PokedexUpsertWithoutPokemonInput {
 
 input PokedexWhereInput {
   AND: [PokedexWhereInput!]
+  NOT: [PokedexWhereInput!]
+  OR: [PokedexWhereInput!]
   createdAt: DateTimeFilter
   expiresAt: DateTimeNullableFilter
   id: IntFilter
-  NOT: [PokedexWhereInput!]
-  OR: [PokedexWhereInput!]
   pokemon: PokemonRelationFilter
   pokemonId: IntFilter
   updatedAt: DateTimeFilter
@@ -1824,6 +1786,7 @@ input PokedexWhereUniqueInput {
 }
 
 type Pokemon {
+  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   _count: PokemonCount
   abilities(cursor: PokemonAbilitiesWhereUniqueInput, distinct: [PokemonAbilitiesScalarFieldEnum!], orderBy: [PokemonAbilitiesOrderByWithRelationInput!], skip: Int, take: Int, where: PokemonAbilitiesWhereInput): [PokemonAbilities!]!
   against_bug: Float!
@@ -1832,24 +1795,23 @@ type Pokemon {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   classification: Classification!
   classificationId: Int!
   defense: Int!
@@ -2079,23 +2041,23 @@ enum PokemonAbilitiesScalarFieldEnum {
 }
 
 input PokemonAbilitiesScalarWhereInput {
-  abilityId: IntFilter
   AND: [PokemonAbilitiesScalarWhereInput!]
-  createdAt: DateTimeFilter
-  expiresAt: DateTimeNullableFilter
   NOT: [PokemonAbilitiesScalarWhereInput!]
   OR: [PokemonAbilitiesScalarWhereInput!]
+  abilityId: IntFilter
+  createdAt: DateTimeFilter
+  expiresAt: DateTimeNullableFilter
   pokemonId: IntFilter
   updatedAt: DateTimeFilter
 }
 
 input PokemonAbilitiesScalarWhereWithAggregatesInput {
-  abilityId: IntWithAggregatesFilter
   AND: [PokemonAbilitiesScalarWhereWithAggregatesInput!]
-  createdAt: DateTimeWithAggregatesFilter
-  expiresAt: DateTimeNullableWithAggregatesFilter
   NOT: [PokemonAbilitiesScalarWhereWithAggregatesInput!]
   OR: [PokemonAbilitiesScalarWhereWithAggregatesInput!]
+  abilityId: IntWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
+  expiresAt: DateTimeNullableWithAggregatesFilter
   pokemonId: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
@@ -2122,6 +2084,16 @@ input PokemonAbilitiesUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   expiresAt: NullableDateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input PokemonAbilitiesUpdateManyWithWhereWithoutAbilityInput {
+  data: PokemonAbilitiesUpdateManyMutationInput!
+  where: PokemonAbilitiesScalarWhereInput!
+}
+
+input PokemonAbilitiesUpdateManyWithWhereWithoutPokemonInput {
+  data: PokemonAbilitiesUpdateManyMutationInput!
+  where: PokemonAbilitiesScalarWhereInput!
 }
 
 input PokemonAbilitiesUpdateManyWithoutAbilityInput {
@@ -2152,14 +2124,14 @@ input PokemonAbilitiesUpdateManyWithoutPokemonInput {
   upsert: [PokemonAbilitiesUpsertWithWhereUniqueWithoutPokemonInput!]
 }
 
-input PokemonAbilitiesUpdateManyWithWhereWithoutAbilityInput {
-  data: PokemonAbilitiesUpdateManyMutationInput!
-  where: PokemonAbilitiesScalarWhereInput!
+input PokemonAbilitiesUpdateWithWhereUniqueWithoutAbilityInput {
+  data: PokemonAbilitiesUpdateWithoutAbilityInput!
+  where: PokemonAbilitiesWhereUniqueInput!
 }
 
-input PokemonAbilitiesUpdateManyWithWhereWithoutPokemonInput {
-  data: PokemonAbilitiesUpdateManyMutationInput!
-  where: PokemonAbilitiesScalarWhereInput!
+input PokemonAbilitiesUpdateWithWhereUniqueWithoutPokemonInput {
+  data: PokemonAbilitiesUpdateWithoutPokemonInput!
+  where: PokemonAbilitiesWhereUniqueInput!
 }
 
 input PokemonAbilitiesUpdateWithoutAbilityInput {
@@ -2176,16 +2148,6 @@ input PokemonAbilitiesUpdateWithoutPokemonInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input PokemonAbilitiesUpdateWithWhereUniqueWithoutAbilityInput {
-  data: PokemonAbilitiesUpdateWithoutAbilityInput!
-  where: PokemonAbilitiesWhereUniqueInput!
-}
-
-input PokemonAbilitiesUpdateWithWhereUniqueWithoutPokemonInput {
-  data: PokemonAbilitiesUpdateWithoutPokemonInput!
-  where: PokemonAbilitiesWhereUniqueInput!
-}
-
 input PokemonAbilitiesUpsertWithWhereUniqueWithoutAbilityInput {
   create: PokemonAbilitiesCreateWithoutAbilityInput!
   update: PokemonAbilitiesUpdateWithoutAbilityInput!
@@ -2199,13 +2161,13 @@ input PokemonAbilitiesUpsertWithWhereUniqueWithoutPokemonInput {
 }
 
 input PokemonAbilitiesWhereInput {
-  ability: AbilityRelationFilter
-  abilityId: IntFilter
   AND: [PokemonAbilitiesWhereInput!]
-  createdAt: DateTimeFilter
-  expiresAt: DateTimeNullableFilter
   NOT: [PokemonAbilitiesWhereInput!]
   OR: [PokemonAbilitiesWhereInput!]
+  ability: AbilityRelationFilter
+  abilityId: IntFilter
+  createdAt: DateTimeFilter
+  expiresAt: DateTimeNullableFilter
   pokemon: PokemonRelationFilter
   pokemonId: IntFilter
   updatedAt: DateTimeFilter
@@ -2292,8 +2254,8 @@ input PokemonAvgOrderByAggregateInput {
 }
 
 type PokemonCount {
-  abilities: Int!
   Captured: Int!
+  abilities: Int!
   types: Int!
 }
 
@@ -2383,6 +2345,7 @@ input PokemonCountOrderByAggregateInput {
 }
 
 input PokemonCreateInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
@@ -2390,24 +2353,23 @@ input PokemonCreateInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2434,18 +2396,18 @@ input PokemonCreateManyClassificationInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
@@ -2480,18 +2442,18 @@ input PokemonCreateManyGenerationInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
@@ -2526,18 +2488,18 @@ input PokemonCreateManyInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
@@ -2630,30 +2592,30 @@ input PokemonCreateOrConnectWithoutTypesInput {
 }
 
 input PokemonCreateWithoutAbilitiesInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
   against_dragon: Float!
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2681,18 +2643,18 @@ input PokemonCreateWithoutCapturedInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
@@ -2718,6 +2680,7 @@ input PokemonCreateWithoutCapturedInput {
 }
 
 input PokemonCreateWithoutClassificationInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
@@ -2725,24 +2688,23 @@ input PokemonCreateWithoutClassificationInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   defense: Int!
   experience_growth: Int!
   generation: GenerationCreateNestedOneWithoutPokemonInput!
@@ -2762,6 +2724,7 @@ input PokemonCreateWithoutClassificationInput {
 }
 
 input PokemonCreateWithoutGenerationInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
@@ -2769,24 +2732,23 @@ input PokemonCreateWithoutGenerationInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2806,6 +2768,7 @@ input PokemonCreateWithoutGenerationInput {
 }
 
 input PokemonCreateWithoutPokedex_numberInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
@@ -2813,24 +2776,23 @@ input PokemonCreateWithoutPokedex_numberInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2850,6 +2812,7 @@ input PokemonCreateWithoutPokedex_numberInput {
 }
 
 input PokemonCreateWithoutTypesInput {
+  Captured: CapturedCreateNestedManyWithoutPokemonInput
   abilities: PokemonAbilitiesCreateNestedManyWithoutPokemonInput
   against_bug: Float!
   against_dark: Float!
@@ -2857,24 +2820,23 @@ input PokemonCreateWithoutTypesInput {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
   base_total: Int!
   capture_rate: Float
-  Captured: CapturedCreateNestedManyWithoutPokemonInput
   classification: ClassificationCreateNestedOneWithoutPokemonInput!
   defense: Int!
   experience_growth: Int!
@@ -2905,18 +2867,18 @@ type PokemonGroupBy {
   against_electric: Float!
   against_fairy: Float!
   against_fight: Float!
-  against_fire: Float!
+  against_fire: Float
   against_flying: Float!
   against_ghost: Float!
-  against_grass: Float!
+  against_grass: Float
   against_ground: Float!
   against_ice: Float!
-  against_normal: Float!
+  against_normal: Float
   against_poison: Float!
   against_psychic: Float!
   against_rock: Float!
   against_steel: Float!
-  against_water: Float!
+  against_water: Float
   attack: Int!
   base_egg_steps: Int!
   base_happiness: Int!
@@ -3166,6 +3128,7 @@ input PokemonOrderByWithAggregationInput {
 }
 
 input PokemonOrderByWithRelationInput {
+  Captured: CapturedOrderByRelationAggregateInput
   abilities: PokemonAbilitiesOrderByRelationAggregateInput
   against_bug: SortOrder
   against_dark: SortOrder
@@ -3190,7 +3153,6 @@ input PokemonOrderByWithRelationInput {
   base_happiness: SortOrder
   base_total: SortOrder
   capture_rate: SortOrder
-  Captured: CapturedOrderByRelationAggregateInput
   classification: ClassificationOrderByWithRelationInput
   classificationId: SortOrder
   defense: SortOrder
@@ -3261,25 +3223,27 @@ enum PokemonScalarFieldEnum {
 }
 
 input PokemonScalarWhereInput {
+  AND: [PokemonScalarWhereInput!]
+  NOT: [PokemonScalarWhereInput!]
+  OR: [PokemonScalarWhereInput!]
   against_bug: FloatFilter
   against_dark: FloatFilter
   against_dragon: FloatFilter
   against_electric: FloatFilter
   against_fairy: FloatFilter
   against_fight: FloatFilter
-  against_fire: FloatFilter
+  against_fire: FloatNullableFilter
   against_flying: FloatFilter
   against_ghost: FloatFilter
-  against_grass: FloatFilter
+  against_grass: FloatNullableFilter
   against_ground: FloatFilter
   against_ice: FloatFilter
-  against_normal: FloatFilter
+  against_normal: FloatNullableFilter
   against_poison: FloatFilter
   against_psychic: FloatFilter
   against_rock: FloatFilter
   against_steel: FloatFilter
-  against_water: FloatFilter
-  AND: [PokemonScalarWhereInput!]
+  against_water: FloatNullableFilter
   attack: IntFilter
   base_egg_steps: IntFilter
   base_happiness: IntFilter
@@ -3295,8 +3259,6 @@ input PokemonScalarWhereInput {
   is_legendary: BoolFilter
   japanese_name: StringFilter
   name: StringFilter
-  NOT: [PokemonScalarWhereInput!]
-  OR: [PokemonScalarWhereInput!]
   percentage_male: FloatFilter
   sp_attack: IntFilter
   sp_defense: IntFilter
@@ -3306,25 +3268,27 @@ input PokemonScalarWhereInput {
 }
 
 input PokemonScalarWhereWithAggregatesInput {
+  AND: [PokemonScalarWhereWithAggregatesInput!]
+  NOT: [PokemonScalarWhereWithAggregatesInput!]
+  OR: [PokemonScalarWhereWithAggregatesInput!]
   against_bug: FloatWithAggregatesFilter
   against_dark: FloatWithAggregatesFilter
   against_dragon: FloatWithAggregatesFilter
   against_electric: FloatWithAggregatesFilter
   against_fairy: FloatWithAggregatesFilter
   against_fight: FloatWithAggregatesFilter
-  against_fire: FloatWithAggregatesFilter
+  against_fire: FloatNullableWithAggregatesFilter
   against_flying: FloatWithAggregatesFilter
   against_ghost: FloatWithAggregatesFilter
-  against_grass: FloatWithAggregatesFilter
+  against_grass: FloatNullableWithAggregatesFilter
   against_ground: FloatWithAggregatesFilter
   against_ice: FloatWithAggregatesFilter
-  against_normal: FloatWithAggregatesFilter
+  against_normal: FloatNullableWithAggregatesFilter
   against_poison: FloatWithAggregatesFilter
   against_psychic: FloatWithAggregatesFilter
   against_rock: FloatWithAggregatesFilter
   against_steel: FloatWithAggregatesFilter
-  against_water: FloatWithAggregatesFilter
-  AND: [PokemonScalarWhereWithAggregatesInput!]
+  against_water: FloatNullableWithAggregatesFilter
   attack: IntWithAggregatesFilter
   base_egg_steps: IntWithAggregatesFilter
   base_happiness: IntWithAggregatesFilter
@@ -3340,8 +3304,6 @@ input PokemonScalarWhereWithAggregatesInput {
   is_legendary: BoolWithAggregatesFilter
   japanese_name: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
-  NOT: [PokemonScalarWhereWithAggregatesInput!]
-  OR: [PokemonScalarWhereWithAggregatesInput!]
   percentage_male: FloatWithAggregatesFilter
   sp_attack: IntWithAggregatesFilter
   sp_defense: IntWithAggregatesFilter
@@ -3634,10 +3596,10 @@ enum PokemonTypesScalarFieldEnum {
 
 input PokemonTypesScalarWhereInput {
   AND: [PokemonTypesScalarWhereInput!]
-  createdAt: DateTimeFilter
-  expiresAt: DateTimeNullableFilter
   NOT: [PokemonTypesScalarWhereInput!]
   OR: [PokemonTypesScalarWhereInput!]
+  createdAt: DateTimeFilter
+  expiresAt: DateTimeNullableFilter
   pokemonId: IntFilter
   typeId: IntFilter
   updatedAt: DateTimeFilter
@@ -3645,10 +3607,10 @@ input PokemonTypesScalarWhereInput {
 
 input PokemonTypesScalarWhereWithAggregatesInput {
   AND: [PokemonTypesScalarWhereWithAggregatesInput!]
-  createdAt: DateTimeWithAggregatesFilter
-  expiresAt: DateTimeNullableWithAggregatesFilter
   NOT: [PokemonTypesScalarWhereWithAggregatesInput!]
   OR: [PokemonTypesScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  expiresAt: DateTimeNullableWithAggregatesFilter
   pokemonId: IntWithAggregatesFilter
   typeId: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
@@ -3676,6 +3638,16 @@ input PokemonTypesUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   expiresAt: NullableDateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input PokemonTypesUpdateManyWithWhereWithoutPokemonInput {
+  data: PokemonTypesUpdateManyMutationInput!
+  where: PokemonTypesScalarWhereInput!
+}
+
+input PokemonTypesUpdateManyWithWhereWithoutTypeInput {
+  data: PokemonTypesUpdateManyMutationInput!
+  where: PokemonTypesScalarWhereInput!
 }
 
 input PokemonTypesUpdateManyWithoutPokemonInput {
@@ -3706,14 +3678,14 @@ input PokemonTypesUpdateManyWithoutTypeInput {
   upsert: [PokemonTypesUpsertWithWhereUniqueWithoutTypeInput!]
 }
 
-input PokemonTypesUpdateManyWithWhereWithoutPokemonInput {
-  data: PokemonTypesUpdateManyMutationInput!
-  where: PokemonTypesScalarWhereInput!
+input PokemonTypesUpdateWithWhereUniqueWithoutPokemonInput {
+  data: PokemonTypesUpdateWithoutPokemonInput!
+  where: PokemonTypesWhereUniqueInput!
 }
 
-input PokemonTypesUpdateManyWithWhereWithoutTypeInput {
-  data: PokemonTypesUpdateManyMutationInput!
-  where: PokemonTypesScalarWhereInput!
+input PokemonTypesUpdateWithWhereUniqueWithoutTypeInput {
+  data: PokemonTypesUpdateWithoutTypeInput!
+  where: PokemonTypesWhereUniqueInput!
 }
 
 input PokemonTypesUpdateWithoutPokemonInput {
@@ -3730,16 +3702,6 @@ input PokemonTypesUpdateWithoutTypeInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input PokemonTypesUpdateWithWhereUniqueWithoutPokemonInput {
-  data: PokemonTypesUpdateWithoutPokemonInput!
-  where: PokemonTypesWhereUniqueInput!
-}
-
-input PokemonTypesUpdateWithWhereUniqueWithoutTypeInput {
-  data: PokemonTypesUpdateWithoutTypeInput!
-  where: PokemonTypesWhereUniqueInput!
-}
-
 input PokemonTypesUpsertWithWhereUniqueWithoutPokemonInput {
   create: PokemonTypesCreateWithoutPokemonInput!
   update: PokemonTypesUpdateWithoutPokemonInput!
@@ -3754,10 +3716,10 @@ input PokemonTypesUpsertWithWhereUniqueWithoutTypeInput {
 
 input PokemonTypesWhereInput {
   AND: [PokemonTypesWhereInput!]
-  createdAt: DateTimeFilter
-  expiresAt: DateTimeNullableFilter
   NOT: [PokemonTypesWhereInput!]
   OR: [PokemonTypesWhereInput!]
+  createdAt: DateTimeFilter
+  expiresAt: DateTimeNullableFilter
   pokemon: PokemonRelationFilter
   pokemonId: IntFilter
   type: TypeRelationFilter
@@ -3770,6 +3732,7 @@ input PokemonTypesWhereUniqueInput {
 }
 
 input PokemonUpdateInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
@@ -3777,24 +3740,23 @@ input PokemonUpdateInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3821,18 +3783,18 @@ input PokemonUpdateManyMutationInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
@@ -3851,6 +3813,16 @@ input PokemonUpdateManyMutationInput {
   speed: IntFieldUpdateOperationsInput
   status: EnumStatusFieldUpdateOperationsInput
   weight_kg: FloatFieldUpdateOperationsInput
+}
+
+input PokemonUpdateManyWithWhereWithoutClassificationInput {
+  data: PokemonUpdateManyMutationInput!
+  where: PokemonScalarWhereInput!
+}
+
+input PokemonUpdateManyWithWhereWithoutGenerationInput {
+  data: PokemonUpdateManyMutationInput!
+  where: PokemonScalarWhereInput!
 }
 
 input PokemonUpdateManyWithoutClassificationInput {
@@ -3879,16 +3851,6 @@ input PokemonUpdateManyWithoutGenerationInput {
   update: [PokemonUpdateWithWhereUniqueWithoutGenerationInput!]
   updateMany: [PokemonUpdateManyWithWhereWithoutGenerationInput!]
   upsert: [PokemonUpsertWithWhereUniqueWithoutGenerationInput!]
-}
-
-input PokemonUpdateManyWithWhereWithoutClassificationInput {
-  data: PokemonUpdateManyMutationInput!
-  where: PokemonScalarWhereInput!
-}
-
-input PokemonUpdateManyWithWhereWithoutGenerationInput {
-  data: PokemonUpdateManyMutationInput!
-  where: PokemonScalarWhereInput!
 }
 
 input PokemonUpdateOneRequiredWithoutAbilitiesInput {
@@ -3923,31 +3885,41 @@ input PokemonUpdateOneRequiredWithoutTypesInput {
   upsert: PokemonUpsertWithoutTypesInput
 }
 
+input PokemonUpdateWithWhereUniqueWithoutClassificationInput {
+  data: PokemonUpdateWithoutClassificationInput!
+  where: PokemonWhereUniqueInput!
+}
+
+input PokemonUpdateWithWhereUniqueWithoutGenerationInput {
+  data: PokemonUpdateWithoutGenerationInput!
+  where: PokemonWhereUniqueInput!
+}
+
 input PokemonUpdateWithoutAbilitiesInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
   against_dragon: FloatFieldUpdateOperationsInput
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -3975,18 +3947,18 @@ input PokemonUpdateWithoutCapturedInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
@@ -4012,6 +3984,7 @@ input PokemonUpdateWithoutCapturedInput {
 }
 
 input PokemonUpdateWithoutClassificationInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
@@ -4019,24 +3992,23 @@ input PokemonUpdateWithoutClassificationInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
   generation: GenerationUpdateOneRequiredWithoutPokemonInput
@@ -4056,6 +4028,7 @@ input PokemonUpdateWithoutClassificationInput {
 }
 
 input PokemonUpdateWithoutGenerationInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
@@ -4063,24 +4036,23 @@ input PokemonUpdateWithoutGenerationInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -4100,6 +4072,7 @@ input PokemonUpdateWithoutGenerationInput {
 }
 
 input PokemonUpdateWithoutPokedex_numberInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
@@ -4107,24 +4080,23 @@ input PokemonUpdateWithoutPokedex_numberInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -4144,6 +4116,7 @@ input PokemonUpdateWithoutPokedex_numberInput {
 }
 
 input PokemonUpdateWithoutTypesInput {
+  Captured: CapturedUpdateManyWithoutPokemonInput
   abilities: PokemonAbilitiesUpdateManyWithoutPokemonInput
   against_bug: FloatFieldUpdateOperationsInput
   against_dark: FloatFieldUpdateOperationsInput
@@ -4151,24 +4124,23 @@ input PokemonUpdateWithoutTypesInput {
   against_electric: FloatFieldUpdateOperationsInput
   against_fairy: FloatFieldUpdateOperationsInput
   against_fight: FloatFieldUpdateOperationsInput
-  against_fire: FloatFieldUpdateOperationsInput
+  against_fire: NullableFloatFieldUpdateOperationsInput
   against_flying: FloatFieldUpdateOperationsInput
   against_ghost: FloatFieldUpdateOperationsInput
-  against_grass: FloatFieldUpdateOperationsInput
+  against_grass: NullableFloatFieldUpdateOperationsInput
   against_ground: FloatFieldUpdateOperationsInput
   against_ice: FloatFieldUpdateOperationsInput
-  against_normal: FloatFieldUpdateOperationsInput
+  against_normal: NullableFloatFieldUpdateOperationsInput
   against_poison: FloatFieldUpdateOperationsInput
   against_psychic: FloatFieldUpdateOperationsInput
   against_rock: FloatFieldUpdateOperationsInput
   against_steel: FloatFieldUpdateOperationsInput
-  against_water: FloatFieldUpdateOperationsInput
+  against_water: NullableFloatFieldUpdateOperationsInput
   attack: IntFieldUpdateOperationsInput
   base_egg_steps: IntFieldUpdateOperationsInput
   base_happiness: IntFieldUpdateOperationsInput
   base_total: IntFieldUpdateOperationsInput
   capture_rate: NullableFloatFieldUpdateOperationsInput
-  Captured: CapturedUpdateManyWithoutPokemonInput
   classification: ClassificationUpdateOneRequiredWithoutPokemonInput
   defense: IntFieldUpdateOperationsInput
   experience_growth: IntFieldUpdateOperationsInput
@@ -4187,13 +4159,15 @@ input PokemonUpdateWithoutTypesInput {
   weight_kg: FloatFieldUpdateOperationsInput
 }
 
-input PokemonUpdateWithWhereUniqueWithoutClassificationInput {
-  data: PokemonUpdateWithoutClassificationInput!
+input PokemonUpsertWithWhereUniqueWithoutClassificationInput {
+  create: PokemonCreateWithoutClassificationInput!
+  update: PokemonUpdateWithoutClassificationInput!
   where: PokemonWhereUniqueInput!
 }
 
-input PokemonUpdateWithWhereUniqueWithoutGenerationInput {
-  data: PokemonUpdateWithoutGenerationInput!
+input PokemonUpsertWithWhereUniqueWithoutGenerationInput {
+  create: PokemonCreateWithoutGenerationInput!
+  update: PokemonUpdateWithoutGenerationInput!
   where: PokemonWhereUniqueInput!
 }
 
@@ -4217,19 +4191,11 @@ input PokemonUpsertWithoutTypesInput {
   update: PokemonUpdateWithoutTypesInput!
 }
 
-input PokemonUpsertWithWhereUniqueWithoutClassificationInput {
-  create: PokemonCreateWithoutClassificationInput!
-  update: PokemonUpdateWithoutClassificationInput!
-  where: PokemonWhereUniqueInput!
-}
-
-input PokemonUpsertWithWhereUniqueWithoutGenerationInput {
-  create: PokemonCreateWithoutGenerationInput!
-  update: PokemonUpdateWithoutGenerationInput!
-  where: PokemonWhereUniqueInput!
-}
-
 input PokemonWhereInput {
+  AND: [PokemonWhereInput!]
+  Captured: CapturedListRelationFilter
+  NOT: [PokemonWhereInput!]
+  OR: [PokemonWhereInput!]
   abilities: PokemonAbilitiesListRelationFilter
   against_bug: FloatFilter
   against_dark: FloatFilter
@@ -4237,25 +4203,23 @@ input PokemonWhereInput {
   against_electric: FloatFilter
   against_fairy: FloatFilter
   against_fight: FloatFilter
-  against_fire: FloatFilter
+  against_fire: FloatNullableFilter
   against_flying: FloatFilter
   against_ghost: FloatFilter
-  against_grass: FloatFilter
+  against_grass: FloatNullableFilter
   against_ground: FloatFilter
   against_ice: FloatFilter
-  against_normal: FloatFilter
+  against_normal: FloatNullableFilter
   against_poison: FloatFilter
   against_psychic: FloatFilter
   against_rock: FloatFilter
   against_steel: FloatFilter
-  against_water: FloatFilter
-  AND: [PokemonWhereInput!]
+  against_water: FloatNullableFilter
   attack: IntFilter
   base_egg_steps: IntFilter
   base_happiness: IntFilter
   base_total: IntFilter
   capture_rate: FloatNullableFilter
-  Captured: CapturedListRelationFilter
   classification: ClassificationRelationFilter
   classificationId: IntFilter
   defense: IntFilter
@@ -4268,8 +4232,6 @@ input PokemonWhereInput {
   is_legendary: BoolFilter
   japanese_name: StringFilter
   name: StringFilter
-  NOT: [PokemonWhereInput!]
-  OR: [PokemonWhereInput!]
   percentage_male: FloatFilter
   pokedex_number: PokedexRelationFilter
   sp_attack: IntFilter
@@ -4391,9 +4353,9 @@ input StringWithAggregatesFilter {
 }
 
 type Trainer {
+  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   _count: TrainerCount
   age: Int
-  Captured(cursor: CapturedWhereUniqueInput, distinct: [CapturedScalarFieldEnum!], orderBy: [CapturedOrderByWithRelationInput!], skip: Int, take: Int, where: CapturedWhereInput): [Captured!]!
   gender: Gender
   id: Int!
   name: String!
@@ -4429,8 +4391,8 @@ input TrainerCountOrderByAggregateInput {
 }
 
 input TrainerCreateInput {
-  age: Int
   Captured: CapturedCreateNestedManyWithoutTrainerInput
+  age: Int
   gender: Gender
   name: String!
 }
@@ -4512,8 +4474,8 @@ input TrainerOrderByWithAggregationInput {
 }
 
 input TrainerOrderByWithRelationInput {
-  age: SortOrder
   Captured: CapturedOrderByRelationAggregateInput
+  age: SortOrder
   gender: SortOrder
   id: SortOrder
   name: SortOrder
@@ -4532,13 +4494,13 @@ enum TrainerScalarFieldEnum {
 }
 
 input TrainerScalarWhereWithAggregatesInput {
-  age: IntNullableWithAggregatesFilter
   AND: [TrainerScalarWhereWithAggregatesInput!]
+  NOT: [TrainerScalarWhereWithAggregatesInput!]
+  OR: [TrainerScalarWhereWithAggregatesInput!]
+  age: IntNullableWithAggregatesFilter
   gender: EnumGenderNullableWithAggregatesFilter
   id: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
-  NOT: [TrainerScalarWhereWithAggregatesInput!]
-  OR: [TrainerScalarWhereWithAggregatesInput!]
 }
 
 type TrainerSumAggregate {
@@ -4552,8 +4514,8 @@ input TrainerSumOrderByAggregateInput {
 }
 
 input TrainerUpdateInput {
-  age: NullableIntFieldUpdateOperationsInput
   Captured: CapturedUpdateManyWithoutTrainerInput
+  age: NullableIntFieldUpdateOperationsInput
   gender: NullableEnumGenderFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
 }
@@ -4584,14 +4546,14 @@ input TrainerUpsertWithoutCapturedInput {
 }
 
 input TrainerWhereInput {
-  age: IntNullableFilter
   AND: [TrainerWhereInput!]
   Captured: CapturedListRelationFilter
+  NOT: [TrainerWhereInput!]
+  OR: [TrainerWhereInput!]
+  age: IntNullableFilter
   gender: EnumGenderNullableFilter
   id: IntFilter
   name: StringFilter
-  NOT: [TrainerWhereInput!]
-  OR: [TrainerWhereInput!]
 }
 
 input TrainerWhereUniqueInput {
@@ -4753,11 +4715,11 @@ enum TypeScalarFieldEnum {
 
 input TypeScalarWhereWithAggregatesInput {
   AND: [TypeScalarWhereWithAggregatesInput!]
+  NOT: [TypeScalarWhereWithAggregatesInput!]
+  OR: [TypeScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   expiresAt: DateTimeNullableWithAggregatesFilter
   id: IntWithAggregatesFilter
-  NOT: [TypeScalarWhereWithAggregatesInput!]
-  OR: [TypeScalarWhereWithAggregatesInput!]
   type: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
@@ -4807,11 +4769,11 @@ input TypeUpsertWithoutPokemonTypesInput {
 
 input TypeWhereInput {
   AND: [TypeWhereInput!]
+  NOT: [TypeWhereInput!]
+  OR: [TypeWhereInput!]
   createdAt: DateTimeFilter
   expiresAt: DateTimeNullableFilter
   id: IntFilter
-  NOT: [TypeWhereInput!]
-  OR: [TypeWhereInput!]
   pokemonTypes: PokemonTypesListRelationFilter
   type: StringFilter
   updatedAt: DateTimeFilter

@@ -187,7 +187,7 @@
       "isSortable": true,
       "isVirtual": false,
       "reference": "pokemon.id",
-      "inverseOf": null,
+      "inverseOf": "pokemonCaptureds",
       "relationship": "BelongsTo",
       "validations": []
     }, {
@@ -435,6 +435,21 @@
     "onlyForRelationships": false,
     "paginationType": "page",
     "fields": [{
+      "field": "Pokemon Image",
+      "type": "String",
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": false,
+      "isPrimaryKey": false,
+      "isReadOnly": true,
+      "isRequired": false,
+      "isSortable": false,
+      "isVirtual": true,
+      "reference": null,
+      "inverseOf": null,
+      "validations": []
+    }, {
       "field": "againstBug",
       "type": "Number",
       "defaultValue": null,
@@ -557,16 +572,12 @@
       "isFilterable": true,
       "isPrimaryKey": false,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "againstFlying",
       "type": "Number",
@@ -614,16 +625,12 @@
       "isFilterable": true,
       "isPrimaryKey": false,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "againstGround",
       "type": "Number",
@@ -671,16 +678,12 @@
       "isFilterable": true,
       "isPrimaryKey": false,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "againstPoison",
       "type": "Number",
@@ -766,16 +769,12 @@
       "isFilterable": true,
       "isPrimaryKey": false,
       "isReadOnly": false,
-      "isRequired": true,
+      "isRequired": false,
       "isSortable": true,
       "isVirtual": false,
       "reference": null,
       "inverseOf": null,
-      "validations": [{
-        "message": null,
-        "type": "is present",
-        "value": null
-      }]
+      "validations": []
     }, {
       "field": "attack",
       "type": "Number",
@@ -1082,6 +1081,22 @@
         "value": null
       }]
     }, {
+      "field": "pokemonCaptureds",
+      "type": ["Number"],
+      "defaultValue": null,
+      "enums": null,
+      "integration": null,
+      "isFilterable": true,
+      "isPrimaryKey": false,
+      "isReadOnly": false,
+      "isRequired": false,
+      "isSortable": true,
+      "isVirtual": false,
+      "reference": "captured.id",
+      "inverseOf": "pokemon",
+      "relationship": "HasMany",
+      "validations": []
+    }, {
       "field": "pokemonPokedex",
       "type": "Number",
       "defaultValue": null,
@@ -1237,10 +1252,23 @@
       "name": "Top 30 Heaviest Pokemon"
     }],
     "actions": [{
-      "name": "Capture",
+      "name": "Assign Default Stats",
+      "type": "bulk",
+      "baseUrl": null,
+      "endpoint": "/forest/actions/assign-default-stats",
+      "httpMethod": "POST",
+      "redirect": null,
+      "download": false,
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
+    }, {
+      "name": "Capture Pokemon",
       "type": "single",
       "baseUrl": null,
-      "endpoint": "/forest/actions/capture",
+      "endpoint": "/forest/actions/capture-pokemon",
       "httpMethod": "POST",
       "redirect": null,
       "download": false,
@@ -1251,7 +1279,7 @@
         "enums": null,
         "isRequired": true,
         "reference": "trainer.id",
-        "description": null,
+        "description": "Which trainer captured this Pokemon?",
         "position": 0,
         "widget": null
       }],
@@ -1260,14 +1288,83 @@
         "change": []
       }
     }, {
-      "name": "Seen",
+      "name": "Mark as Seen",
       "type": "bulk",
       "baseUrl": null,
-      "endpoint": "/forest/actions/seen",
+      "endpoint": "/forest/actions/mark-as-seen",
       "httpMethod": "POST",
       "redirect": null,
       "download": false,
       "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
+    }, {
+      "name": "Select and Assign Stats",
+      "type": "bulk",
+      "baseUrl": null,
+      "endpoint": "/forest/actions/select-and-assign-stats",
+      "httpMethod": "POST",
+      "redirect": null,
+      "download": false,
+      "fields": [{
+        "field": "Fire Stats",
+        "type": "Enum",
+        "defaultValue": null,
+        "enums": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "isRequired": true,
+        "reference": null,
+        "description": null,
+        "position": 0,
+        "widget": null
+      }, {
+        "field": "Grass Stats",
+        "type": "Enum",
+        "defaultValue": null,
+        "enums": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "isRequired": true,
+        "reference": null,
+        "description": null,
+        "position": 1,
+        "widget": null
+      }, {
+        "field": "Normal Stats",
+        "type": "Enum",
+        "defaultValue": null,
+        "enums": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "isRequired": true,
+        "reference": null,
+        "description": null,
+        "position": 2,
+        "widget": null
+      }, {
+        "field": "Water Stats",
+        "type": "Enum",
+        "defaultValue": null,
+        "enums": [
+          "High",
+          "Medium",
+          "Low"
+        ],
+        "isRequired": true,
+        "reference": null,
+        "description": null,
+        "position": 3,
+        "widget": null
+      }],
       "hooks": {
         "load": false,
         "change": []
@@ -1971,7 +2068,7 @@
     "stack": {
       "database_type": "postgres",
       "engine": "nodejs",
-      "engine_version": "16.13.0",
+      "engine_version": "16.14.0",
       "orm_version": "5.15.2"
     }
   }

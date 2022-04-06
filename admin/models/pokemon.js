@@ -75,7 +75,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     againstFire: {
       type: DataTypes.DOUBLE,
-      allowNull: false,
     },
     againstFlying: {
       type: DataTypes.DOUBLE,
@@ -87,7 +86,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     againstGrass: {
       type: DataTypes.DOUBLE,
-      allowNull: false,
     },
     againstGround: {
       type: DataTypes.DOUBLE,
@@ -99,7 +97,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     againstNormal: {
       type: DataTypes.DOUBLE,
-      allowNull: false,
     },
     againstPoison: {
       type: DataTypes.DOUBLE,
@@ -119,7 +116,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     againstWater: {
       type: DataTypes.DOUBLE,
-      allowNull: false,
     },
     baseEggSteps: {
       type: DataTypes.INTEGER,
@@ -189,6 +185,13 @@ module.exports = (sequelize, DataTypes) => {
         field: 'pokemonId',
       },
       as: 'pokemonPokemonAbilities',
+    });
+    Pokemon.hasMany(models.captured, {
+      foreignKey: {
+        name: 'pokemonIdKey',
+        field: 'pokemonId',
+      },
+      as: 'pokemonCaptureds',
     });
     Pokemon.hasOne(models.pokedex, {
       foreignKey: {
