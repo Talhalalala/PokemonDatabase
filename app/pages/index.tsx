@@ -25,33 +25,36 @@ const Home: NextPage = () => {
           </p>
 
           <div className={styles.grid}>
-            <a href="https://nextjs.org/docs" className={styles.card}>
-              <h2>All Pokemon &rarr;</h2>
-              <p>Find in-depth information about all known Pokemon</p>
-            </a>
+            <Link href="/all_pokemon">
+              <a className={styles.card}>
+                <h2>All Pokemon &rarr;</h2>
+                <p>Find in-depth information about all known Pokemon</p>
+              </a>
+            </Link>
 
-            <a href="https://nextjs.org/learn" className={styles.card}>
-              <h2>Legendary Pokemon &rarr;</h2>
-              <p>Learn about rarest and most powerful Pokemon of them all!</p>
-            </a>
+            <Link href="/legendary_pokemon">
+              <a className={styles.card}>
+                <h2>Legendary Pokemon &rarr;</h2>
+                <p>Learn about rarest and most powerful Pokemon of them all!</p>
+              </a>
+            </Link>
 
-            <a
-              href="https://github.com/vercel/next.js/tree/canary/examples"
-              className={styles.card}
-            >
-              <h2>Abilities &rarr;</h2>
-              <p>Discover all the abilities Pokemon use!</p>
-            </a>
+            <Link href="/abilities">
+              <a className={styles.card}>
+                <h2>Abilities &rarr;</h2>
+                <p>Discover all the abilities Pokemon use!</p>
+              </a>
+            </Link>
 
-            <a
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              className={styles.card}
-            >
-              <h2>Types &rarr;</h2>
-              <p>
-                Learn more about the different types of Pokemon
-              </p>
-            </a>
+            <Link href="/types">
+              <a className={styles.card}>
+                <h2>Types &rarr;</h2>
+                <p>
+                  Learn more about the different types of Pokemon
+                </p>
+              </a>
+            </Link>
+
           </div>
         </div> 
       </main> 
