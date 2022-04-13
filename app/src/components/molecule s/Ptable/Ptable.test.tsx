@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import { AllPokemonTable } from './AllPokemonTable';
+import { Ptable } from './Ptable';
 
-describe('AllPokemonTable', () => {
+describe('Ptable', () => {
   it('should render', () => {
-    render(<AllPokemonTable />);
+    render(<Ptable />);
   });
   it('should match a snapshot', () => {
-    const tree = renderer.create(<AllPokemonTable />).toJSON();
+    const tree = renderer.create(<Ptable />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

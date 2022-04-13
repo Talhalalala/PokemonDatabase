@@ -31,16 +31,6 @@ export const Table: FC<Props> = ({ columns, data }) => {
     return(
         <table {...getTableProps()}>
             <thead>
-            {headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps()}>
-                            {column.render('Header')}
-                            <div>{column.canFilter ? column.render('Filter') : null}</div>
-                        </th>
-                    ))}
-                </tr>
-            ))}
             <tr>
                 <th
                     colSpan={visibleColumns.length}
@@ -52,6 +42,23 @@ export const Table: FC<Props> = ({ columns, data }) => {
                     />
                 </th>
             </tr>
+
+            {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map(column => (
+                        <th {...column.getHeaderProps()}>
+                            {column.render('Header')}
+                            <span>
+                                {column.isSorted
+                                ? column.isSortedDesc
+                                    ? ' 🔽'
+                                    : ' 🔼'
+                                : ''}
+                            </span>
+                        </th>
+                    ))}
+                </tr>
+            ))}
             </thead>
             <tbody {...getTableBodyProps()}>
             {rows.map((row, i) => {
