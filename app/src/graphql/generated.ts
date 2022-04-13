@@ -5825,6 +5825,11 @@ export type PokemonQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, is_legendary: boolean, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
 
+export type AbilitiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AbilitiesQuery = { __typename?: 'Query', abilities: Array<{ __typename?: 'Ability', id: number, ability: string }> };
+
 
 export const PokemonDocument = `
     query Pokemon {
@@ -5861,5 +5866,25 @@ export const usePokemonQuery = <
     useQuery<PokemonQuery, TError, TData>(
       variables === undefined ? ['Pokemon'] : ['Pokemon', variables],
       fetcher<PokemonQuery, PokemonQueryVariables>(PokemonDocument, variables),
+      options
+    );
+export const AbilitiesDocument = `
+    query Abilities {
+  abilities {
+    id
+    ability
+  }
+}
+    `;
+export const useAbilitiesQuery = <
+      TData = AbilitiesQuery,
+      TError = unknown
+    >(
+      variables?: AbilitiesQueryVariables,
+      options?: UseQueryOptions<AbilitiesQuery, TError, TData>
+    ) =>
+    useQuery<AbilitiesQuery, TError, TData>(
+      variables === undefined ? ['Abilities'] : ['Abilities', variables],
+      fetcher<AbilitiesQuery, AbilitiesQueryVariables>(AbilitiesDocument, variables),
       options
     );

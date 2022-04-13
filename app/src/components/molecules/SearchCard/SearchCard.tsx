@@ -68,8 +68,8 @@ export const SearchCard: FC<Props> = (props) => {
             <div style={{textAlign: 'center'}}>
                 <StatsBox search={inputText}/>
             </div>
-        <div style={{textAlign: 'center', display: 'flex'}}>
-            <Carousel swipeable={true}>
+        {/* <div style={{textAlign: 'center', display: 'flex'}}>
+            <Carousel swipeable={true} showThumbs={false}>
             
                 <ElementButton name='Water' element_type="water" searchClick={searchClick}/>
             
@@ -127,7 +127,7 @@ export const SearchCard: FC<Props> = (props) => {
 
             </Carousel>
 
-            </div>
+            </div> */}
             
         </div>
 

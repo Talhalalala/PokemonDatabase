@@ -29,16 +29,17 @@ export const PokemonImage: FC<Props> = ({search}: Props) => {
     const pokemonIm = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
     
     return(
-        <div>
-            {(id >= 0)?
-            <>
-                <img src={pokemonIm} />
-            </>:
-            <>
-                <img src={pokeball} />
-            </>
-        }
-            
+        <div style={{border: 'groove', padding: '10px', maxWidth: '300px', margin: '0 auto', borderRadius: '15px', backgroundColor: 'yellow', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+            <div style={{border: 'groove', backgroundColor: 'lightgreen'}}>
+                {(id >= 0)?
+                <>
+                    <img style={{maxWidth: '250px', textAlign: 'center'}} src={pokemonIm} />
+                </>:
+                <>
+                    <img style={{maxWidth: '250px', textAlign: 'center'}}src={pokeball} />
+                </>
+                }
+            </div>
         </div>
     )
 };

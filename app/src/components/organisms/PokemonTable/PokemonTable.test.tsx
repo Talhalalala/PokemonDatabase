@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import { LegendaryList } from './LegendaryList';
+import { PokemonTable } from './PokemonTable';
 
-describe('LegendaryList', () => {
+describe('PokemonTable', () => {
   it('should render', () => {
-    render(<LegendaryList />);
+    render(<PokemonTable />);
   });
   it('should match a snapshot', () => {
-    const tree = renderer.create(<LegendaryList />).toJSON();
+    const tree = renderer.create(<PokemonTable />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

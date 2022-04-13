@@ -6,18 +6,27 @@ import { ElementButton } from 'components/atoms/ElementButton'
 import { SearchCard } from 'components/molecules/SearchCard'
 import { Logo } from 'components/atoms/Logo';
 import Link from 'next/link'
+import { PokemonTable } from 'components/organisms/PokemonTable'
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
-      <div>
-        <Link href="/legendary">
-          <a>Legendary</a>
-        </Link>
-      </div>
       <main className={styles.main}>
         <Logo />
         <SearchCard />
+        <PokemonTable />
+        <div>
+          <Link href="/legendary">
+            <a>Legendary</a>
+          </Link>
+          <Link href="/abilities">
+            <a>Abilities</a>
+          </Link>
+          <Link href="/all_pokemon">
+            <a>All Pokemon</a>
+          </Link>
+        </div>
+
       </main>
     </div>
     // <div className={styles.container}>

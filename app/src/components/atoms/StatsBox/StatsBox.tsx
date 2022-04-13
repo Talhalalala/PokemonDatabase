@@ -19,10 +19,6 @@ export const StatsBox: FC<Props> = ({search}: Props) => {
 
     useEffect(() => {
         const pokemonData = data?.findManyPokemon.filter(pokemon => pokemon.name.includes(search));
-        console.log(pokemonData);
-        console.log(pokemonData?.[0]);
-        console.log('LINE 24',search)
-        console.log(typeof(search))
         if(search === ""){
             setHp("");
             setAttack("");
