@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useAsyncDebounce } from 'react-table'
+import 'regenerator-runtime'
 
 type Props = {
     preGlobalFilteredRows: any, 
