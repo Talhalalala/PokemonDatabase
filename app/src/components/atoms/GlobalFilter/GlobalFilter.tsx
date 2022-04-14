@@ -18,17 +18,23 @@ export const GlobalFilter: FC<Props> = ({ preGlobalFilteredRows, globalFilter, s
 
     return(
         <span>
-            Search:{' '}
+            {/* Search:{' '} */}
             <input
             value={value || ""}
             onChange={e => {
                 setValue(e.target.value);
                 onChange(e.target.value);
             }}
-            placeholder={`${count} records...`}
+            placeholder={`Search ${count} records...`}
             style={{
                 fontSize: '1.1rem',
                 border: '0',
+                width: '32.5vw',
+                textAlign: 'center',
+                borderColor: 'black',
+                borderWidth: '1px',
+                borderRadius: '5px',
+                borderStyle: 'solid'
             }}
             />
         </span>
