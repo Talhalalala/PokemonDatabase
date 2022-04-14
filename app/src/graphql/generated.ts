@@ -1,4 +1,5 @@
 import { useQuery, UseQueryOptions } from 'react-query';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -8,8 +9,8 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
     const res = await fetch(process.env.NEXT_PUBLIC_API as string, {
-    method: "POST",
-    ...({"headers":{"credentials":"include","content-type":"application/json"}}),
+      method: 'POST',
+      ...{ headers: { credentials: 'include', 'content-type': 'application/json' } },
       body: JSON.stringify({ query, variables }),
     });
 
@@ -22,7 +23,7 @@ function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
     }
 
     return json.data;
-  }
+  };
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -45,7 +46,6 @@ export type Ability = {
   pokemonAbilities: Array<PokemonAbilities>;
   updatedAt: Scalars['DateTime'];
 };
-
 
 export type AbilityPokemonAbilitiesArgs = {
   cursor?: InputMaybe<PokemonAbilitiesWhereUniqueInput>;
@@ -202,7 +202,7 @@ export enum AbilityScalarFieldEnum {
   CreatedAt = 'createdAt',
   ExpiresAt = 'expiresAt',
   Id = 'id',
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 export type AbilityScalarWhereWithAggregatesInput = {
@@ -594,7 +594,7 @@ export enum CapturedScalarFieldEnum {
   Id = 'id',
   Level = 'level',
   PokemonId = 'pokemonId',
-  TrainerId = 'trainerId'
+  TrainerId = 'trainerId',
 }
 
 export type CapturedScalarWhereInput = {
@@ -743,7 +743,6 @@ export type Classification = {
   pokemon: Array<Pokemon>;
 };
 
-
 export type ClassificationPokemonArgs = {
   cursor?: InputMaybe<PokemonWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokemonScalarFieldEnum>>;
@@ -860,7 +859,7 @@ export type ClassificationRelationFilter = {
 
 export enum ClassificationScalarFieldEnum {
   Classification = 'classification',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type ClassificationScalarWhereWithAggregatesInput = {
@@ -1077,7 +1076,7 @@ export type FloatWithAggregatesFilter = {
 export enum Gender {
   Female = 'Female',
   Male = 'Male',
-  Unsexed = 'Unsexed'
+  Unsexed = 'Unsexed',
 }
 
 export type Generation = {
@@ -1087,7 +1086,6 @@ export type Generation = {
   id: Scalars['Int'];
   pokemon: Array<Pokemon>;
 };
-
 
 export type GenerationPokemonArgs = {
   cursor?: InputMaybe<PokemonWhereUniqueInput>;
@@ -1207,7 +1205,7 @@ export type GenerationRelationFilter = {
 
 export enum GenerationScalarFieldEnum {
   Generation = 'generation',
-  Id = 'id'
+  Id = 'id',
 }
 
 export type GenerationScalarWhereWithAggregatesInput = {
@@ -1405,336 +1403,275 @@ export type Mutation = {
   upsertType: Type;
 };
 
-
 export type MutationCreateAbilityArgs = {
   data: AbilityCreateInput;
 };
-
 
 export type MutationCreateCapturedArgs = {
   data: CapturedCreateInput;
 };
 
-
 export type MutationCreateClassificationArgs = {
   data: ClassificationCreateInput;
 };
 
-
 export type MutationCreateGenerationArgs = {
   data: GenerationCreateInput;
 };
-
 
 export type MutationCreateManyAbilityArgs = {
   data: Array<AbilityCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateManyCapturedArgs = {
   data: Array<CapturedCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationCreateManyClassificationArgs = {
   data: Array<ClassificationCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateManyGenerationArgs = {
   data: Array<GenerationCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationCreateManyPokedexArgs = {
   data: Array<PokedexCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateManyPokemonArgs = {
   data: Array<PokemonCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationCreateManyPokemonAbilitiesArgs = {
   data: Array<PokemonAbilitiesCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateManyPokemonTypesArgs = {
   data: Array<PokemonTypesCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationCreateManyTrainerArgs = {
   data: Array<TrainerCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreateManyTypeArgs = {
   data: Array<TypeCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationCreatePokedexArgs = {
   data: PokedexCreateInput;
 };
-
 
 export type MutationCreatePokemonArgs = {
   data: PokemonCreateInput;
 };
 
-
 export type MutationCreatePokemonAbilitiesArgs = {
   data: PokemonAbilitiesCreateInput;
 };
-
 
 export type MutationCreatePokemonTypesArgs = {
   data: PokemonTypesCreateInput;
 };
 
-
 export type MutationCreateTrainerArgs = {
   data: TrainerCreateInput;
 };
-
 
 export type MutationCreateTypeArgs = {
   data: TypeCreateInput;
 };
 
-
 export type MutationDeleteAbilityArgs = {
   where: AbilityWhereUniqueInput;
 };
-
 
 export type MutationDeleteCapturedArgs = {
   where: CapturedWhereUniqueInput;
 };
 
-
 export type MutationDeleteClassificationArgs = {
   where: ClassificationWhereUniqueInput;
 };
-
 
 export type MutationDeleteGenerationArgs = {
   where: GenerationWhereUniqueInput;
 };
 
-
 export type MutationDeleteManyAbilityArgs = {
   where?: InputMaybe<AbilityWhereInput>;
 };
-
 
 export type MutationDeleteManyCapturedArgs = {
   where?: InputMaybe<CapturedWhereInput>;
 };
 
-
 export type MutationDeleteManyClassificationArgs = {
   where?: InputMaybe<ClassificationWhereInput>;
 };
-
 
 export type MutationDeleteManyGenerationArgs = {
   where?: InputMaybe<GenerationWhereInput>;
 };
 
-
 export type MutationDeleteManyPokedexArgs = {
   where?: InputMaybe<PokedexWhereInput>;
 };
-
 
 export type MutationDeleteManyPokemonArgs = {
   where?: InputMaybe<PokemonWhereInput>;
 };
 
-
 export type MutationDeleteManyPokemonAbilitiesArgs = {
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
-
 
 export type MutationDeleteManyPokemonTypesArgs = {
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
 
-
 export type MutationDeleteManyTrainerArgs = {
   where?: InputMaybe<TrainerWhereInput>;
 };
-
 
 export type MutationDeleteManyTypeArgs = {
   where?: InputMaybe<TypeWhereInput>;
 };
 
-
 export type MutationDeletePokedexArgs = {
   where: PokedexWhereUniqueInput;
 };
-
 
 export type MutationDeletePokemonArgs = {
   where: PokemonWhereUniqueInput;
 };
 
-
 export type MutationDeletePokemonAbilitiesArgs = {
   where: PokemonAbilitiesWhereUniqueInput;
 };
-
 
 export type MutationDeletePokemonTypesArgs = {
   where: PokemonTypesWhereUniqueInput;
 };
 
-
 export type MutationDeleteTrainerArgs = {
   where: TrainerWhereUniqueInput;
 };
 
-
 export type MutationDeleteTypeArgs = {
   where: TypeWhereUniqueInput;
 };
-
 
 export type MutationUpdateAbilityArgs = {
   data: AbilityUpdateInput;
   where: AbilityWhereUniqueInput;
 };
 
-
 export type MutationUpdateCapturedArgs = {
   data: CapturedUpdateInput;
   where: CapturedWhereUniqueInput;
 };
-
 
 export type MutationUpdateClassificationArgs = {
   data: ClassificationUpdateInput;
   where: ClassificationWhereUniqueInput;
 };
 
-
 export type MutationUpdateGenerationArgs = {
   data: GenerationUpdateInput;
   where: GenerationWhereUniqueInput;
 };
-
 
 export type MutationUpdateManyAbilityArgs = {
   data: AbilityUpdateManyMutationInput;
   where?: InputMaybe<AbilityWhereInput>;
 };
 
-
 export type MutationUpdateManyCapturedArgs = {
   data: CapturedUpdateManyMutationInput;
   where?: InputMaybe<CapturedWhereInput>;
 };
-
 
 export type MutationUpdateManyClassificationArgs = {
   data: ClassificationUpdateManyMutationInput;
   where?: InputMaybe<ClassificationWhereInput>;
 };
 
-
 export type MutationUpdateManyGenerationArgs = {
   data: GenerationUpdateManyMutationInput;
   where?: InputMaybe<GenerationWhereInput>;
 };
-
 
 export type MutationUpdateManyPokedexArgs = {
   data: PokedexUpdateManyMutationInput;
   where?: InputMaybe<PokedexWhereInput>;
 };
 
-
 export type MutationUpdateManyPokemonArgs = {
   data: PokemonUpdateManyMutationInput;
   where?: InputMaybe<PokemonWhereInput>;
 };
-
 
 export type MutationUpdateManyPokemonAbilitiesArgs = {
   data: PokemonAbilitiesUpdateManyMutationInput;
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
 
-
 export type MutationUpdateManyPokemonTypesArgs = {
   data: PokemonTypesUpdateManyMutationInput;
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
-
 
 export type MutationUpdateManyTrainerArgs = {
   data: TrainerUpdateManyMutationInput;
   where?: InputMaybe<TrainerWhereInput>;
 };
 
-
 export type MutationUpdateManyTypeArgs = {
   data: TypeUpdateManyMutationInput;
   where?: InputMaybe<TypeWhereInput>;
 };
-
 
 export type MutationUpdatePokedexArgs = {
   data: PokedexUpdateInput;
   where: PokedexWhereUniqueInput;
 };
 
-
 export type MutationUpdatePokemonArgs = {
   data: PokemonUpdateInput;
   where: PokemonWhereUniqueInput;
 };
-
 
 export type MutationUpdatePokemonAbilitiesArgs = {
   data: PokemonAbilitiesUpdateInput;
   where: PokemonAbilitiesWhereUniqueInput;
 };
 
-
 export type MutationUpdatePokemonTypesArgs = {
   data: PokemonTypesUpdateInput;
   where: PokemonTypesWhereUniqueInput;
 };
-
 
 export type MutationUpdateTrainerArgs = {
   data: TrainerUpdateInput;
   where: TrainerWhereUniqueInput;
 };
 
-
 export type MutationUpdateTypeArgs = {
   data: TypeUpdateInput;
   where: TypeWhereUniqueInput;
 };
-
 
 export type MutationUpsertAbilityArgs = {
   create: AbilityCreateInput;
@@ -1742,13 +1679,11 @@ export type MutationUpsertAbilityArgs = {
   where: AbilityWhereUniqueInput;
 };
 
-
 export type MutationUpsertCapturedArgs = {
   create: CapturedCreateInput;
   update: CapturedUpdateInput;
   where: CapturedWhereUniqueInput;
 };
-
 
 export type MutationUpsertClassificationArgs = {
   create: ClassificationCreateInput;
@@ -1756,13 +1691,11 @@ export type MutationUpsertClassificationArgs = {
   where: ClassificationWhereUniqueInput;
 };
 
-
 export type MutationUpsertGenerationArgs = {
   create: GenerationCreateInput;
   update: GenerationUpdateInput;
   where: GenerationWhereUniqueInput;
 };
-
 
 export type MutationUpsertPokedexArgs = {
   create: PokedexCreateInput;
@@ -1770,13 +1703,11 @@ export type MutationUpsertPokedexArgs = {
   where: PokedexWhereUniqueInput;
 };
 
-
 export type MutationUpsertPokemonArgs = {
   create: PokemonCreateInput;
   update: PokemonUpdateInput;
   where: PokemonWhereUniqueInput;
 };
-
 
 export type MutationUpsertPokemonAbilitiesArgs = {
   create: PokemonAbilitiesCreateInput;
@@ -1784,20 +1715,17 @@ export type MutationUpsertPokemonAbilitiesArgs = {
   where: PokemonAbilitiesWhereUniqueInput;
 };
 
-
 export type MutationUpsertPokemonTypesArgs = {
   create: PokemonTypesCreateInput;
   update: PokemonTypesUpdateInput;
   where: PokemonTypesWhereUniqueInput;
 };
 
-
 export type MutationUpsertTrainerArgs = {
   create: TrainerCreateInput;
   update: TrainerUpdateInput;
   where: TrainerWhereUniqueInput;
 };
-
 
 export type MutationUpsertTypeArgs = {
   create: TypeCreateInput;
@@ -2216,7 +2144,7 @@ export enum PokedexScalarFieldEnum {
   ExpiresAt = 'expiresAt',
   Id = 'id',
   PokemonId = 'pokemonId',
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 export type PokedexScalarWhereWithAggregatesInput = {
@@ -2342,7 +2270,6 @@ export type Pokemon = {
   weight_kg: Scalars['Float'];
 };
 
-
 export type PokemonCapturedArgs = {
   cursor?: InputMaybe<CapturedWhereUniqueInput>;
   distinct?: InputMaybe<Array<CapturedScalarFieldEnum>>;
@@ -2352,7 +2279,6 @@ export type PokemonCapturedArgs = {
   where?: InputMaybe<CapturedWhereInput>;
 };
 
-
 export type PokemonAbilitiesArgs = {
   cursor?: InputMaybe<PokemonAbilitiesWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokemonAbilitiesScalarFieldEnum>>;
@@ -2361,7 +2287,6 @@ export type PokemonAbilitiesArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
-
 
 export type PokemonTypesArgs = {
   cursor?: InputMaybe<PokemonTypesWhereUniqueInput>;
@@ -2581,7 +2506,7 @@ export enum PokemonAbilitiesScalarFieldEnum {
   CreatedAt = 'createdAt',
   ExpiresAt = 'expiresAt',
   PokemonId = 'pokemonId',
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 export type PokemonAbilitiesScalarWhereInput = {
@@ -3770,7 +3695,7 @@ export enum PokemonScalarFieldEnum {
   SpDefense = 'sp_defense',
   Speed = 'speed',
   Status = 'status',
-  WeightKg = 'weight_kg'
+  WeightKg = 'weight_kg',
 }
 
 export type PokemonScalarWhereInput = {
@@ -4149,7 +4074,7 @@ export enum PokemonTypesScalarFieldEnum {
   ExpiresAt = 'expiresAt',
   PokemonId = 'pokemonId',
   TypeId = 'typeId',
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 export type PokemonTypesScalarWhereInput = {
@@ -4859,7 +4784,6 @@ export type Query = {
   types: Array<Type>;
 };
 
-
 export type QueryAbilitiesArgs = {
   cursor?: InputMaybe<AbilityWhereUniqueInput>;
   distinct?: InputMaybe<Array<AbilityScalarFieldEnum>>;
@@ -4869,11 +4793,9 @@ export type QueryAbilitiesArgs = {
   where?: InputMaybe<AbilityWhereInput>;
 };
 
-
 export type QueryAbilityArgs = {
   where: AbilityWhereUniqueInput;
 };
-
 
 export type QueryAggregateAbilityArgs = {
   cursor?: InputMaybe<AbilityWhereUniqueInput>;
@@ -4883,7 +4805,6 @@ export type QueryAggregateAbilityArgs = {
   where?: InputMaybe<AbilityWhereInput>;
 };
 
-
 export type QueryAggregateCapturedArgs = {
   cursor?: InputMaybe<CapturedWhereUniqueInput>;
   orderBy?: InputMaybe<Array<CapturedOrderByWithRelationInput>>;
@@ -4891,7 +4812,6 @@ export type QueryAggregateCapturedArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CapturedWhereInput>;
 };
-
 
 export type QueryAggregateClassificationArgs = {
   cursor?: InputMaybe<ClassificationWhereUniqueInput>;
@@ -4901,7 +4821,6 @@ export type QueryAggregateClassificationArgs = {
   where?: InputMaybe<ClassificationWhereInput>;
 };
 
-
 export type QueryAggregateGenerationArgs = {
   cursor?: InputMaybe<GenerationWhereUniqueInput>;
   orderBy?: InputMaybe<Array<GenerationOrderByWithRelationInput>>;
@@ -4909,7 +4828,6 @@ export type QueryAggregateGenerationArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<GenerationWhereInput>;
 };
-
 
 export type QueryAggregatePokedexArgs = {
   cursor?: InputMaybe<PokedexWhereUniqueInput>;
@@ -4919,7 +4837,6 @@ export type QueryAggregatePokedexArgs = {
   where?: InputMaybe<PokedexWhereInput>;
 };
 
-
 export type QueryAggregatePokemonArgs = {
   cursor?: InputMaybe<PokemonWhereUniqueInput>;
   orderBy?: InputMaybe<Array<PokemonOrderByWithRelationInput>>;
@@ -4927,7 +4844,6 @@ export type QueryAggregatePokemonArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonWhereInput>;
 };
-
 
 export type QueryAggregatePokemonAbilitiesArgs = {
   cursor?: InputMaybe<PokemonAbilitiesWhereUniqueInput>;
@@ -4937,7 +4853,6 @@ export type QueryAggregatePokemonAbilitiesArgs = {
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
 
-
 export type QueryAggregatePokemonTypesArgs = {
   cursor?: InputMaybe<PokemonTypesWhereUniqueInput>;
   orderBy?: InputMaybe<Array<PokemonTypesOrderByWithRelationInput>>;
@@ -4945,7 +4860,6 @@ export type QueryAggregatePokemonTypesArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
-
 
 export type QueryAggregateTrainerArgs = {
   cursor?: InputMaybe<TrainerWhereUniqueInput>;
@@ -4955,7 +4869,6 @@ export type QueryAggregateTrainerArgs = {
   where?: InputMaybe<TrainerWhereInput>;
 };
 
-
 export type QueryAggregateTypeArgs = {
   cursor?: InputMaybe<TypeWhereUniqueInput>;
   orderBy?: InputMaybe<Array<TypeOrderByWithRelationInput>>;
@@ -4964,11 +4877,9 @@ export type QueryAggregateTypeArgs = {
   where?: InputMaybe<TypeWhereInput>;
 };
 
-
 export type QueryCapturedArgs = {
   where: CapturedWhereUniqueInput;
 };
-
 
 export type QueryCapturedsArgs = {
   cursor?: InputMaybe<CapturedWhereUniqueInput>;
@@ -4979,11 +4890,9 @@ export type QueryCapturedsArgs = {
   where?: InputMaybe<CapturedWhereInput>;
 };
 
-
 export type QueryClassificationArgs = {
   where: ClassificationWhereUniqueInput;
 };
-
 
 export type QueryClassificationsArgs = {
   cursor?: InputMaybe<ClassificationWhereUniqueInput>;
@@ -4994,7 +4903,6 @@ export type QueryClassificationsArgs = {
   where?: InputMaybe<ClassificationWhereInput>;
 };
 
-
 export type QueryFindFirstAbilityArgs = {
   cursor?: InputMaybe<AbilityWhereUniqueInput>;
   distinct?: InputMaybe<Array<AbilityScalarFieldEnum>>;
@@ -5003,7 +4911,6 @@ export type QueryFindFirstAbilityArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AbilityWhereInput>;
 };
-
 
 export type QueryFindFirstCapturedArgs = {
   cursor?: InputMaybe<CapturedWhereUniqueInput>;
@@ -5014,7 +4921,6 @@ export type QueryFindFirstCapturedArgs = {
   where?: InputMaybe<CapturedWhereInput>;
 };
 
-
 export type QueryFindFirstClassificationArgs = {
   cursor?: InputMaybe<ClassificationWhereUniqueInput>;
   distinct?: InputMaybe<Array<ClassificationScalarFieldEnum>>;
@@ -5023,7 +4929,6 @@ export type QueryFindFirstClassificationArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ClassificationWhereInput>;
 };
-
 
 export type QueryFindFirstGenerationArgs = {
   cursor?: InputMaybe<GenerationWhereUniqueInput>;
@@ -5034,7 +4939,6 @@ export type QueryFindFirstGenerationArgs = {
   where?: InputMaybe<GenerationWhereInput>;
 };
 
-
 export type QueryFindFirstPokedexArgs = {
   cursor?: InputMaybe<PokedexWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokedexScalarFieldEnum>>;
@@ -5043,7 +4947,6 @@ export type QueryFindFirstPokedexArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokedexWhereInput>;
 };
-
 
 export type QueryFindFirstPokemonArgs = {
   cursor?: InputMaybe<PokemonWhereUniqueInput>;
@@ -5054,7 +4957,6 @@ export type QueryFindFirstPokemonArgs = {
   where?: InputMaybe<PokemonWhereInput>;
 };
 
-
 export type QueryFindFirstPokemonAbilitiesArgs = {
   cursor?: InputMaybe<PokemonAbilitiesWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokemonAbilitiesScalarFieldEnum>>;
@@ -5063,7 +4965,6 @@ export type QueryFindFirstPokemonAbilitiesArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
-
 
 export type QueryFindFirstPokemonTypesArgs = {
   cursor?: InputMaybe<PokemonTypesWhereUniqueInput>;
@@ -5074,7 +4975,6 @@ export type QueryFindFirstPokemonTypesArgs = {
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
 
-
 export type QueryFindFirstTrainerArgs = {
   cursor?: InputMaybe<TrainerWhereUniqueInput>;
   distinct?: InputMaybe<Array<TrainerScalarFieldEnum>>;
@@ -5083,7 +4983,6 @@ export type QueryFindFirstTrainerArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TrainerWhereInput>;
 };
-
 
 export type QueryFindFirstTypeArgs = {
   cursor?: InputMaybe<TypeWhereUniqueInput>;
@@ -5094,7 +4993,6 @@ export type QueryFindFirstTypeArgs = {
   where?: InputMaybe<TypeWhereInput>;
 };
 
-
 export type QueryFindManyPokemonArgs = {
   cursor?: InputMaybe<PokemonWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokemonScalarFieldEnum>>;
@@ -5103,7 +5001,6 @@ export type QueryFindManyPokemonArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonWhereInput>;
 };
-
 
 export type QueryFindManyPokemonAbilitiesArgs = {
   cursor?: InputMaybe<PokemonAbilitiesWhereUniqueInput>;
@@ -5114,7 +5011,6 @@ export type QueryFindManyPokemonAbilitiesArgs = {
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
 
-
 export type QueryFindManyPokemonTypesArgs = {
   cursor?: InputMaybe<PokemonTypesWhereUniqueInput>;
   distinct?: InputMaybe<Array<PokemonTypesScalarFieldEnum>>;
@@ -5124,26 +5020,21 @@ export type QueryFindManyPokemonTypesArgs = {
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
 
-
 export type QueryFindUniquePokemonArgs = {
   where: PokemonWhereUniqueInput;
 };
-
 
 export type QueryFindUniquePokemonAbilitiesArgs = {
   where: PokemonAbilitiesWhereUniqueInput;
 };
 
-
 export type QueryFindUniquePokemonTypesArgs = {
   where: PokemonTypesWhereUniqueInput;
 };
 
-
 export type QueryGenerationArgs = {
   where: GenerationWhereUniqueInput;
 };
-
 
 export type QueryGenerationsArgs = {
   cursor?: InputMaybe<GenerationWhereUniqueInput>;
@@ -5154,7 +5045,6 @@ export type QueryGenerationsArgs = {
   where?: InputMaybe<GenerationWhereInput>;
 };
 
-
 export type QueryGroupByAbilityArgs = {
   by: Array<AbilityScalarFieldEnum>;
   having?: InputMaybe<AbilityScalarWhereWithAggregatesInput>;
@@ -5163,7 +5053,6 @@ export type QueryGroupByAbilityArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AbilityWhereInput>;
 };
-
 
 export type QueryGroupByCapturedArgs = {
   by: Array<CapturedScalarFieldEnum>;
@@ -5174,7 +5063,6 @@ export type QueryGroupByCapturedArgs = {
   where?: InputMaybe<CapturedWhereInput>;
 };
 
-
 export type QueryGroupByClassificationArgs = {
   by: Array<ClassificationScalarFieldEnum>;
   having?: InputMaybe<ClassificationScalarWhereWithAggregatesInput>;
@@ -5183,7 +5071,6 @@ export type QueryGroupByClassificationArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ClassificationWhereInput>;
 };
-
 
 export type QueryGroupByGenerationArgs = {
   by: Array<GenerationScalarFieldEnum>;
@@ -5194,7 +5081,6 @@ export type QueryGroupByGenerationArgs = {
   where?: InputMaybe<GenerationWhereInput>;
 };
 
-
 export type QueryGroupByPokedexArgs = {
   by: Array<PokedexScalarFieldEnum>;
   having?: InputMaybe<PokedexScalarWhereWithAggregatesInput>;
@@ -5203,7 +5089,6 @@ export type QueryGroupByPokedexArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokedexWhereInput>;
 };
-
 
 export type QueryGroupByPokemonArgs = {
   by: Array<PokemonScalarFieldEnum>;
@@ -5214,7 +5099,6 @@ export type QueryGroupByPokemonArgs = {
   where?: InputMaybe<PokemonWhereInput>;
 };
 
-
 export type QueryGroupByPokemonAbilitiesArgs = {
   by: Array<PokemonAbilitiesScalarFieldEnum>;
   having?: InputMaybe<PokemonAbilitiesScalarWhereWithAggregatesInput>;
@@ -5223,7 +5107,6 @@ export type QueryGroupByPokemonAbilitiesArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PokemonAbilitiesWhereInput>;
 };
-
 
 export type QueryGroupByPokemonTypesArgs = {
   by: Array<PokemonTypesScalarFieldEnum>;
@@ -5234,7 +5117,6 @@ export type QueryGroupByPokemonTypesArgs = {
   where?: InputMaybe<PokemonTypesWhereInput>;
 };
 
-
 export type QueryGroupByTrainerArgs = {
   by: Array<TrainerScalarFieldEnum>;
   having?: InputMaybe<TrainerScalarWhereWithAggregatesInput>;
@@ -5243,7 +5125,6 @@ export type QueryGroupByTrainerArgs = {
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TrainerWhereInput>;
 };
-
 
 export type QueryGroupByTypeArgs = {
   by: Array<TypeScalarFieldEnum>;
@@ -5254,11 +5135,9 @@ export type QueryGroupByTypeArgs = {
   where?: InputMaybe<TypeWhereInput>;
 };
 
-
 export type QueryPokedexArgs = {
   where: PokedexWhereUniqueInput;
 };
-
 
 export type QueryPokedexesArgs = {
   cursor?: InputMaybe<PokedexWhereUniqueInput>;
@@ -5269,11 +5148,9 @@ export type QueryPokedexesArgs = {
   where?: InputMaybe<PokedexWhereInput>;
 };
 
-
 export type QueryTrainerArgs = {
   where: TrainerWhereUniqueInput;
 };
-
 
 export type QueryTrainersArgs = {
   cursor?: InputMaybe<TrainerWhereUniqueInput>;
@@ -5284,11 +5161,9 @@ export type QueryTrainersArgs = {
   where?: InputMaybe<TrainerWhereInput>;
 };
 
-
 export type QueryTypeArgs = {
   where: TypeWhereUniqueInput;
 };
-
 
 export type QueryTypesArgs = {
   cursor?: InputMaybe<TypeWhereUniqueInput>;
@@ -5301,18 +5176,18 @@ export type QueryTypesArgs = {
 
 export enum QueryMode {
   Default = 'default',
-  Insensitive = 'insensitive'
+  Insensitive = 'insensitive',
 }
 
 export enum SortOrder {
   Asc = 'asc',
-  Desc = 'desc'
+  Desc = 'desc',
 }
 
 export enum Status {
   Captured = 'Captured',
   Seen = 'Seen',
-  Unseen = 'Unseen'
+  Unseen = 'Unseen',
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -5361,7 +5236,6 @@ export type Trainer = {
   id: Scalars['Int'];
   name: Scalars['String'];
 };
-
 
 export type TrainerCapturedArgs = {
   cursor?: InputMaybe<CapturedWhereUniqueInput>;
@@ -5507,7 +5381,7 @@ export enum TrainerScalarFieldEnum {
   Age = 'age',
   Gender = 'gender',
   Id = 'id',
-  Name = 'name'
+  Name = 'name',
 }
 
 export type TrainerScalarWhereWithAggregatesInput = {
@@ -5588,7 +5462,6 @@ export type Type = {
   type: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
-
 
 export type TypePokemonTypesArgs = {
   cursor?: InputMaybe<PokemonTypesWhereUniqueInput>;
@@ -5745,7 +5618,7 @@ export enum TypeScalarFieldEnum {
   ExpiresAt = 'expiresAt',
   Id = 'id',
   Type = 'type',
-  UpdatedAt = 'updatedAt'
+  UpdatedAt = 'updatedAt',
 }
 
 export type TypeScalarWhereWithAggregatesInput = {
@@ -5820,16 +5693,35 @@ export type TypeWhereUniqueInput = {
   type?: InputMaybe<Scalars['String']>;
 };
 
-export type PokemonQueryVariables = Exact<{ [key: string]: never; }>;
+export type PokemonQueryVariables = Exact<{ [key: string]: never }>;
 
+export type PokemonQuery = {
+  __typename?: 'Query';
+  findManyPokemon: Array<{
+    __typename?: 'Pokemon';
+    id: number;
+    name: string;
+    japanese_name: string;
+    hp: number;
+    defense: number;
+    attack: number;
+    weight_kg: number;
+    speed: number;
+    is_legendary: boolean;
+    types: Array<{ __typename?: 'PokemonTypes'; type: { __typename?: 'Type'; type: string } }>;
+    abilities: Array<{
+      __typename?: 'PokemonAbilities';
+      ability: { __typename?: 'Ability'; ability: string };
+    }>;
+  }>;
+};
 
-export type PokemonQuery = { __typename?: 'Query', findManyPokemon: Array<{ __typename?: 'Pokemon', id: number, name: string, japanese_name: string, hp: number, defense: number, attack: number, weight_kg: number, speed: number, is_legendary: boolean, types: Array<{ __typename?: 'PokemonTypes', type: { __typename?: 'Type', type: string } }>, abilities: Array<{ __typename?: 'PokemonAbilities', ability: { __typename?: 'Ability', ability: string } }> }> };
+export type AbilitiesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AbilitiesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AbilitiesQuery = { __typename?: 'Query', abilities: Array<{ __typename?: 'Ability', id: number, ability: string }> };
-
+export type AbilitiesQuery = {
+  __typename?: 'Query';
+  abilities: Array<{ __typename?: 'Ability'; id: number; ability: string }>;
+};
 
 export const PokemonDocument = `
     query Pokemon {
@@ -5856,18 +5748,15 @@ export const PokemonDocument = `
   }
 }
     `;
-export const usePokemonQuery = <
-      TData = PokemonQuery,
-      TError = unknown
-    >(
-      variables?: PokemonQueryVariables,
-      options?: UseQueryOptions<PokemonQuery, TError, TData>
-    ) =>
-    useQuery<PokemonQuery, TError, TData>(
-      variables === undefined ? ['Pokemon'] : ['Pokemon', variables],
-      fetcher<PokemonQuery, PokemonQueryVariables>(PokemonDocument, variables),
-      options
-    );
+export const usePokemonQuery = <TData = PokemonQuery, TError = unknown>(
+  variables?: PokemonQueryVariables,
+  options?: UseQueryOptions<PokemonQuery, TError, TData>
+) =>
+  useQuery<PokemonQuery, TError, TData>(
+    variables === undefined ? ['Pokemon'] : ['Pokemon', variables],
+    fetcher<PokemonQuery, PokemonQueryVariables>(PokemonDocument, variables),
+    options
+  );
 export const AbilitiesDocument = `
     query Abilities {
   abilities {
@@ -5876,15 +5765,12 @@ export const AbilitiesDocument = `
   }
 }
     `;
-export const useAbilitiesQuery = <
-      TData = AbilitiesQuery,
-      TError = unknown
-    >(
-      variables?: AbilitiesQueryVariables,
-      options?: UseQueryOptions<AbilitiesQuery, TError, TData>
-    ) =>
-    useQuery<AbilitiesQuery, TError, TData>(
-      variables === undefined ? ['Abilities'] : ['Abilities', variables],
-      fetcher<AbilitiesQuery, AbilitiesQueryVariables>(AbilitiesDocument, variables),
-      options
-    );
+export const useAbilitiesQuery = <TData = AbilitiesQuery, TError = unknown>(
+  variables?: AbilitiesQueryVariables,
+  options?: UseQueryOptions<AbilitiesQuery, TError, TData>
+) =>
+  useQuery<AbilitiesQuery, TError, TData>(
+    variables === undefined ? ['Abilities'] : ['Abilities', variables],
+    fetcher<AbilitiesQuery, AbilitiesQueryVariables>(AbilitiesDocument, variables),
+    options
+  );

@@ -1,16 +1,13 @@
-import { Ptable } from 'components/molecule s/Ptable';
+import { Ptable } from 'components/molecules/Ptable';
 import React, { FC } from 'react';
-import styles from '../../../../styles/organisms/PokemonDisplay.module.css'
+import styles from '../../../../styles/organisms/PokemonDisplay.module.css';
 
+type Props = {};
 
-type Props = {}
-
-export const PokemonDisplay: FC<Props> = (props) => {
-    return(
-        <div>
-            <div className={styles.Ptable}>
-                <Ptable />
-            </div>
-        </div>
-    )
-};
+export const PokemonDisplay: FC<Props> = (props) => (
+  <div>
+    <div className={styles.Ptable}>
+      <Ptable />
+    </div>
+  </div>
+);
