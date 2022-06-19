@@ -19,9 +19,9 @@ const Home: NextPage = () => (
         <p className={styles.description}>Can you catch them all?</p>
 
         <div className={styles.grid}>
-          <Link href="/all_pokemon">
+          <Link href="/pokemon_exercises">
             <a className={styles.card}>
-              <h2>All Pokemon &rarr;</h2>
+              <h2>Pokemon Exercises &rarr;</h2>
               <p>Find in-depth information about all known Pokemon</p>
             </a>
           </Link>

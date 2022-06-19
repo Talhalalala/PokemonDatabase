@@ -1,11 +1,13 @@
 import { PokemonDisplay } from 'components/organisms/PokemonDisplay';
+import { Pokemon } from 'components/Pokemon';
 import type { NextPage } from 'next';
 
-const AllPokemon: NextPage = () => (
+const PokemonExercises: NextPage = () => (
   <div>
     <h3>This is the all pokemon page</h3>
-    <PokemonDisplay />
+    {/* <PokemonDisplay /> */}
+    <Pokemon />
   </div>
 );
 
-export default AllPokemon;
+export default PokemonExercises;
