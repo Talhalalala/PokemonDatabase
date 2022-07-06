@@ -1,10 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { gql } from 'graphql-tag';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient } from 'react-query';
 import { usePokemonQuery } from '../graphql/generated';
-import { getMiddlewareManifest } from 'next/dist/client/route-loader';
 import { PokemonImage } from './atoms/PokemonImage';
-import axios from 'axios';
 
 const queryClient = new QueryClient();
 
@@ -130,7 +128,7 @@ export const Pokemon: FC = () => {
   // You should only use this array for the following questions (i.e. don't query anything else in GraphQL)
   // 1. Order the Pokemon by height in descending order
   const tallestPokemon = [...pokemon].sort((a, b) => b.height_m - a.height_m);
-  // console.log('TALL------->>>>', tallestPokemon)
+  // console.log('TALL------->>>>', tallestPokemon);
 
   // 2. Order the Pokemon by weight in ascending order
   const skinniestPokemon = [...pokemon].sort((a, b) => a.weight_kg - b.weight_kg);
@@ -224,7 +222,7 @@ export const Pokemon: FC = () => {
 
   // 11. Create a function which accepts a type as an input and returns the Pokemon which are the strongest against that type
   const strongestAgainstType = (type: string) =>
-    pokemon.sort((a, b) => b[`against_${type}`] - a[`against_${type}`]).slice(0, 10);
+    pokemon.sort((a: any, b: any) => a[`against_${type}`] - b[`against_${type}`]).slice(0, 10);
 
   // React questions
   // 1. Create a stateful variable called 'loading' and set this to true initially. Set this to false when the pokemon array is not empty (should take about 5 seconds)
@@ -269,7 +267,7 @@ export const Pokemon: FC = () => {
   // 6. Create a custom hook that accepts a url as input and fetches the data from that url. Use this in your PokemonImage component
 
   const checkFunction = () => {
-    console.log('doesnt do anything atm');
+    console.log(strongestAgainstType('grass'));
   };
 
   return (
